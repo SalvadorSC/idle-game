@@ -45,12 +45,11 @@ export const useContador = (
     }, 1e3);
     return () => clearTimeout(timer);
   });
+
+  // save function
   useEffect(() => {
-    const timer = setTimeout(() => {
-      localStorage.setItem("save", JSON.stringify(save));
-    }, 60e3);
-    return () => clearTimeout(timer);
-  });
+    localStorage.setItem("save", JSON.stringify(save));
+  }, [save]);
 
   const incrementEverySecond = () => {
     const efectoAutomatron1 = automatron1 * 1.5;
