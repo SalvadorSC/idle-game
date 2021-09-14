@@ -28,6 +28,9 @@ export const useContador = (
       }deg)`;
       document.querySelector(".progressR").style.transform = `rotate(0deg)`;
     }
+    if (totalCountOfAllTime >= goal) {
+      setGoal(goal * 10);
+    }
   };
 
   const increment = () => {
