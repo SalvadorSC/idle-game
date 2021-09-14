@@ -24,6 +24,14 @@ export const CounterProvider = ({ children }) => {
     goal: goal,
   };
 
+  const resetGame = () => {
+    setGoal(100);
+    setMultiplicador(0);
+    setTotalCountOfAllTime(0);
+    setCount(0);
+    setAutomatron1(0);
+  };
+
   return (
     <CounterContext.Provider
       value={{
@@ -38,6 +46,7 @@ export const CounterProvider = ({ children }) => {
         setMultiplicador,
         setAutomatron1,
         save,
+        resetGame,
       }}
     >
       {children}

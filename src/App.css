@@ -98,6 +98,21 @@ h1 {
   background-color: #444;
 }
 
+.reset-button {
+  font-weight: bold;
+  background-color: #444;
+  font-size: 15px;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+  background-color: #666;
+}
+
 .shop-button:disabled {
   background-color: rgb(153, 153, 153);
   color: rgb(190, 190, 190);

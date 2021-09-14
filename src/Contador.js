@@ -16,6 +16,7 @@ const Contador = () => {
     setMultiplicador,
     setAutomatron1,
     save,
+    resetGame,
   } = useContext(CounterContext);
   const {
     increment,
@@ -45,6 +46,9 @@ const Contador = () => {
             {Math.floor((totalCountOfAllTime / goal) * 100 * 100) / 100}%
           </p>
           <p>Total: {totalCountOfAllTime}</p>
+          <button className="reset-button" onClick={resetGame}>
+            Reset
+          </button>
         </div>
 
         <div
@@ -65,6 +69,7 @@ const Contador = () => {
             </div>
           </div>
         </div>
+
         <Shop
           incrementMultiplicador={incrementMultiplicador}
           incrementAutomatron1={incrementAutomatron1}
