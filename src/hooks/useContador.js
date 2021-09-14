@@ -12,6 +12,23 @@ export const useContador = (
   setMultiplicador,
   setAutomatron1
 ) => {
+  const updateProgressBar = () => {
+    if (Math.floor((totalCountOfAllTime / goal) * 10000) / 100 > 100) {
+      document.querySelector(".progressL").style.transform = `rotate(180deg)`;
+      document.querySelector(".progressR").style.transform = `rotate(180deg)`;
+    } else if ((totalCountOfAllTime / goal) * 100 > 50) {
+      document.querySelector(".progressL").style.transform = `rotate(180deg)`;
+      document.querySelector(".progressR").style.transform = `rotate(${
+        Math.floor(((3.6 * totalCountOfAllTime) / goal) * 10000) / 100 - 180
+      }deg)`;
+    } else {
+      document.querySelector(".progressL").style.transform = `rotate(${
+        Math.floor(((3.6 * totalCountOfAllTime) / goal) * 10000) / 100
+      }deg)`;
+      document.querySelector(".progressR").style.transform = `rotate(0deg)`;
+    }
+  };
+
   const increment = () => {
     const efectMultiplicador = multiplicador * 0.1;
     const countWithEffects = count + 1 + efectMultiplicador;
@@ -19,6 +36,7 @@ export const useContador = (
     setTotalCountOfAllTime(
       Math.floor((totalCountOfAllTime + 1 + efectMultiplicador) * 100) / 100
     );
+    updateProgressBar();
   };
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,20 +54,7 @@ export const useContador = (
         Math.floor((totalCountOfAllTime + efectoAutomatron1) * 100) / 100
       );
     }
-    if (Math.floor((totalCountOfAllTime / goal) * 10000) / 100 > 100) {
-      document.querySelector(".progressL").style.transform = `rotate(180deg)`;
-      document.querySelector(".progressR").style.transform = `rotate(180deg)`;
-    } else if ((totalCountOfAllTime / goal) * 100 > 50) {
-      document.querySelector(".progressL").style.transform = `rotate(180deg)`;
-      document.querySelector(".progressR").style.transform = `rotate(${
-        Math.floor(((3.6 * totalCountOfAllTime) / goal) * 10000) / 100 - 180
-      }deg)`;
-    } else {
-      document.querySelector(".progressL").style.transform = `rotate(${
-        Math.floor(((3.6 * totalCountOfAllTime) / goal) * 10000) / 100
-      }deg)`;
-      document.querySelector(".progressR").style.transform = `rotate(0deg)`;
-    }
+    updateProgressBar();
   };
 
   const incrementMultiplicador = () => {
