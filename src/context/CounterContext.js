@@ -8,6 +8,13 @@ export const CounterProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [totalCountOfAllTime, setTotalCountOfAllTime] = useState(0);
   const [goal, setGoal] = useState(100);
+  let save = {
+    multiplicador: multiplicador,
+    automatron1: automatron1,
+    count: count,
+    totalCountOfAllTime: totalCountOfAllTime,
+    goal: goal,
+  };
   return (
     <CounterContext.Provider
       value={{
@@ -21,6 +28,7 @@ export const CounterProvider = ({ children }) => {
         setTotalCountOfAllTime,
         setMultiplicador,
         setAutomatron1,
+        save,
       }}
     >
       {children}

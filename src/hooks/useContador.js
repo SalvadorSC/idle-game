@@ -10,7 +10,8 @@ export const useContador = (
   setGoal,
   setTotalCountOfAllTime,
   setMultiplicador,
-  setAutomatron1
+  setAutomatron1,
+  save
 ) => {
   const updateProgressBar = () => {
     if (Math.floor((totalCountOfAllTime / goal) * 10000) / 100 > 100) {
@@ -42,6 +43,12 @@ export const useContador = (
     const timer = setTimeout(() => {
       incrementEverySecond();
     }, 1e3);
+    return () => clearTimeout(timer);
+  });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      localStorage.setItem("save", JSON.stringify(save));
+    }, 60e3);
     return () => clearTimeout(timer);
   });
 

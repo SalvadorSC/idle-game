@@ -15,6 +15,7 @@ const Contador = () => {
     setTotalCountOfAllTime,
     setMultiplicador,
     setAutomatron1,
+    save,
   } = useContext(CounterContext);
   const {
     increment,
@@ -30,7 +31,8 @@ const Contador = () => {
     setGoal,
     setTotalCountOfAllTime,
     setMultiplicador,
-    setAutomatron1
+    setAutomatron1,
+    save
   );
 
   return (

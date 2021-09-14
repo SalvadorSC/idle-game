@@ -10,10 +10,10 @@ export const Shop = (props) => {
         <p className="shop-item-name">Multiplicador: {multiplicador}</p>
         <button
           className="shop-button"
-          disabled={count < Math.floor(10 * Math.pow(1.2, multiplicador))}
+          disabled={count < Math.floor(10 * Math.pow(1.1, multiplicador))}
           onClick={incrementMultiplicador}
         >
-          Buy Multiplicador ({Math.floor(10 * Math.pow(1.2, multiplicador))})
+          Buy Multiplicador ({Math.floor(10 * Math.pow(1.1, multiplicador))})
         </button>
       </div>
       <div className="shop-item-container">
