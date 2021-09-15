@@ -1,0 +1,42 @@
+.statistics-section {
+  width: 100%;
+}
+
+.stats-section {
+  width: 80%;
+  margin: 0 auto;
+
+  text-align: left;
+}
+.achievements-section {
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+.stats-section-title {
+  width: 80%;
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+}
+
+.achievement-container {
+  display: flex;
+  justify-content: space-around;
+  overflow-wrap: normal;
+}
+
+.achievement-box {
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-wrap: break-word;
+}

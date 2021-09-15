@@ -1,0 +1,30 @@
+.shop-item-container {
+  width: 100%;
+  flex: 1;
+}
+
+.shop-item-name {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+}
+
+.shop-button {
+  font-weight: bold;
+  background-color: #333;
+  font-size: 15px;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.shop-button:hover {
+  background-color: #444;
+}
+
+.shop-button:disabled {
+  background-color: rgb(153, 153, 153);
+  color: rgb(190, 190, 190);
+}

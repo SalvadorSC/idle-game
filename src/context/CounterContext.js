@@ -11,6 +11,7 @@ export const CounterProvider = ({ children }) => {
     savegame ? savegame.automatron1 : 0
   );
   const [count, setCount] = useState(savegame ? savegame.count : 0);
+  const [clicks, setClicks] = useState(savegame ? savegame.clicks : 0);
   const [totalCountOfAllTime, setTotalCountOfAllTime] = useState(
     savegame ? savegame.totalCountOfAllTime : 0
   );
@@ -22,6 +23,7 @@ export const CounterProvider = ({ children }) => {
     count: count,
     totalCountOfAllTime: totalCountOfAllTime,
     goal: goal,
+    clicks: clicks,
   };
 
   const resetGame = () => {
@@ -31,22 +33,33 @@ export const CounterProvider = ({ children }) => {
     setCount(0);
     setAutomatron1(0);
   };
+  const resetAllGame = () => {
+    setGoal(100);
+    setMultiplicador(0);
+    setTotalCountOfAllTime(0);
+    setCount(0);
+    setAutomatron1(0);
+    setClicks(0);
+  };
 
   return (
     <CounterContext.Provider
       value={{
         goal,
-        totalCountOfAllTime,
-        count,
-        automatron1,
-        multiplicador,
-        setCount,
         setGoal,
-        setTotalCountOfAllTime,
-        setMultiplicador,
+        count,
+        setCount,
+        clicks,
+        setClicks,
+        automatron1,
         setAutomatron1,
+        multiplicador,
+        setMultiplicador,
+        totalCountOfAllTime,
+        setTotalCountOfAllTime,
         save,
         resetGame,
+        resetAllGame,
       }}
     >
       {children}

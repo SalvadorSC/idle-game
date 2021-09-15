@@ -9,7 +9,7 @@ body {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 1px;
 }
 
 *::-webkit-scrollbar-track {
@@ -21,20 +21,26 @@ body {
   border-radius: 10px;
   border: 3px solid #ffffff00;
 }
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 h1 {
   padding-left: 5%;
   height: 45px;
   background-color: #555;
   margin: 0;
+  text-align: left;
 }
 
 .contador {
   height: calc(100vh - 45px);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .display-stats {
@@ -58,32 +64,45 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(50vh - 45px);
-}
-
-.shop {
-  height: 50vh;
-  background-color: #555;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  overflow-y: scroll;
-}
-
-.shop-item-container {
-  /* border: 2px solid black; */
-  width: 100%;
   flex: 1;
 }
 
-.shop-item-name {
-  font-weight: bold;
-  color: white;
-  font-size: 20px;
+.first-half {
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.shop-button {
+.second-half {
+  background-color: #555;
+  height: 55vh;
+  overflow-y: scroll;
+}
+
+.second-half-nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.second-half-ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+.second-half-ul-li {
+  padding-left: 20%;
+}
+.second-half-ul-li + .second-half-ul-li {
+  padding-left: 2%;
+}
+
+.second-half-ul li a {
+  text-decoration: none;
   font-weight: bold;
   background-color: #333;
   font-size: 15px;
@@ -94,53 +113,6 @@ h1 {
   transition: background-color 0.3s;
 }
 
-.shop-button:hover {
+.second-half-ul li a:hover {
   background-color: #444;
-}
-
-.reset-button {
-  font-weight: bold;
-  background-color: #444;
-  font-size: 15px;
-  color: white;
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.reset-button:hover {
-  background-color: #666;
-}
-
-.shop-button:disabled {
-  background-color: rgb(153, 153, 153);
-  color: rgb(190, 190, 190);
-}
-
-.unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.completion-circle-outerline {
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: rgb(151, 151, 151);
-  align-items: center;
-}
-
-.completion-circle {
-  background-color: #111;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
 }

@@ -2,16 +2,19 @@ import { useEffect } from "react";
 
 export const useContador = (
   goal,
-  totalCountOfAllTime,
-  count,
-  automatron1,
-  multiplicador,
-  setCount,
   setGoal,
-  setTotalCountOfAllTime,
-  setMultiplicador,
+  count,
+  setCount,
+  clicks,
+  setClicks,
+  automatron1,
   setAutomatron1,
-  save
+  multiplicador,
+  setMultiplicador,
+  totalCountOfAllTime,
+  setTotalCountOfAllTime,
+  save,
+  resetGame
 ) => {
   const updateProgressBar = () => {
     if (Math.floor((totalCountOfAllTime / goal) * 10000) / 100 > 100) {
@@ -40,6 +43,7 @@ export const useContador = (
     setTotalCountOfAllTime(
       Math.floor((totalCountOfAllTime + 1 + efectMultiplicador) * 100) / 100
     );
+    setClicks(clicks + 1);
     updateProgressBar();
   };
   useEffect(() => {

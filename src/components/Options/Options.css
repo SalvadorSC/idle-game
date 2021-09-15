@@ -1,0 +1,31 @@
+.options-item-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.options {
+  height: 50vh;
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.reset-button {
+  font-weight: bold;
+  background-color: rgb(85, 44, 44);
+  font-size: 15px;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.reset-button:hover {
+  background-color: rgb(156, 20, 20);
+}
