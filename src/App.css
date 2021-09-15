@@ -56,6 +56,8 @@ h1 {
 
 .display-count {
   background-color: #333;
+  background-image: url("./assets/libreria.png");
+  background-size: contain;
   margin: 0;
   font-size: 50px;
   color: white;

@@ -10,7 +10,7 @@
 }
 
 .stats-container {
-  background-color: rgb(83, 86, 124);
+  background-color: #444 /* rgb(83, 86, 124) */;
   padding: 20px;
   color: white;
   border-radius: 10px;
