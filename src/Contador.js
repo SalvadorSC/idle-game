@@ -29,12 +29,7 @@ const Contador = () => {
     resetGame,
     resetAllGame,
   } = useContext(CounterContext);
-  const {
-    increment,
-    incrementMultiplicador,
-    incrementAutomatron1,
-    incrementAutomatron2,
-  } = useContador(
+  const { increment } = useContador(
     goal,
     setGoal,
     count,
@@ -42,18 +37,12 @@ const Contador = () => {
     clicks,
     setClicks,
     automatron1,
-    setAutomatron1,
     automatron2,
-    setAutomatron2,
     multiplicador,
-    setMultiplicador,
     totalCountOfAllTime,
     setTotalCountOfAllTime,
     upgrades,
-    setUpgrades,
-    save,
-    resetGame,
-    resetAllGame
+    save
   );
 
   return (
@@ -114,11 +103,7 @@ const Contador = () => {
             </ul>
           </nav>
           <Route exact path="/">
-            <Shop
-              incrementMultiplicador={incrementMultiplicador}
-              incrementAutomatron1={incrementAutomatron1}
-              incrementAutomatron2={incrementAutomatron2}
-            />
+            <Shop />
           </Route>
           <Route path="/options">
             <Options />

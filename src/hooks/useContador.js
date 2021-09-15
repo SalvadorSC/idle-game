@@ -8,18 +8,12 @@ export const useContador = (
   clicks,
   setClicks,
   automatron1,
-  setAutomatron1,
   automatron2,
-  setAutomatron2,
   multiplicador,
-  setMultiplicador,
   totalCountOfAllTime,
   setTotalCountOfAllTime,
   upgrades,
-  setUpgrades,
-  save,
-  resetGame,
-  resetAllGame
+  save
 ) => {
   const updateProgressBar = () => {
     if (Math.floor((totalCountOfAllTime / goal) * 10000) / 100 > 100) {
@@ -99,45 +93,11 @@ export const useContador = (
     updateProgressBar();
   };
 
-  const incrementMultiplicador = () => {
-    const costeMultiplicador = Math.floor(10 * Math.pow(1.1, multiplicador));
-    if (count >= costeMultiplicador) {
-      const discount = costeMultiplicador;
-      const newTotal = count - discount;
-      setMultiplicador(multiplicador + 1);
-      setCount(Math.floor(newTotal * 100) / 100);
-    }
-  };
-  const incrementAutomatron1 = () => {
-    debugger;
-    const costeAutomatron1 = Math.floor(20 * Math.pow(1.2, automatron1));
-    if (count >= costeAutomatron1) {
-      const discount = costeAutomatron1;
-      const newTotal = count - discount;
-      setAutomatron1(automatron1 + 1);
-      setCount(Math.floor(newTotal * 100) / 100);
-    }
-  };
-  const incrementAutomatron2 = () => {
-    debugger;
-    const costeAutomatron2 =
-      count < Math.floor(1000 * Math.pow(1.3, automatron2));
-    if (count >= costeAutomatron2) {
-      const discount = costeAutomatron2;
-      const newTotal = count - discount;
-      setAutomatron2(automatron2 + 1);
-      setCount(Math.floor(newTotal * 100) / 100);
-    }
-  };
-
   return {
     count,
     increment,
     automatron1,
     multiplicador,
-    incrementMultiplicador,
-    incrementAutomatron1,
-    incrementAutomatron2,
     incrementEverySecond,
   };
 };
