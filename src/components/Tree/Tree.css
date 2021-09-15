@@ -4,4 +4,47 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
+}
+
+.upgrade-tier-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.upgrade-box {
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade-name {
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  color: white;
+  align-items: center;
+  background-color: #333;
+  padding: 5%;
+  height: 100%;
+}
+
+.upgrade-name:hover {
+  background-color: #444;
+}
+
+.upgrade-name:disabled {
+  background-color: rgb(43, 43, 43);
+  color: rgb(155, 155, 155);
+}
+.upgrade-bought:disabled {
+  background-color: #333;
+  color: white;
+  -webkit-box-shadow: 0px 0px 15px 5px #d3c26e;
+  box-shadow: 0px 0px 15px 5px #d3c26e;
 }

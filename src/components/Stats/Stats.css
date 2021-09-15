@@ -8,6 +8,14 @@
 
   text-align: left;
 }
+
+.stats-container {
+  background-color: rgb(83, 86, 124);
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+  /*  border: 10px solid rgb(121, 71, 37); */
+}
 .achievements-section {
   width: 80%;
   margin: 0 auto;
@@ -17,7 +25,6 @@
 
 .stats-section-title {
   width: 80%;
-  font-weight: bold;
   font-size: 25px;
   color: white;
 }
@@ -33,7 +40,6 @@
   height: 50px;
   background-color: #333;
   color: white;
-  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -17,10 +17,14 @@ const Contador = () => {
     setClicks,
     automatron1,
     setAutomatron1,
+    automatron2,
+    setAutomatron2,
     multiplicador,
     setMultiplicador,
     totalCountOfAllTime,
     setTotalCountOfAllTime,
+    upgrades,
+    setUpgrades,
     save,
     resetGame,
     resetAllGame,
@@ -29,6 +33,7 @@ const Contador = () => {
     increment,
     incrementMultiplicador,
     incrementAutomatron1,
+    incrementAutomatron2,
   } = useContador(
     goal,
     setGoal,
@@ -38,10 +43,14 @@ const Contador = () => {
     setClicks,
     automatron1,
     setAutomatron1,
+    automatron2,
+    setAutomatron2,
     multiplicador,
     setMultiplicador,
     totalCountOfAllTime,
     setTotalCountOfAllTime,
+    upgrades,
+    setUpgrades,
     save,
     resetGame,
     resetAllGame
@@ -58,16 +67,16 @@ const Contador = () => {
               Progress:{" "}
               {Math.floor((totalCountOfAllTime / goal) * 100 * 100) / 100}%
             </p>
-            <p>Current: {count} Kn</p>
+            <p>Total: {totalCountOfAllTime} Kn</p>
           </div>
           <div
             unselectable="on"
-            onClick={increment}
+            onClick={() => increment(upgrades)}
             className="display-count unselectable"
           >
             <div className="circular">
               <div className="inner"></div>
-              <div className="number">{totalCountOfAllTime} Kn</div>
+              <div className="number">{count}</div>
               <div className="circle">
                 <div className="bar left">
                   <div className="progressL"></div>
@@ -88,11 +97,6 @@ const Contador = () => {
                 </Link>
               </li>
               <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/options">
-                  Options
-                </Link>
-              </li>
-              <li className="second-half-ul-li">
                 <Link className="second-half-nav-button" to="/tree">
                   Tree
                 </Link>
@@ -102,12 +106,18 @@ const Contador = () => {
                   Stats
                 </Link>
               </li>
+              <li className="second-half-ul-li">
+                <Link className="second-half-nav-button" to="/options">
+                  Options
+                </Link>
+              </li>
             </ul>
           </nav>
           <Route exact path="/">
             <Shop
               incrementMultiplicador={incrementMultiplicador}
               incrementAutomatron1={incrementAutomatron1}
+              incrementAutomatron2={incrementAutomatron2}
             />
           </Route>
           <Route path="/options">

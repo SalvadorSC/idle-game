@@ -1,4 +1,5 @@
 import "./App.css";
+
 import "./CounterProgressBar.css";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Contador from "./Contador";

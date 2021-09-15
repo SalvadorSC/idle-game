@@ -15,7 +15,7 @@ export const Stats = () => {
       <div className="statistics-section">
         <div className="stats-section">
           <p className="stats-section-title">Statistics</p>
-          <div>
+          <div className="stats-container">
             <p>Number of clicks:</p>
             <p>Total clicks of all time: {clicks} clicks</p>
             <p>Total clicks of this run:</p>
