@@ -5,10 +5,8 @@ export const Stats = () => {
   const {
     goal,
     totalCountOfAllTime,
-    count,
     automatron1,
     multiplicador,
-    save,
     clicks,
   } = useContext(CounterContext);
   return (
