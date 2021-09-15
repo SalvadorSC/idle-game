@@ -12,6 +12,7 @@ export const CounterProvider = ({ children }) => {
   );
   const [count, setCount] = useState(savegame ? savegame.count : 0);
   const [clicks, setClicks] = useState(savegame ? savegame.clicks : 0);
+  const [resets, setResets] = useState(savegame ? savegame.resets : 0);
   const [totalCountOfAllTime, setTotalCountOfAllTime] = useState(
     savegame ? savegame.totalCountOfAllTime : 0
   );
@@ -32,6 +33,7 @@ export const CounterProvider = ({ children }) => {
     setTotalCountOfAllTime(0);
     setCount(0);
     setAutomatron1(0);
+    setResets(resets + 1);
   };
   const resetAllGame = () => {
     setGoal(100);
@@ -40,6 +42,7 @@ export const CounterProvider = ({ children }) => {
     setCount(0);
     setAutomatron1(0);
     setClicks(0);
+    setResets(0);
   };
 
   return (

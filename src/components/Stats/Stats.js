@@ -8,6 +8,7 @@ export const Stats = () => {
     automatron1,
     multiplicador,
     clicks,
+    resets,
   } = useContext(CounterContext);
   return (
     <>
@@ -22,7 +23,7 @@ export const Stats = () => {
             <p>Total Knowledge of all time:</p>
             <p>Longest run time:</p>
             <p>Current run time:</p>
-            <p>Number of resets:</p>
+            <p>Number of resets: {resets}</p>
             <p>Number of clicks forfeited by reset:</p>
           </div>
         </div>
@@ -76,6 +77,7 @@ export const Stats = () => {
             <p className="achievement-box">
               {automatron1 > 100000 && "100000 AuM1"}
             </p>
+            <p className="achievement-box">{resets > 0 && "Reset once"}</p>
           </div>
         </div>
       </div>

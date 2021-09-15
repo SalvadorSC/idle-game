@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Redirect, Route } from "react-router-dom";
 import { Options } from "./components/Options/Options";
 import { Shop } from "./components/Shop/Shop";
 import { Stats } from "./components/Stats/Stats";
@@ -119,6 +119,7 @@ const Contador = () => {
           <Route path="/tree">
             <Tree />
           </Route>
+          <Redirect to="/" />
         </div>
       </div>
     </>
