@@ -5,8 +5,8 @@ import "./Shop.css";
 export const Shop = (props) => {
   const {
     incrementMultiplicador,
-    incrementAutomatron2,
     incrementAutomatron1,
+    incrementAutomatron2,
   } = props;
   const {
     count,
@@ -42,21 +42,19 @@ export const Shop = (props) => {
           {upgrades.automatron2.length >= 1
             ? `Automatron v2: ${automatron2}`
             : "???"}
+          {/* Automatron v2: {automatron2} */}
         </p>
         <button
           className="shop-button"
-          disabled={
-            !upgrades.automatron1.includes("Automatron v1.2") ||
-            (!upgrades.automatron1.includes("Automatron v1.2") &&
-              count < Math.floor(1000 * Math.pow(1.3, automatron2)))
-          }
+          disabled={count < Math.floor(1000 * Math.pow(1.3, automatron2))}
           onClick={incrementAutomatron2}
         >
           {upgrades.automatron2.length >= 1
-            ? `Buy Automatron v2: (${Math.floor(
-                1000 * Math.pow(1.1, automatron2)
-              )})`
+            ? `Buy Automatron v2 ${Math.floor(
+                1000 * Math.pow(1.3, automatron1)
+              )}`
             : "???"}
+          {/* Buy Automatron v2 {Math.floor(1000 * Math.pow(1.3, automatron1))} */}
         </button>
       </div>
     </>

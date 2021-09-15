@@ -20,7 +20,14 @@ export const CounterProvider = ({ children }) => {
     savegame ? savegame.totalCountOfAllTime : 0
   );
   const [goal, setGoal] = useState(savegame ? savegame.goal : 100);
-  const [upgrades, setUpgrades] = useState(savegame ? savegame.upgrades : {});
+  const baseUpgrades = {
+    multiplicador: [],
+    automatron1: [],
+    automatron2: [],
+  };
+  const [upgrades, setUpgrades] = useState(
+    savegame ? savegame.upgrades : baseUpgrades
+  );
   let save = {
     multiplicador: multiplicador,
     automatron1: automatron1,
@@ -31,11 +38,7 @@ export const CounterProvider = ({ children }) => {
     clicks: clicks,
     upgrades: upgrades,
   };
-  const baseUpgrades = {
-    multiplicador: [],
-    automatron1: [],
-    automatron2: [],
-  };
+
   const resetGame = () => {
     setGoal(100);
     setMultiplicador(0);
