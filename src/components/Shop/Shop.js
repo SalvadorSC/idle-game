@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
 import { useIncrementItem } from "../../hooks/useIncrementItem";
+import { useNumberParsing } from "../../hooks/useNumberParsing";
 import "./Shop.css";
 
 export const Shop = (props) => {
@@ -15,18 +16,31 @@ export const Shop = (props) => {
     setAutomatron2,
   } = useContext(CounterContext);
   const { setNewItemQuantity } = useIncrementItem();
+  const { parseNumber } = useNumberParsing();
+
+  const disableAutomatron2 = () => {
+    if (upgrades.automatron2.length >= 1) {
+      if (count > Math.floor(10000 * Math.pow(1.3, automatron2))) {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  };
+
   return (
     <>
       <div className="shop-item-container">
         <p className="shop-item-name">Multiplicador: {multiplicador}</p>
         <button
           className="shop-button"
-          disabled={count < Math.floor(10 * Math.pow(1.1, multiplicador))}
+          disabled={count < Math.floor(10 * Math.pow(1.2, multiplicador))}
           onClick={() =>
             setNewItemQuantity(multiplicador, setMultiplicador, 1.2, 10)
           }
         >
-          Buy Multiplicador ({Math.floor(10 * Math.pow(1.1, multiplicador))})
+          Buy Multiplicador (
+          {parseNumber(Math.floor(10 * Math.pow(1.2, multiplicador)))})
         </button>
       </div>
       <div className="shop-item-container">
@@ -38,7 +52,8 @@ export const Shop = (props) => {
             setNewItemQuantity(automatron1, setAutomatron1, 1.2, 100)
           }
         >
-          Buy Automatron v1 ({Math.floor(100 * Math.pow(1.2, automatron1))})
+          Buy Automatron v1 (
+          {parseNumber(Math.floor(100 * Math.pow(1.2, automatron1)))})
         </button>
       </div>
       <div className="shop-item-container">
@@ -50,15 +65,16 @@ export const Shop = (props) => {
         </p>
         <button
           className="shop-button"
-          disabled={count < Math.floor(1000 * Math.pow(1.3, automatron2))}
-          onClick={() =>
-            setNewItemQuantity(automatron2, setAutomatron2, 1.3, 1000)
-          }
+          disabled={disableAutomatron2()}
+          onClick={() => {
+            console.log(upgrades.automatron2.length >= 1 ? false : true);
+            setNewItemQuantity(automatron2, setAutomatron2, 1.3, 10000);
+          }}
         >
           {upgrades.automatron2.length >= 1
-            ? `Buy Automatron v2 ${Math.floor(
-                1000 * Math.pow(1.3, automatron2)
-              )}`
+            ? `Buy Automatron v2 (${parseNumber(
+                Math.floor(10000 * Math.pow(1.3, automatron2))
+              )})`
             : "???"}
           {/* Buy Automatron v2 {Math.floor(1000 * Math.pow(1.3, automatron1))} */}
         </button>

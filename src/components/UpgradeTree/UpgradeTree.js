@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
 import { useUpgrades } from "../../hooks/useUpgrades";
-import "./Tree.css";
+import "./UpgradeTree.css";
 export const Tree = () => {
   const { count, upgrades /* , setUpgrades */ } = useContext(CounterContext);
   const { setNewUpgrade } = useUpgrades();

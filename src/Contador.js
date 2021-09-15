@@ -3,9 +3,10 @@ import { Link, Redirect, Route } from "react-router-dom";
 import { Options } from "./components/Options/Options";
 import { Shop } from "./components/Shop/Shop";
 import { Stats } from "./components/Stats/Stats";
-import { Tree } from "./components/Tree/Tree";
+import { Tree } from "./components/UpgradeTree/UpgradeTree";
 import CounterContext from "./context/CounterContext";
 import { useContador } from "./hooks/useContador";
+import { useNumberParsing } from "./hooks/useNumberParsing";
 
 const Contador = () => {
   const {
@@ -16,18 +17,12 @@ const Contador = () => {
     clicks,
     setClicks,
     automatron1,
-    setAutomatron1,
     automatron2,
-    setAutomatron2,
     multiplicador,
-    setMultiplicador,
     totalCountOfAllTime,
     setTotalCountOfAllTime,
     upgrades,
-    setUpgrades,
     save,
-    resetGame,
-    resetAllGame,
   } = useContext(CounterContext);
   const { increment } = useContador(
     goal,
@@ -44,19 +39,22 @@ const Contador = () => {
     upgrades,
     save
   );
-
+  const { parseNumber } = useNumberParsing();
   return (
     <>
       <div className="contador">
         <div className="first-half">
           <h1>CountBox</h1>
           <div className="display-stats">
-            <p>Goal: {goal}</p>
+            <p>Goal: {parseNumber(goal)}</p>
             <p>
               Progress:{" "}
-              {Math.floor((totalCountOfAllTime / goal) * 100 * 100) / 100}%
+              {parseNumber(
+                Math.floor((totalCountOfAllTime / goal) * 100 * 100) / 100
+              )}
+              %
             </p>
-            <p>Total: {totalCountOfAllTime} Kn</p>
+            <p>Total: {parseNumber(totalCountOfAllTime)}</p>
           </div>
           <div
             unselectable="on"
@@ -65,7 +63,7 @@ const Contador = () => {
           >
             <div className="circular">
               <div className="inner"></div>
-              <div className="number">{count}</div>
+              <div className="number">{parseNumber(count)}</div>
               <div className="circle">
                 <div className="bar left">
                   <div className="progressL"></div>
@@ -87,7 +85,7 @@ const Contador = () => {
               </li>
               <li className="second-half-ul-li">
                 <Link className="second-half-nav-button" to="/tree">
-                  Tree
+                  Upgrade Tree
                 </Link>
               </li>
               <li className="second-half-ul-li">
