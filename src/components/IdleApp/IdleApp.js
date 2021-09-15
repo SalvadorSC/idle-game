@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Link, Redirect, Route } from "react-router-dom";
-import { Options } from "./components/Options/Options";
-import { Shop } from "./components/Shop/Shop";
-import { Stats } from "./components/Stats/Stats";
-import { Tree } from "./components/UpgradeTree/UpgradeTree";
-import CounterContext from "./context/CounterContext";
-import { useContador } from "./hooks/useContador";
-import { useNumberParsing } from "./hooks/useNumberParsing";
+import { Options } from "../Options/Options";
+import { Shop } from "../Shop/Shop";
+import { Stats } from "../Stats/Stats";
+import { Tree } from "../UpgradeTree/UpgradeTree";
+import CounterContext from "../../context/CounterContext";
+import { useContador } from "../../hooks/useContador";
+import { useNumberParsing } from "../../hooks/useNumberParsing";
 
-const Contador = () => {
+const IdleApp = () => {
   const {
     goal,
     setGoal,
@@ -85,7 +85,7 @@ const Contador = () => {
               </li>
               <li className="second-half-ul-li">
                 <Link className="second-half-nav-button" to="/tree">
-                  Upgrade Tree
+                  Tree
                 </Link>
               </li>
               <li className="second-half-ul-li">
@@ -119,4 +119,4 @@ const Contador = () => {
   );
 };
 
-export default Contador;
+export default IdleApp;

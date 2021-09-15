@@ -2,8 +2,8 @@ import "./App.css";
 
 import "./CounterProgressBar.css";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-import Contador from "./Contador";
 import { CounterProvider } from "./context/CounterContext";
+import IdleApp from "./components/IdleApp/IdleApp";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Switch>
         <CounterProvider>
           <div className="App">
-            <Contador />
+            <IdleApp />
           </div>
         </CounterProvider>
         <Redirect to="/" />
