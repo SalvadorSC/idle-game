@@ -29,9 +29,11 @@
   display: flex;
   color: white;
   align-items: center;
+  justify-content: center;
   background-color: #333;
   padding: 5%;
   height: 100%;
+  min-width: 100px;
 }
 
 .upgrade-name:hover {
@@ -47,4 +49,14 @@
   color: white;
   -webkit-box-shadow: 0px 0px 15px 5px #d3c26e;
   box-shadow: 0px 0px 15px 5px #d3c26e;
+}
+
+.w-25-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+}
+.w-25 {
+  display: flex;
+  width: 25%;
 }

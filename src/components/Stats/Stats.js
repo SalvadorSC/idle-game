@@ -1,30 +1,34 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
 import "./Stats.css";
+
 export const Stats = () => {
   const {
     goal,
-    totalCountOfAllTime,
+    totalKnCountOfThisRun,
     automatron1,
     multiplicador,
     clicks,
     resets,
+    totalClicksOfAllTime,
+    totalKnOfAllTime,
+    knForfeitedAtReset,
   } = useContext(CounterContext);
+
   return (
     <>
       <div className="statistics-section">
         <div className="stats-section">
           <p className="stats-section-title">Statistics</p>
           <div className="stats-container">
-            <p>Number of clicks:</p>
-            <p>Total clicks of all time: {clicks} clicks</p>
-            <p>Total clicks of this run:</p>
-            <p>Total Knowledge of this run: {totalCountOfAllTime}</p>
-            <p>Total Knowledge of all time:</p>
-            <p>Longest run time:</p>
-            <p>Current run time:</p>
-            <p>Number of resets: {resets}</p>
-            <p>Number of clicks forfeited by reset:</p>
+            <p>Total clicks of this run: {clicks} clicks</p>
+            <p>Total clicks of all time: {totalClicksOfAllTime} clicks</p>
+            <p>Total Knowledge of this run: {totalKnCountOfThisRun} kN</p>
+            <p>Total Knowledge of all time: {totalKnOfAllTime} kN</p>
+            {/* <p>Longest run time:</p> */}
+            {/* <p>Current run time:{currentRunTime}</p> */}
+            {/* <p>Number of resets: {resets}</p> */}
+            <p>Total kN forfeited by reset: {knForfeitedAtReset} kN</p>
           </div>
         </div>
         <div className="achievements-section">

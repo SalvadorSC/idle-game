@@ -9,61 +9,37 @@ import { useContador } from "../../hooks/useContador";
 import { useNumberParsing } from "../../hooks/useNumberParsing";
 
 const IdleApp = () => {
-  const {
-    goal,
-    setGoal,
-    count,
-    setCount,
-    clicks,
-    setClicks,
-    automatron1,
-    automatron2,
-    multiplicador,
-    totalCountOfAllTime,
-    setTotalCountOfAllTime,
-    upgrades,
-    save,
-  } = useContext(CounterContext);
-  const { increment } = useContador(
-    goal,
-    setGoal,
-    count,
-    setCount,
-    clicks,
-    setClicks,
-    automatron1,
-    automatron2,
-    multiplicador,
-    totalCountOfAllTime,
-    setTotalCountOfAllTime,
-    upgrades,
-    save
-  );
+  const dependencies = useContext(CounterContext);
+  const { increment } = useContador(dependencies);
   const { parseNumber } = useNumberParsing();
   return (
     <>
       <div className="contador">
         <div className="first-half">
-          <h1>CountBox</h1>
+          <h1>BookBok</h1>
           <div className="display-stats">
-            <p>Goal: {parseNumber(goal)}</p>
+            <p>Goal: {parseNumber(dependencies.goal)}</p>
             <p>
               Progress:{" "}
               {parseNumber(
-                Math.floor((totalCountOfAllTime / goal) * 100 * 100) / 100
+                Math.floor(
+                  (dependencies.totalKnCountOfThisRun / dependencies.goal) *
+                    100 *
+                    100
+                ) / 100
               )}
               %
             </p>
-            <p>Total: {parseNumber(totalCountOfAllTime)}</p>
+            <p>Total: {parseNumber(dependencies.totalKnCountOfThisRun)}</p>
           </div>
           <div
             unselectable="on"
-            onClick={() => increment(upgrades)}
-            className="display-count unselectable"
+            onClick={() => increment(dependencies.upgrades)}
+            className="display-knCount unselectable"
           >
             <div className="circular">
               <div className="inner"></div>
-              <div className="number">{parseNumber(count)}</div>
+              <div className="number">{parseNumber(dependencies.knCount)}</div>
               <div className="circle">
                 <div className="bar left">
                   <div className="progressL"></div>

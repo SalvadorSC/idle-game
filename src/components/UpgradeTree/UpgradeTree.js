@@ -3,7 +3,9 @@ import CounterContext from "../../context/CounterContext";
 import { useUpgrades } from "../../hooks/useUpgrades";
 import "./UpgradeTree.css";
 export const Tree = () => {
-  const { count, upgrades /* , setUpgrades */ } = useContext(CounterContext);
+  const { knCount, upgrades /* setUpgrades, baseUpgrades */ } = useContext(
+    CounterContext
+  );
   const { setNewUpgrade } = useUpgrades();
 
   return (
@@ -18,17 +20,18 @@ export const Tree = () => {
           </button> */}
           <button
             className={`upgrade-name ${
-              upgrades.multiplicador.includes("Multiplicador+") &&
+              upgrades.multiplicador.includes("General Culture I") &&
               "upgrade-bought"
             }`}
             disabled={
-              count < 500 || upgrades.multiplicador.includes("Multiplicador+")
+              knCount < 500 ||
+              upgrades.multiplicador.includes("General Culture I")
             }
             onClick={() =>
-              setNewUpgrade("multiplicador", "Multiplicador+", 500)
+              setNewUpgrade("multiplicador", "General Culture I", 500)
             }
           >
-            Multiplicador+ <br /> 500
+            General Culture I <br /> 500
           </button>
         </div>
       </div>
@@ -36,93 +39,237 @@ export const Tree = () => {
         <div className="upgrade-box">
           <button
             className={`upgrade-name ${
-              upgrades.multiplicador.indexOf("Multiplicador++") > -1 &&
+              upgrades.multiplicador.includes("General Culture I") &&
+              "upgrade-bought"
+            }`}
+            disabled={
+              knCount < 1000 ||
+              //Requirements
+              !upgrades.multiplicador.includes("General Culture I") ||
+              //Propio upgrade
+              upgrades.multiplicador.indexOf("General Culture II") > -1
+            }
+            onClick={() =>
+              setNewUpgrade("multiplicador", "General Culture II", 500)
+            }
+          >
+            General Culture II <br /> 500
+          </button>
+        </div>
+      </div>
+      <div className="upgrade-tier-container">
+        <div className="upgrade-box">
+          <button
+            className={`upgrade-name ${
+              upgrades.multiplicador.includes("General Culture II") &&
+              "upgrade-bought"
+            }`}
+            disabled={
+              knCount < 1000 ||
+              //Requirements
+              !upgrades.multiplicador.includes("General Culture II") ||
+              //Propio upgrade
+              upgrades.multiplicador.indexOf("General Culture III") > -1
+            }
+            onClick={() =>
+              setNewUpgrade("multiplicador", "General Culture III", 500)
+            }
+          >
+            General Culture III <br /> 500
+          </button>
+        </div>
+      </div>
+      <div className="upgrade-tier-container">
+        <div className="upgrade-box">
+          <button
+            className={`upgrade-name ${
+              upgrades.multiplicador.indexOf("Stuff 101") > -1 &&
               "upgrade-bought"
             }`}
             onClick={() => {
-              setNewUpgrade("multiplicador", "Multiplicador++", 5000);
+              setNewUpgrade("multiplicador", "Stuff 101", 5000);
             }}
             disabled={
               //Precio
-              count < 5000 ||
+              knCount < 5000 ||
               //Requirements
-              !upgrades.multiplicador.includes("Multiplicador+") ||
+              !upgrades.multiplicador.includes("General Culture III") ||
               //Propio upgrade
-              upgrades.multiplicador.indexOf("Multiplicador++") > -1
+              upgrades.multiplicador.indexOf("Stuff 101") > -1
             }
           >
-            Multiplicador++ <br /> 5000
+            Stuff 101 <br /> 5000
           </button>
         </div>
         <div className="upgrade-box">
           <button
             className={`upgrade-name ${
-              upgrades.automatron1.includes("Automatron v1.1") &&
-              "upgrade-bought"
+              upgrades.culture.includes("Novel") && "upgrade-bought"
             }`}
             disabled={
               //Precio
-              count < 10000 ||
+              knCount < 10000 ||
               //Requirements
-              !upgrades.multiplicador.includes("Multiplicador+") ||
+              !upgrades.multiplicador.includes("General Culture III") ||
               //Propio upgrade
-              upgrades.automatron1.indexOf("Automatron v1.1") > -1
+              upgrades.culture.indexOf("Novel") > -1
             }
-            onClick={() =>
-              setNewUpgrade("automatron1", "Automatron v1.1", 10000)
-            }
+            onClick={() => setNewUpgrade("culture", "Novel", 10000)}
           >
-            Automatron v1.1 <br /> 10.000
+            Novel <br /> 10.000
           </button>
         </div>
       </div>
       <div className="upgrade-tier-container">
-        <div className="upgrade-box"></div>
-        <div className="upgrade-box">
-          <button
-            className={`upgrade-name ${
-              upgrades.automatron1.indexOf("Automatron v1.2") === 1 &&
-              "upgrade-bought"
-            }`}
-            disabled={
-              //Precio
-              count < 50000 ||
-              //Requirements
-              !upgrades.automatron1.includes("Automatron v1.1") ||
-              //Propio upgrade
-              upgrades.automatron1.indexOf("Automatron v1.2") === 1
-            }
-            onClick={() => {
-              setNewUpgrade("automatron1", "Automatron v1.2", 50000);
-            }}
-          >
-            Automatron v1.2 <br /> 50.000
-          </button>
+        <div className="w-25-flex">
+          <div className="upgrade-box">
+            <button
+              className={`upgrade-name ${
+                upgrades.technology.includes("Technology for dummies") &&
+                "upgrade-bought"
+              }`}
+              disabled={
+                //Precio
+                knCount < 10000 ||
+                //Requirements
+                !upgrades.multiplicador.includes("Stuff 101") ||
+                //Propio upgrade
+                upgrades.technology.indexOf("Technology for dummies") > -1
+              }
+              onClick={() =>
+                setNewUpgrade("technology", "Technology for dummies", 10000)
+              }
+            >
+              {`${
+                upgrades.multiplicador.includes("Stuff 101")
+                  ? `Technology for dummies | 10.000`
+                  : "???"
+              }`}
+            </button>
+          </div>
+          <div className="upgrade-box">
+            <button
+              className={`upgrade-name ${
+                upgrades.nature.includes("Introduction to Nature") &&
+                "upgrade-bought"
+              }`}
+              disabled={
+                //Precio
+                knCount < 10000 ||
+                //Requirements
+                !upgrades.multiplicador.includes("Stuff 101") ||
+                //Propio upgrade
+                upgrades.nature.indexOf("Introduction to Nature") > -1
+              }
+              onClick={() =>
+                setNewUpgrade("nature", "Introduction to Nature", 10000)
+              }
+            >
+              {`${
+                upgrades.multiplicador.includes("Stuff 101")
+                  ? `Introduction to Nature | 10.000`
+                  : "???"
+              }`}
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="upgrade-tier-container">
-        <div className="upgrade-box"></div>
-        <div className="upgrade-box">
+        <div className="upgrade-box w-25">
           <button
             className={`upgrade-name ${
-              upgrades.automatron2.indexOf("Unlock Automatron v2") === 0 &&
+              upgrades.culture.indexOf("Poems of Rose") === 1 &&
               "upgrade-bought"
             }`}
             disabled={
               //Precio
-              count < 250000 ||
+              knCount < 50000 ||
               //Requirements
-              !upgrades.automatron1.includes("Automatron v1.2") ||
+              !upgrades.culture.includes("Novel") ||
               //Propio upgrade
-              upgrades.automatron2.indexOf("Unlock Automatron v2") > -1
+              upgrades.culture.indexOf("Poems of Rose") === 1
             }
             onClick={() => {
-              setNewUpgrade("automatron2", "Unlock Automatron v2", 250000);
+              setNewUpgrade("culture", "Poems of Rose", 50000);
             }}
           >
             {`${
-              upgrades.automatron1.indexOf("Automatron v1.2") === 1
-                ? "Unlock Automatron v2 250.000"
+              upgrades.culture.includes("Novel")
+                ? `Poems of Rose | 100.000`
+                : "???"
+            }`}
+          </button>
+        </div>
+      </div>
+      <div className="upgrade-tier-container">
+        <div className="w-25-flex">
+          <div className="upgrade-box">
+            <button
+              className={`upgrade-name ${
+                upgrades.technology.includes("DIY at home") && "upgrade-bought"
+              }`}
+              disabled={
+                //Precio
+                knCount < 10000 ||
+                //Requirements
+                !upgrades.technology.includes("Technology for dummies") ||
+                //Propio upgrade
+                upgrades.technology.indexOf("DIY at home") > -1
+              }
+              onClick={() => setNewUpgrade("technology", "DIY at home", 10000)}
+            >
+              {`${
+                upgrades.technology.includes("Technology for dummies")
+                  ? `DIY at home | 100.000`
+                  : "???"
+              }`}
+            </button>
+          </div>
+          <div className="upgrade-box">
+            <button
+              className={`upgrade-name ${
+                upgrades.nature.includes("Nature inside out") &&
+                "upgrade-bought"
+              }`}
+              disabled={
+                //Precio
+                knCount < 10000 ||
+                //Requirements
+                !upgrades.nature.includes("Introduction to Nature") ||
+                //Propio upgrade
+                upgrades.nature.indexOf("Nature inside out") > -1
+              }
+              onClick={() =>
+                setNewUpgrade("nature", "Nature inside out", 10000)
+              }
+            >
+              {`${
+                upgrades.nature.includes("Introduction to Nature")
+                  ? `Nature inside out | 100.000`
+                  : "???"
+              }`}
+            </button>
+          </div>
+        </div>
+        <div className="upgrade-box w-25">
+          <button
+            className={`upgrade-name ${
+              upgrades.culture.indexOf("History about humanity I") === 2 &&
+              "upgrade-bought"
+            }`}
+            disabled={
+              //Precio
+              knCount < 50000 ||
+              //Requirements
+              !upgrades.culture.includes("Poems of Rose") ||
+              //Propio upgrade
+              upgrades.culture.indexOf("History about humanity I") === 2
+            }
+            onClick={() => {
+              setNewUpgrade("culture", "History about humanity I", 50000);
+            }}
+          >
+            {`${
+              upgrades.culture.indexOf("Poems of Rose") === 1
+                ? `History about humanity I | 50.000`
                 : "???"
             }`}
           </button>

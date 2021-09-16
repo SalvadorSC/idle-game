@@ -6,21 +6,19 @@ import "./Shop.css";
 
 export const Shop = (props) => {
   const {
-    count,
+    knCount,
     automatron1,
     multiplicador,
     upgrades,
-    automatron2,
     setMultiplicador,
     setAutomatron1,
-    setAutomatron2,
   } = useContext(CounterContext);
   const { setNewItemQuantity } = useIncrementItem();
   const { parseNumber } = useNumberParsing();
 
-  const disableAutomatron2 = () => {
-    if (upgrades.automatron2.length >= 1) {
-      if (count > Math.floor(10000 * Math.pow(1.3, automatron2))) {
+  const disableAutomatron1 = () => {
+    if (upgrades.technology.length >= 1) {
+      if (knCount < Math.floor(100 * Math.pow(1.2, automatron1))) {
         return false;
       }
     } else {
@@ -34,7 +32,7 @@ export const Shop = (props) => {
         <p className="shop-item-name">Multiplicador: {multiplicador}</p>
         <button
           className="shop-button"
-          disabled={count < Math.floor(10 * Math.pow(1.2, multiplicador))}
+          disabled={knCount < Math.floor(10 * Math.pow(1.2, multiplicador))}
           onClick={() =>
             setNewItemQuantity(multiplicador, setMultiplicador, 1.2, 10)
           }
@@ -44,24 +42,31 @@ export const Shop = (props) => {
         </button>
       </div>
       <div className="shop-item-container">
-        <p className="shop-item-name">Automatron v1: {automatron1}</p>
+        <p className="shop-item-name">
+          {upgrades.technology.length >= 1
+            ? `Automatron v1: ${automatron1}`
+            : "???"}{" "}
+        </p>
         <button
           className="shop-button"
-          disabled={count < Math.floor(100 * Math.pow(1.2, automatron1))}
+          disabled={disableAutomatron1()}
           onClick={() =>
             setNewItemQuantity(automatron1, setAutomatron1, 1.2, 100)
           }
         >
-          Buy Automatron v1 (
-          {parseNumber(Math.floor(100 * Math.pow(1.2, automatron1)))})
+          {upgrades.technology.length >= 1
+            ? `Buy Automatron v1 (${parseNumber(
+                Math.floor(100 * Math.pow(1.2, automatron1))
+              )})`
+            : "???"}
         </button>
       </div>
-      <div className="shop-item-container">
+      {/* <div className="shop-item-container">
         <p className="shop-item-name">
           {upgrades.automatron2.length >= 1
             ? `Automatron v2: ${automatron2}`
             : "???"}
-          {/* Automatron v2: {automatron2} */}
+          
         </p>
         <button
           className="shop-button"
@@ -76,9 +81,9 @@ export const Shop = (props) => {
                 Math.floor(10000 * Math.pow(1.3, automatron2))
               )})`
             : "???"}
-          {/* Buy Automatron v2 {Math.floor(1000 * Math.pow(1.3, automatron1))} */}
+          
         </button>
-      </div>
+      </div> */}
     </>
   );
 };
