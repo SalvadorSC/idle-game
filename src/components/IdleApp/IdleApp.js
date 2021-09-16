@@ -7,7 +7,7 @@ import { Tree } from "../UpgradeTree/UpgradeTree";
 import CounterContext from "../../context/CounterContext";
 import { useContador } from "../../hooks/useContador";
 import { useNumberParsing } from "../../hooks/useNumberParsing";
-
+import "./IdleApp.css";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const { increment } = useContador(dependencies);
@@ -18,36 +18,41 @@ const IdleApp = () => {
         <div className="first-half">
           <h1>BookBok</h1>
           <div className="display-stats">
-            <p>Goal: {parseNumber(dependencies.goal)}</p>
+            <p>Goal: {parseNumber(dependencies.goal)} kN</p>
             <p>
               Progress:{" "}
-              {parseNumber(
-                Math.floor(
-                  (dependencies.totalKnCountOfThisRun / dependencies.goal) *
-                    100 *
-                    100
-                ) / 100
-              )}
+              {Math.floor(
+                (dependencies.totalKnCountOfThisRun.generalKn /
+                  dependencies.goal) *
+                  100 *
+                  100
+              ) / 100}
               %
             </p>
-            <p>Total: {parseNumber(dependencies.totalKnCountOfThisRun)}</p>
+            <p>Total: {dependencies.totalKnCountOfThisRun.generalKn} kN</p>
           </div>
           <div
             unselectable="on"
             onClick={() => increment(dependencies.upgrades)}
             className="display-knCount unselectable"
           >
-            <div className="circular">
-              <div className="inner"></div>
-              <div className="number">{parseNumber(dependencies.knCount)}</div>
-              <div className="circle">
-                <div className="bar left">
-                  <div className="progressL"></div>
-                </div>
-                <div className="bar right">
-                  <div className="progressR"></div>
-                </div>
-              </div>
+            <div className="kn-amount-display">
+              <p>
+                {dependencies.knCount.generalKn}
+                <span>kN</span>{" "}
+              </p>
+              <p>
+                {dependencies.knCount.bioKn}
+                <span className="bioKn">kN</span>{" "}
+              </p>
+              <p>
+                {dependencies.knCount.technoKn}
+                <span className="technoKn">kN</span>{" "}
+              </p>
+              <p>
+                {dependencies.knCount.cultureKn}
+                <span className="cultureKn">kN</span>{" "}
+              </p>
             </div>
           </div>
         </div>

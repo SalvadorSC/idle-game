@@ -18,7 +18,7 @@ export const Shop = (props) => {
 
   const disableAutomatron1 = () => {
     if (upgrades.technology.length >= 1) {
-      if (knCount >= Math.floor(100 * Math.pow(1.2, automatron1))) {
+      if (knCount.generalKn >= Math.floor(100 * Math.pow(1.2, automatron1))) {
         return false;
       } else return true;
     }
@@ -34,7 +34,9 @@ export const Shop = (props) => {
         <p className="shop-item-name">Multiplicador: {multiplicador}</p>
         <button
           className="shop-button"
-          disabled={knCount < Math.floor(10 * Math.pow(1.2, multiplicador))}
+          disabled={
+            knCount.generalKn < Math.floor(10 * Math.pow(1.2, multiplicador))
+          }
           onClick={() =>
             setNewItemQuantity(multiplicador, setMultiplicador, 1.2, 10)
           }

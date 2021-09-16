@@ -27,7 +27,7 @@ export const Tree = () => {
         // Requisito comprado y Upgrade NO comprado
         else {
           // Requisito comprado y Upgrade NO comprada y knCount INsuficiente
-          if (knCount < price) {
+          if (knCount.generalKn < price) {
             return true;
           } else return false;
         }
@@ -40,7 +40,7 @@ export const Tree = () => {
     // No requisito, No Upgrade
     else {
       // No requisito, No Upgrade, No Dinero
-      if (knCount < price) {
+      if (knCount.generalKn < price) {
         return true;
       }
       // No requisito, No Upgrade, Si dinero

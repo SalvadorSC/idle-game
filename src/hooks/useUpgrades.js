@@ -7,12 +7,15 @@ export const useUpgrades = () => {
   );
 
   const setNewUpgrade = (field, newUpgrade, price) => {
+    debugger;
     if (!upgrades[field].includes(newUpgrade)) {
       setUpgrades({
         ...upgrades,
         [field]: [...upgrades[field], newUpgrade],
       });
-      setKnCount(knCount - price);
+      setKnCount({ ...knCount, generalKn: knCount.generalKn - price });
+      console.log(knCount.generalKn - price);
+      console.log(knCount);
     }
   };
 

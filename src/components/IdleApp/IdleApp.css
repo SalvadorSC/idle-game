@@ -1,0 +1,25 @@
+.kn-amount-display {
+  background-color: #333;
+  font-size: 15px;
+  width: 325px;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0px 0 10px 10px;
+  background: rgb(51, 51, 51);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 51, 51, 1) 67%,
+    rgba(51, 51, 51, 0.5466561624649859) 100%
+  );
+}
+
+.bioKn {
+  color: yellowgreen;
+}
+.technoKn {
+  color: turquoise;
+}
+
+.cultureKn {
+  color: violet;
+}

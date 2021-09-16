@@ -62,9 +62,10 @@ h1 {
   font-size: 50px;
   color: white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex: 1;
+  flex-direction: column;
 }
 
 .first-half {
