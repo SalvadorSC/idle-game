@@ -8,6 +8,54 @@ export const Tree = () => {
   );
   const { setNewUpgrade } = useUpgrades();
 
+  const setDisabled = (
+    price,
+    field,
+    upgrade,
+    requirementField,
+    requirement
+  ) => {
+    // debugger;
+    // Requisito
+    if (requirement && requirementField) {
+      // Requisito comprado
+      if (upgrades[requirementField].includes(requirement)) {
+        // Requisito comprado y Upgrade comprado
+        if (upgrades[field].includes(upgrade)) {
+          return true;
+        }
+        // Requisito comprado y Upgrade NO comprado
+        else {
+          // Requisito comprado y Upgrade NO comprada y knCount INsuficiente
+          if (knCount < price) {
+            return true;
+          } else return false;
+        }
+      } else return true;
+    }
+    // No requisito y Upgrade comprada
+    else if (upgrades[field].includes(upgrade)) {
+      return true;
+    }
+    // No requisito, No Upgrade
+    else {
+      // No requisito, No Upgrade, No Dinero
+      if (knCount < price) {
+        return true;
+      }
+      // No requisito, No Upgrade, Si dinero
+      else return false;
+    }
+  };
+
+  const setClasses = (field, upgrade) => {
+    if (upgrades[field].includes(upgrade)) {
+      return "upgrade-name upgrade-bought";
+    } else {
+      return "upgrade-name";
+    }
+  };
+
   return (
     <div className="tree-item-container">
       <div className="upgrade-tier-container">
@@ -19,104 +67,85 @@ export const Tree = () => {
             Reset upgrades
           </button> */}
           <button
-            className={`upgrade-name ${
-              upgrades.multiplicador.includes("General Culture I") &&
-              "upgrade-bought"
-            }`}
-            disabled={
-              knCount < 500 ||
-              upgrades.multiplicador.includes("General Culture I")
-            }
+            className={setClasses("multiplicador", "General Culture I")}
+            disabled={setDisabled(50, "multiplicador", "General Culture I")}
             onClick={() =>
-              setNewUpgrade("multiplicador", "General Culture I", 500)
+              setNewUpgrade("multiplicador", "General Culture I", 50)
             }
           >
-            General Culture I <br /> 500
+            General Culture I <br /> 50
           </button>
         </div>
       </div>
       <div className="upgrade-tier-container">
         <div className="upgrade-box">
           <button
-            className={`upgrade-name ${
-              upgrades.multiplicador.includes("General Culture I") &&
-              "upgrade-bought"
-            }`}
-            disabled={
-              knCount < 1000 ||
-              //Requirements
-              !upgrades.multiplicador.includes("General Culture I") ||
-              //Propio upgrade
-              upgrades.multiplicador.indexOf("General Culture II") > -1
-            }
+            className={setClasses("multiplicador", "General Culture II")}
+            disabled={setDisabled(
+              150,
+              "multiplicador",
+              "General Culture II",
+              "multiplicador",
+              "General Culture I"
+            )}
             onClick={() =>
-              setNewUpgrade("multiplicador", "General Culture II", 500)
+              setNewUpgrade("multiplicador", "General Culture II", 150)
             }
           >
-            General Culture II <br /> 500
+            General Culture II <br /> 150
           </button>
         </div>
       </div>
       <div className="upgrade-tier-container">
         <div className="upgrade-box">
           <button
-            className={`upgrade-name ${
-              upgrades.multiplicador.includes("General Culture II") &&
-              "upgrade-bought"
-            }`}
-            disabled={
-              knCount < 1000 ||
-              //Requirements
-              !upgrades.multiplicador.includes("General Culture II") ||
-              //Propio upgrade
-              upgrades.multiplicador.indexOf("General Culture III") > -1
-            }
+            className={setClasses("multiplicador", "General Culture III")}
+            disabled={setDisabled(
+              200,
+              "multiplicador",
+              "General Culture III",
+              "multiplicador",
+              "General Culture II"
+            )}
             onClick={() =>
-              setNewUpgrade("multiplicador", "General Culture III", 500)
+              setNewUpgrade("multiplicador", "General Culture III", 200)
             }
           >
-            General Culture III <br /> 500
+            General Culture III <br /> 200
           </button>
         </div>
       </div>
       <div className="upgrade-tier-container">
         <div className="upgrade-box">
           <button
-            className={`upgrade-name ${
-              upgrades.multiplicador.indexOf("Stuff 101") > -1 &&
-              "upgrade-bought"
-            }`}
+            className={setClasses("multiplicador", "Stuff 101")}
             onClick={() => {
-              setNewUpgrade("multiplicador", "Stuff 101", 5000);
+              setNewUpgrade("multiplicador", "Stuff 101", 500);
             }}
-            disabled={
-              //Precio
-              knCount < 5000 ||
-              //Requirements
-              !upgrades.multiplicador.includes("General Culture III") ||
-              //Propio upgrade
-              upgrades.multiplicador.indexOf("Stuff 101") > -1
-            }
+            disabled={setDisabled(
+              500,
+              "multiplicador",
+              "Stuff 101",
+              "multiplicador",
+              "General Culture III"
+            )}
           >
-            Stuff 101 <br /> 5000
+            Stuff 101 <br /> 500
           </button>
         </div>
         <div className="upgrade-box">
           <button
-            className={`upgrade-name ${
-              upgrades.culture.includes("Novel") && "upgrade-bought"
-            }`}
-            disabled={
-              //Precio
-              knCount < 10000 ||
-              //Requirements
-              !upgrades.multiplicador.includes("General Culture III") ||
-              //Propio upgrade
-              upgrades.culture.indexOf("Novel") > -1
-            }
-            onClick={() => setNewUpgrade("culture", "Novel", 10000)}
+            className={setClasses("culture", "Novel")}
+            disabled={setDisabled(
+              500,
+              "culture",
+              "Novel",
+              "multiplicador",
+              "General Culture III"
+            )}
+            onClick={() => setNewUpgrade("culture", "Novel", 500)}
           >
-            Novel <br /> 10.000
+            Novel <br /> 500
           </button>
         </div>
       </div>
@@ -124,50 +153,42 @@ export const Tree = () => {
         <div className="w-25-flex">
           <div className="upgrade-box">
             <button
-              className={`upgrade-name ${
-                upgrades.technology.includes("Technology for dummies") &&
-                "upgrade-bought"
-              }`}
-              disabled={
-                //Precio
-                knCount < 10000 ||
-                //Requirements
-                !upgrades.multiplicador.includes("Stuff 101") ||
-                //Propio upgrade
-                upgrades.technology.indexOf("Technology for dummies") > -1
-              }
+              className={setClasses("technology", "Technology for dummies")}
+              disabled={setDisabled(
+                450,
+                "technology",
+                "Technology for dummies",
+                "multiplicador",
+                "Stuff 101"
+              )}
               onClick={() =>
-                setNewUpgrade("technology", "Technology for dummies", 10000)
+                setNewUpgrade("technology", "Technology for dummies", 450)
               }
             >
               {`${
                 upgrades.multiplicador.includes("Stuff 101")
-                  ? `Technology for dummies | 10.000`
+                  ? `Technology for dummies | 450`
                   : "???"
               }`}
             </button>
           </div>
           <div className="upgrade-box">
             <button
-              className={`upgrade-name ${
-                upgrades.nature.includes("Introduction to Nature") &&
-                "upgrade-bought"
-              }`}
-              disabled={
-                //Precio
-                knCount < 10000 ||
-                //Requirements
-                !upgrades.multiplicador.includes("Stuff 101") ||
-                //Propio upgrade
-                upgrades.nature.indexOf("Introduction to Nature") > -1
-              }
+              className={setClasses("nature", "Introduction to Nature")}
+              disabled={setDisabled(
+                650,
+                "nature",
+                "Introduction to Nature",
+                "multiplicador",
+                "Stuff 101"
+              )}
               onClick={() =>
-                setNewUpgrade("nature", "Introduction to Nature", 10000)
+                setNewUpgrade("nature", "Introduction to Nature", 650)
               }
             >
               {`${
                 upgrades.multiplicador.includes("Stuff 101")
-                  ? `Introduction to Nature | 10.000`
+                  ? `Introduction to Nature | 650`
                   : "???"
               }`}
             </button>
@@ -175,26 +196,20 @@ export const Tree = () => {
         </div>
         <div className="upgrade-box w-25">
           <button
-            className={`upgrade-name ${
-              upgrades.culture.indexOf("Poems of Rose") === 1 &&
-              "upgrade-bought"
-            }`}
-            disabled={
-              //Precio
-              knCount < 50000 ||
-              //Requirements
-              !upgrades.culture.includes("Novel") ||
-              //Propio upgrade
-              upgrades.culture.indexOf("Poems of Rose") === 1
-            }
+            className={setClasses("culture", "Poems of Rose")}
+            disabled={setDisabled(
+              650,
+              "culture",
+              "Poems of Rose",
+              "culture",
+              "Novel"
+            )}
             onClick={() => {
-              setNewUpgrade("culture", "Poems of Rose", 50000);
+              setNewUpgrade("culture", "Poems of Rose", 650);
             }}
           >
             {`${
-              upgrades.culture.includes("Novel")
-                ? `Poems of Rose | 100.000`
-                : "???"
+              upgrades.culture.includes("Novel") ? `Poems of Rose | 650` : "???"
             }`}
           </button>
         </div>
@@ -203,73 +218,60 @@ export const Tree = () => {
         <div className="w-25-flex">
           <div className="upgrade-box">
             <button
-              className={`upgrade-name ${
-                upgrades.technology.includes("DIY at home") && "upgrade-bought"
-              }`}
-              disabled={
-                //Precio
-                knCount < 10000 ||
-                //Requirements
-                !upgrades.technology.includes("Technology for dummies") ||
-                //Propio upgrade
-                upgrades.technology.indexOf("DIY at home") > -1
-              }
-              onClick={() => setNewUpgrade("technology", "DIY at home", 10000)}
+              className={setClasses("technology", "DIY at home")}
+              disabled={setDisabled(
+                2000,
+                "technology",
+                "DIY at home",
+                "technology",
+                "Technology for dummies"
+              )}
+              onClick={() => setNewUpgrade("technology", "DIY at home", 2000)}
             >
               {`${
                 upgrades.technology.includes("Technology for dummies")
-                  ? `DIY at home | 100.000`
+                  ? `DIY at home | 2000`
                   : "???"
               }`}
             </button>
           </div>
           <div className="upgrade-box">
             <button
-              className={`upgrade-name ${
-                upgrades.nature.includes("Nature inside out") &&
-                "upgrade-bought"
-              }`}
-              disabled={
-                //Precio
-                knCount < 10000 ||
-                //Requirements
-                !upgrades.nature.includes("Introduction to Nature") ||
-                //Propio upgrade
-                upgrades.nature.indexOf("Nature inside out") > -1
-              }
-              onClick={() =>
-                setNewUpgrade("nature", "Nature inside out", 10000)
-              }
+              className={setClasses("nature", "Nature inside out")}
+              disabled={setDisabled(
+                4000,
+                "nature",
+                "Nature inside out",
+                "nature",
+                "Introduction to Nature"
+              )}
+              onClick={() => setNewUpgrade("nature", "Nature inside out", 4000)}
             >
               {`${
                 upgrades.nature.includes("Introduction to Nature")
-                  ? `Nature inside out | 100.000`
+                  ? `Nature inside out | 4000`
                   : "???"
               }`}
             </button>
           </div>
         </div>
-        <div className="upgrade-box w-25">
+        <div className="upgrade-box w-15">
           <button
-            className={`upgrade-name ${
-              upgrades.culture.indexOf("History about humanity I") === 2 &&
-              "upgrade-bought"
-            }`}
-            disabled={
-              //Precio
-              knCount < 50000 ||
-              //Requirements
-              !upgrades.culture.includes("Poems of Rose") ||
-              //Propio upgrade
-              upgrades.culture.indexOf("History about humanity I") === 2
-            }
+            className={setClasses("culture", "History about humanity I")}
+            disabled={setDisabled(
+              3000,
+              "culture",
+              "History about humanity I",
+              "culture",
+              "Poems of Rose"
+            )}
             onClick={() => {
-              setNewUpgrade("culture", "History about humanity I", 50000);
+              setNewUpgrade("culture", "History about humanity I", 3000);
             }}
           >
             {`${
-              upgrades.culture.indexOf("Poems of Rose") === 1
-                ? `History about humanity I | 50.000`
+              upgrades.culture.includes("Poems of Rose")
+                ? `History about humanity I | 3000`
                 : "???"
             }`}
           </button>
