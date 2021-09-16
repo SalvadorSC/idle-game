@@ -18,10 +18,12 @@ export const Shop = (props) => {
 
   const disableAutomatron1 = () => {
     if (upgrades.technology.length >= 1) {
-      if (knCount < Math.floor(100 * Math.pow(1.2, automatron1))) {
+      if (knCount >= Math.floor(100 * Math.pow(1.2, automatron1))) {
         return false;
-      }
-    } else {
+      } else return true;
+    }
+    // NO Techno Upgrade
+    else {
       return true;
     }
   };
