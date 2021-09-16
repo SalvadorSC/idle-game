@@ -60,13 +60,13 @@ const IdleApp = () => {
                 </Link>
               </li>
               <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/tree">
-                  Tree
+                <Link className="second-half-nav-button" to="/stats">
+                  Stats
                 </Link>
               </li>
               <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/stats">
-                  Stats
+                <Link className="second-half-nav-button" to="/tree">
+                  Tree
                 </Link>
               </li>
               <li className="second-half-ul-li">

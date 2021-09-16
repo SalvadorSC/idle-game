@@ -84,22 +84,24 @@ h1 {
   display: flex;
   align-items: center;
   height: 60px;
+  border-bottom: 2px solid #333;
 }
 
 .second-half-ul {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   list-style: none;
   width: 100%;
   padding: 0;
 }
 
-.second-half-ul-li {
+/* .second-half-ul-li {
   padding-left: 20%;
 }
 .second-half-ul-li + .second-half-ul-li {
   padding-left: 2%;
-}
+} */
 
 .second-half-ul li a {
   text-decoration: none;
