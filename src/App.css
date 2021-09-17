@@ -30,12 +30,18 @@ body {
   user-select: none;
 }
 
-h1 {
+.header {
   padding-left: 5%;
   height: 45px;
   background-color: #555;
   margin: 0;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header h1 {
+  margin: 0;
 }
 
 .contador {
