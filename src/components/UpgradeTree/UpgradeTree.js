@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { DetailsBox } from "../DetailsBox/DetailsBox";
 import { UpgradeItem } from "../UpgradeItem/UpgradeItem";
 import "./UpgradeTree.css";
 export const Tree = () => {
