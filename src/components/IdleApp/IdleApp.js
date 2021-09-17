@@ -7,59 +7,24 @@ import { Tree } from "../UpgradeTree/UpgradeTree";
 import CounterContext from "../../context/CounterContext";
 import { useContador } from "../../hooks/useContador";
 import { useNumberParsing } from "../../hooks/useNumberParsing";
-import useSound from "use-sound";
-import boopSfx from "./music.mp3";
 import "./IdleApp.css";
+import BoopButton from "../BoopButton/BoopButton";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const { increment } = useContador(dependencies);
   const { parseNumber } = useNumberParsing();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const BoopButton = () => {
-    const [volume, setVolume] = useState(0);
-    const [play, { stop }] = useSound(boopSfx, { volume: volume });
 
-    const handleChange = (volume) => {
-      setVolume(volume);
-      if (volume === 0) {
-        setIsPlaying(false);
-        stop();
-      } else if (volume === 0 && isPlaying) {
-        setIsPlaying(false);
-        stop();
-      } else if (volume > 0 && !isPlaying) {
-        play();
-        setIsPlaying(true);
-      } else return;
-    };
-    return (
-      <>
-        <div className="music-div">
-          <p className="music-tag">Music</p>
-          <input
-            className="input-music"
-            min="0"
-            max="0.03"
-            step="0.001"
-            id="volume"
-            defaultValue="0"
-            htmlFor="volume"
-            onChange={() => {
-              handleChange(Number(document.querySelector("#volume").value));
-            }}
-            type="range"
-          />
-        </div>
-      </>
-    );
-  };
   return (
     <>
       <div className="contador">
         <div className="first-half">
           <div className="header">
-            <h1>BookBok</h1>
-            {BoopButton()}
+            <div className="music-div">
+              <p className="music-tag">Music</p>
+              {BoopButton()}
+            </div>
+
+            <div></div>
           </div>
 
           <div className="display-stats">

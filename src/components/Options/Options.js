@@ -4,6 +4,7 @@ import "./Options.css";
 
 export const Options = () => {
   const { resetGame, resetAllGame, cheat } = useContext(CounterContext);
+
   return (
     <div className="options-item-container">
       <button className="reset-button" onClick={resetGame}>

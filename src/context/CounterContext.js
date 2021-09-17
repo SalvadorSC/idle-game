@@ -54,6 +54,7 @@ export const CounterProvider = ({ children }) => {
   const [upgrades, setUpgrades] = useState(
     savegame ? savegame.upgrades : baseUpgrades
   );
+  const [isPlaying, setIsPlaying] = useState(false);
   let save = {
     multiplicador: multiplicador,
     automatron1: automatron1,
@@ -67,6 +68,7 @@ export const CounterProvider = ({ children }) => {
     resets: resets,
     upgrades: upgrades,
   };
+  const [volume, setVolume] = useState(0);
 
   const resetGame = () => {
     setGoal(100);
@@ -161,6 +163,10 @@ export const CounterProvider = ({ children }) => {
         resetAllGame,
         cheat,
         baseUpgrades,
+        isPlaying,
+        setIsPlaying,
+        volume,
+        setVolume,
         /* runStartTime,
         currentTime,
         firstRunStartTime,
