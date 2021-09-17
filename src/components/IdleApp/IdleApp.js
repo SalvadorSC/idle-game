@@ -24,6 +24,9 @@ const IdleApp = () => {
       if (volume === 0) {
         setIsPlaying(false);
         stop();
+      } else if (volume === 0 && isPlaying) {
+        setIsPlaying(false);
+        stop();
       } else if (volume > 0 && !isPlaying) {
         play();
         setIsPlaying(true);
