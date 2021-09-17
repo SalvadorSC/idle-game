@@ -254,7 +254,7 @@ export const Tree = () => {
             </button>
           </div>
         </div>
-        <div className="upgrade-box w-15">
+        <div className="upgrade-box w-25">
           <button
             className={setClasses("culture", "History about humanity I")}
             disabled={setDisabled(
