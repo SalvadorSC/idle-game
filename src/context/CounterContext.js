@@ -54,6 +54,9 @@ export const CounterProvider = ({ children }) => {
   const [upgrades, setUpgrades] = useState(
     savegame ? savegame.upgrades : baseUpgrades
   );
+  const [chosenBook, setChosenBook] = useState(
+    savegame ? savegame.chosenBook : ""
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   let save = {
     multiplicador: multiplicador,
@@ -67,6 +70,7 @@ export const CounterProvider = ({ children }) => {
     knForfeitedAtReset: knForfeitedAtReset,
     resets: resets,
     upgrades: upgrades,
+    chosenBook: chosenBook,
   };
   const [volume, setVolume] = useState(0);
 
@@ -94,9 +98,11 @@ export const CounterProvider = ({ children }) => {
       ...knForfeitedAtReset,
       generalKn: knForfeitedAtReset.generalKn + knCount.generalKn,
     });
+    setChosenBook("");
   };
   const resetAllGame = () => {
     setGoal(100);
+    setChosenBook("");
     setMultiplicador(0);
     setTotalKnOfAllTime({
       generalKn: 0,
@@ -121,7 +127,12 @@ export const CounterProvider = ({ children }) => {
     setClicks(0);
     setResets(0);
     setUpgrades(baseUpgrades);
-    setKnForfeitedAtReset(0);
+    setKnForfeitedAtReset({
+      generalKn: 0,
+      cultureKn: 0,
+      bioKn: 0,
+      technoKn: 0,
+    });
   };
   const cheat = () => {
     setKnCount({ ...knCount, generalKn: knCount.generalKn + 100000000 });
@@ -134,7 +145,6 @@ export const CounterProvider = ({ children }) => {
       generalKn: totalKnOfAllTime.generalKn + 100000000,
     });
   };
-
   return (
     <CounterContext.Provider
       value={{
@@ -144,6 +154,8 @@ export const CounterProvider = ({ children }) => {
         setKnCount,
         clicks,
         setClicks,
+        chosenBook,
+        setChosenBook,
         automatron1,
         setAutomatron1,
         multiplicador,
@@ -167,10 +179,6 @@ export const CounterProvider = ({ children }) => {
         setIsPlaying,
         volume,
         setVolume,
-        /* runStartTime,
-        currentTime,
-        firstRunStartTime,
-        setCurrentTime, */
       }}
     >
       {children}

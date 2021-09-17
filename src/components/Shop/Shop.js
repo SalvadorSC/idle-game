@@ -33,30 +33,6 @@ export const Shop = (props) => {
         hasRequirements={true}
         requirement={upgrades.technology.length >= 2}
       />
-
-      {/* <div className="shop-item-container">
-        <p className="shop-item-name">
-          {upgrades.automatron2.length >= 1
-            ? `Automatron v2: ${automatron2}`
-            : "???"}
-          
-        </p>
-        <button
-          className="shop-button"
-          disabled={disableAutomatron2()}
-          onClick={() => {
-            console.log(upgrades.automatron2.length >= 1 ? false : true);
-            setNewItemQuantity(automatron2, setAutomatron2, 1.3, 10000);
-          }}
-        >
-          {upgrades.automatron2.length >= 1
-            ? `Buy Automatron v2 (${parseNumber(
-                Math.floor(10000 * Math.pow(1.3, automatron2))
-              )})`
-            : "???"}
-          
-        </button>
-      </div> */}
     </>
   );
 };

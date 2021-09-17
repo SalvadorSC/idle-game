@@ -1,19 +1,23 @@
 import React, { useContext } from "react";
-import { Link, Redirect, Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { Options } from "../Options/Options";
 import { Shop } from "../Shop/Shop";
 import { Stats } from "../Stats/Stats";
 import { Tree } from "../UpgradeTree/UpgradeTree";
 import CounterContext from "../../context/CounterContext";
-import { useContador } from "../../hooks/useContador";
 import { useNumberParsing } from "../../hooks/useNumberParsing";
 import "./IdleApp.css";
 import BoopButton from "../BoopButton/BoopButton";
+import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
-  const { increment } = useContador(dependencies);
+  const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
-
+  const totalKn =
+    dependencies.totalKnCountOfThisRun.generalKn +
+    dependencies.totalKnCountOfThisRun.bioKn +
+    dependencies.totalKnCountOfThisRun.technoKn +
+    dependencies.totalKnCountOfThisRun.cultureKn;
   return (
     <>
       <div className="contador">
@@ -39,7 +43,7 @@ const IdleApp = () => {
               ) / 100}
               %
             </p>
-            <p>Total: {dependencies.totalKnCountOfThisRun.generalKn} kN</p>
+            <p>Total: {Math.floor(totalKn * 100) / 100} kN</p>
           </div>
           <div
             unselectable="on"
@@ -47,22 +51,26 @@ const IdleApp = () => {
             className="display-knCount unselectable"
           >
             <div className="kn-amount-display">
-              <p>
-                {dependencies.knCount.generalKn}
-                <span>kN</span>{" "}
-              </p>
-              <p>
-                {dependencies.knCount.bioKn}
-                <span className="bioKn">kN</span>{" "}
-              </p>
-              <p>
-                {dependencies.knCount.technoKn}
-                <span className="technoKn">kN</span>{" "}
-              </p>
-              <p>
-                {dependencies.knCount.cultureKn}
-                <span className="cultureKn">kN</span>{" "}
-              </p>
+              <div>
+                <p>
+                  {dependencies.knCount.generalKn}
+                  <span>kN</span>{" "}
+                </p>
+                <p>
+                  {dependencies.knCount.bioKn}
+                  <span className="bioKn">kN</span>{" "}
+                </p>
+              </div>
+              <div>
+                <p>
+                  {dependencies.knCount.technoKn}
+                  <span className="technoKn">kN</span>{" "}
+                </p>
+                <p>
+                  {dependencies.knCount.cultureKn}
+                  <span className="cultureKn">kN</span>{" "}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -104,7 +112,6 @@ const IdleApp = () => {
           <Route path="/tree">
             <Tree />
           </Route>
-          <Redirect to="/" />
         </div>
       </div>
     </>
