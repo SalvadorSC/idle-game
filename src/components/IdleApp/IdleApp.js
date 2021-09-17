@@ -14,14 +14,40 @@ const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const { increment } = useContador(dependencies);
   const { parseNumber } = useNumberParsing();
-
   const [isPlaying, setIsPlaying] = useState(false);
   const BoopButton = () => {
-    const [play, { stop }] = useSound(boopSfx);
+    const [volume, setVolume] = useState(0);
+    const [play, { stop }] = useSound(boopSfx, { volume: volume });
+
+    const handleChange = (volume) => {
+      setVolume(volume);
+      if (volume === 0) {
+        setIsPlaying(false);
+        stop();
+      } else if (volume > 0 && !isPlaying) {
+        play();
+        setIsPlaying(true);
+      } else return;
+    };
     return (
-      <button onClick={isPlaying ? play : stop}>
-        {isPlaying ? "play" : "stop"}
-      </button>
+      <>
+        <div className="music-div">
+          <p className="music-tag">Music</p>
+          <input
+            className="input-music"
+            min="0"
+            max="0.03"
+            step="0.001"
+            id="volume"
+            defaultValue="0"
+            htmlFor="volume"
+            onChange={() => {
+              handleChange(Number(document.querySelector("#volume").value));
+            }}
+            type="range"
+          />
+        </div>
+      </>
     );
   };
   return (

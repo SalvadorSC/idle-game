@@ -15,7 +15,6 @@ export const Tree = () => {
     requirementField,
     requirement
   ) => {
-    // debugger;
     // Requisito
     if (requirement && requirementField) {
       // Requisito comprado

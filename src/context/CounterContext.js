@@ -122,9 +122,15 @@ export const CounterProvider = ({ children }) => {
     setKnForfeitedAtReset(0);
   };
   const cheat = () => {
-    setKnCount(knCount + 100000000);
-    setTotalKnCountOfThisRun(totalKnCountOfThisRun + 100000000);
-    setTotalKnOfAllTime(totalKnOfAllTime + 100000000);
+    setKnCount({ ...knCount, generalKn: knCount.generalKn + 100000000 });
+    setTotalKnCountOfThisRun({
+      ...totalKnCountOfThisRun,
+      generalKn: totalKnCountOfThisRun.generalKn + 100000000,
+    });
+    setTotalKnOfAllTime({
+      ...totalKnOfAllTime,
+      generalKn: totalKnOfAllTime.generalKn + 100000000,
+    });
   };
 
   return (

@@ -7,7 +7,6 @@ export const useUpgrades = () => {
   );
 
   const setNewUpgrade = (field, newUpgrade, price) => {
-    debugger;
     if (!upgrades[field].includes(newUpgrade)) {
       setUpgrades({
         ...upgrades,
