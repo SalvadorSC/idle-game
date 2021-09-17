@@ -6,6 +6,24 @@
 .shop-item-name {
   color: white;
   font-size: 20px;
+  width: auto;
+}
+
+.info-bullet {
+  display: inline-flex;
+  margin-left: 25px;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #333;
+  transition: box-shadow 0.3s ease;
+}
+.info-bullet:hover {
+  -webkit-box-shadow: 0px 0px 5px 2px #d3cfba;
+  box-shadow: 0px 0px 5px 2px #d3cfba;
 }
 
 .shop-button {

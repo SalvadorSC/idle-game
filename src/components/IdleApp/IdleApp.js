@@ -91,6 +91,7 @@ const IdleApp = () => {
               </li>
             </ul>
           </nav>
+
           <Route exact path="/">
             <Shop />
           </Route>

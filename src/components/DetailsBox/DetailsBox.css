@@ -1,0 +1,20 @@
+.details-container {
+  position: absolute;
+  top: 80%;
+  width: 100%;
+}
+
+.details-box {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 2px solid #ccc;
+  min-width: 325px;
+  max-width: 90%;
+  width: 325px;
+  min-height: 65px;
+  padding: 0px 5px;
+  background-color: rgba(51, 51, 51, 0.7);
+}
