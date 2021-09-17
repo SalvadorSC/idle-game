@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { DetailsBox } from "../DetailsBox/DetailsBox";
 import { UpgradeItem } from "../UpgradeItem/UpgradeItem";
 import "./UpgradeTree.css";
 export const Tree = () => {
+  const [showTips, setShowTips] = useState(false);
   return (
     <div className="tree-item-container">
+      <div className="upgrade-info-toggle">
+        <div
+          className="upgrade-info-toggle-box"
+          onMouseEnter={() => setShowTips(true)}
+          onMouseOut={() => setShowTips(false)}
+        >
+          Show Tips!
+        </div>
+      </div>
+      {showTips && (
+        <div className="upgrade-info-container">
+          <div className="upgrade-info-box">
+            <p>
+              For buying an upgrade/book, click once you have enough kN of the
+              demanded. <br /> Once you have{" "}
+              <span className="upgrade-bought">bought a book</span> , click once
+              more to read it. <span className="chosen-book">Read</span>{" "}
+              different books to learn different types of knowledge!
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="upgrade-tier-container">
         <UpgradeItem
           price={50}

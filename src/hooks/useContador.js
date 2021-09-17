@@ -1,3 +1,5 @@
+import { useChosenKn } from "./useChosenKn";
+
 export const useContador = ({
   goal,
   setGoal,
@@ -5,11 +7,12 @@ export const useContador = ({
   setKnCount,
   automatron1,
   multiplicador,
-  totalKnOfAllTime,
   setTotalKnOfAllTime,
   totalKnCountOfThisRun,
   setTotalKnCountOfThisRun,
 }) => {
+  const { setChosenBookEffect } = useChosenKn();
+
   const totalKnOfThisRun =
     totalKnCountOfThisRun.generalKn +
     totalKnCountOfThisRun.bioKn +
@@ -24,10 +27,13 @@ export const useContador = ({
     } else {
       efectoAutomatron1 = automatron1 * 1;
     }
-    const genrlKnCountWithEffects = efectoAutomatron1 * 0.7;
-    const bioKnCountWithEffects = efectoAutomatron1 * 0.1;
-    const technoKnCountWithEffects = efectoAutomatron1 * 0.1;
-    const cultureKnCountWithEffects = efectoAutomatron1 * 0.1;
+    const {
+      genrlKnCountWithEffects,
+      bioKnCountWithEffects,
+      technoKnCountWithEffects,
+      cultureKnCountWithEffects,
+    } = setChosenBookEffect(efectoAutomatron1);
+
     setKnCount({
       ...knCount,
       generalKn:

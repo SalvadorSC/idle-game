@@ -8,10 +8,10 @@ export const UpgradeItem = ({
   upgrade,
   requirementField,
   requirement,
-  isSelectedBook,
 }) => {
   const { setNewUpgrade } = useUpgrades();
-  const { knCount, upgrades } = useContext(CounterContext);
+  const { knCount, upgrades, chosenBook, setChosenBook } =
+    useContext(CounterContext);
   const setDisabled = (
     price,
     field,
@@ -25,7 +25,7 @@ export const UpgradeItem = ({
       if (upgrades[requirementField].includes(requirement)) {
         // Requisito comprado y Upgrade comprado
         if (upgrades[field].includes(upgrade)) {
-          return true;
+          return false;
         }
         // Requisito comprado y Upgrade NO comprado
         else {
@@ -38,7 +38,7 @@ export const UpgradeItem = ({
     }
     // No requisito y Upgrade comprada
     else if (upgrades[field].includes(upgrade)) {
-      return true;
+      return false;
     }
     // No requisito, No Upgrade
     else {
@@ -51,11 +51,10 @@ export const UpgradeItem = ({
     }
   };
 
-  const setClasses = (field, upgrade, isSelectedBook) => {
-    if (isSelectedBook) {
-      return "chosen-book";
-    }
-    if (upgrades[field].includes(upgrade)) {
+  const setClasses = (field, upgrade) => {
+    if (upgrades[field].includes(upgrade) && chosenBook === upgrade) {
+      return "upgrade-name chosen-book";
+    } else if (upgrades[field].includes(upgrade)) {
       return "upgrade-name upgrade-bought";
     } else {
       return "upgrade-name ";
@@ -65,7 +64,7 @@ export const UpgradeItem = ({
   return (
     <div className="upgrade-box">
       <button
-        className={setClasses(field, upgrade, isSelectedBook)}
+        className={setClasses(field, upgrade)}
         disabled={setDisabled(
           price,
           field,
@@ -73,7 +72,11 @@ export const UpgradeItem = ({
           requirementField,
           requirement
         )}
-        onClick={() => setNewUpgrade(field, upgrade, price)}
+        onClick={() =>
+          upgrades[field].includes(upgrade)
+            ? setChosenBook(upgrade)
+            : setNewUpgrade(field, upgrade, price)
+        }
       >
         {`${
           requirement

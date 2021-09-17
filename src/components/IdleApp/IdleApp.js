@@ -51,22 +51,26 @@ const IdleApp = () => {
             className="display-knCount unselectable"
           >
             <div className="kn-amount-display">
-              <p>
-                {dependencies.knCount.generalKn}
-                <span>kN</span>{" "}
-              </p>
-              <p>
-                {dependencies.knCount.bioKn}
-                <span className="bioKn">kN</span>{" "}
-              </p>
-              <p>
-                {dependencies.knCount.technoKn}
-                <span className="technoKn">kN</span>{" "}
-              </p>
-              <p>
-                {dependencies.knCount.cultureKn}
-                <span className="cultureKn">kN</span>{" "}
-              </p>
+              <div>
+                <p>
+                  {dependencies.knCount.generalKn}
+                  <span>kN</span>{" "}
+                </p>
+                <p>
+                  {dependencies.knCount.bioKn}
+                  <span className="bioKn">kN</span>{" "}
+                </p>
+              </div>
+              <div>
+                <p>
+                  {dependencies.knCount.technoKn}
+                  <span className="technoKn">kN</span>{" "}
+                </p>
+                <p>
+                  {dependencies.knCount.cultureKn}
+                  <span className="cultureKn">kN</span>{" "}
+                </p>
+              </div>
             </div>
           </div>
         </div>

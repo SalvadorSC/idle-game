@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import CounterContext from "../context/CounterContext";
 import { useContador } from "./useContador";
+import { useChosenKn } from "./useChosenKn";
 
 export const useIncrementByClick = () => {
   const {
@@ -22,6 +23,7 @@ export const useIncrementByClick = () => {
   } = useContext(CounterContext);
   const dependencies = useContext(CounterContext);
   const { incrementEverySecond } = useContador(dependencies);
+  const { setChosenBookEffect } = useChosenKn();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,22 +40,25 @@ export const useIncrementByClick = () => {
     let efectoMultiplicador;
     if (multiplicador) {
       if (upgrades.multiplicador.length === 0) {
-        efectoMultiplicador = multiplicador * 1.25;
+        efectoMultiplicador = multiplicador * 1.1;
       } else if (upgrades.multiplicador.includes("General Culture III")) {
         efectoMultiplicador = multiplicador * 2;
       } else if (upgrades.multiplicador.includes("General Culture II")) {
-        efectoMultiplicador = multiplicador * 1.75;
-      } else if (upgrades.multiplicador.includes("General Culture I")) {
         efectoMultiplicador = multiplicador * 1.5;
+      } else if (upgrades.multiplicador.includes("General Culture I")) {
+        efectoMultiplicador = multiplicador * 1.25;
       }
     } else {
       efectoMultiplicador = 1;
     }
 
-    const genrlKnCountWithEffects = efectoMultiplicador * 7;
-    const bioKnCountWithEffects = efectoMultiplicador * 1;
-    const technoKnCountWithEffects = efectoMultiplicador * 1;
-    const cultureKnCountWithEffects = efectoMultiplicador * 1;
+    const {
+      genrlKnCountWithEffects,
+      bioKnCountWithEffects,
+      technoKnCountWithEffects,
+      cultureKnCountWithEffects,
+    } = setChosenBookEffect(efectoMultiplicador);
+
     setKnCount({
       ...knCount,
       generalKn:
@@ -88,10 +93,10 @@ export const useIncrementByClick = () => {
         totalKnOfAllTime.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100,
       technoKn:
         totalKnOfAllTime.technoKn +
-        Math.floor(technoKnCountWithEffects * 100) / 1000,
+        Math.floor(technoKnCountWithEffects * 100) / 100,
       cultureKn:
         totalKnOfAllTime.cultureKn +
-        Math.floor(cultureKnCountWithEffects * 100) / 1000,
+        Math.floor(cultureKnCountWithEffects * 100) / 100,
     });
     setClicks(clicks + 1);
     setTotalClicksOfAllTime(totalClicksOfAllTime + 1);
