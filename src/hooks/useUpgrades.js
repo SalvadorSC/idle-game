@@ -12,7 +12,9 @@ export const useUpgrades = () => {
         ...upgrades,
         [field]: [...upgrades[field], newUpgrade],
       });
-      setKnCount(knCount - price);
+      setKnCount({ ...knCount, generalKn: knCount.generalKn - price });
+      console.log(knCount.generalKn - price);
+      console.log(knCount);
     }
   };
 

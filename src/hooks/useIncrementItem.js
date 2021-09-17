@@ -6,11 +6,11 @@ export const useIncrementItem = () => {
 
   const setNewItemQuantity = (item, setItem, itemVar, precio) => {
     const costeItem = Math.floor(precio * Math.pow(itemVar, item));
-    if (knCount >= costeItem) {
+    if (knCount.generalKn >= costeItem) {
       const discount = costeItem;
-      const newTotal = knCount - discount;
+      const newTotal = knCount.generalKn - discount;
       setItem(item + 1);
-      setKnCount(Math.floor(newTotal * 100) / 100);
+      setKnCount({ ...knCount, generalKn: Math.floor(newTotal * 100) / 100 });
     }
   };
 

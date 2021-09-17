@@ -19,21 +19,7 @@ export const useContador = ({
   save,
 }) => {
   const updateProgressBar = () => {
-    if (Math.floor((totalKnCountOfThisRun / goal) * 10000) / 100 > 100) {
-      document.querySelector(".progressL").style.transform = `rotate(180deg)`;
-      document.querySelector(".progressR").style.transform = `rotate(180deg)`;
-    } else if ((totalKnCountOfThisRun / goal) * 100 > 50) {
-      document.querySelector(".progressL").style.transform = `rotate(180deg)`;
-      document.querySelector(".progressR").style.transform = `rotate(${
-        Math.floor(((3.6 * totalKnCountOfThisRun) / goal) * 10000) / 100 - 180
-      }deg)`;
-    } else {
-      document.querySelector(".progressL").style.transform = `rotate(${
-        Math.floor(((3.6 * totalKnCountOfThisRun) / goal) * 10000) / 100
-      }deg)`;
-      document.querySelector(".progressR").style.transform = `rotate(0deg)`;
-    }
-    if (totalKnCountOfThisRun >= goal) {
+    if (totalKnCountOfThisRun.generalKn >= goal) {
       setGoal(goal * 10);
     }
   };
@@ -49,14 +35,25 @@ export const useContador = ({
     } else if (upgrades.multiplicador.includes("General Culture I")) {
       efectoMultiplicador = multiplicador * 0.75;
     }
-    const knCountWithEffects = knCount + 1 + efectoMultiplicador;
-    setKnCount(Math.floor(knCountWithEffects * 100) / 100);
-    setTotalKnCountOfThisRun(
-      Math.floor((totalKnCountOfThisRun + 1 + efectoMultiplicador) * 100) / 100
-    );
-    setTotalKnOfAllTime(
-      Math.floor((totalKnOfAllTime + 1 + efectoMultiplicador) * 100) / 100
-    );
+    const knCountWithEffects = knCount.generalKn + 1 + efectoMultiplicador;
+    setKnCount({
+      ...knCount,
+      generalKn: Math.floor(knCountWithEffects * 100) / 100,
+    });
+    setTotalKnCountOfThisRun({
+      ...totalKnCountOfThisRun,
+      generalKn:
+        Math.floor(
+          (totalKnCountOfThisRun.generalKn + 1 + efectoMultiplicador) * 100
+        ) / 100,
+    });
+    setTotalKnOfAllTime({
+      ...totalKnCountOfThisRun,
+      generalKn:
+        Math.floor(
+          (totalKnOfAllTime.generalKn + 1 + efectoMultiplicador) * 100
+        ) / 100,
+    });
     setClicks(clicks + 1);
     setTotalClicksOfAllTime(totalClicksOfAllTime + 1);
     updateProgressBar();
@@ -84,17 +81,27 @@ export const useContador = ({
     } else {
       efectoAutomatron1 = automatron1 * 1;
     }
-    const knCountWithEffects = knCount + efectoAutomatron1;
-    setKnCount(Math.floor(knCountWithEffects * 100) / 100);
+    const knCountWithEffects = knCount.generalKn + efectoAutomatron1;
+    setKnCount({
+      ...knCount,
+      generalKn: Math.floor(knCountWithEffects * 100) / 100,
+    });
     if (efectoAutomatron1 > 0) {
-      setTotalKnCountOfThisRun(
-        Math.floor((totalKnCountOfThisRun + efectoAutomatron1) * 100) / 100
-      );
-      setTotalKnOfAllTime(
-        Math.floor((totalKnOfAllTime + 1 + efectoAutomatron1) * 100) / 100
-      );
+      setTotalKnCountOfThisRun({
+        ...knCount,
+        generalKn:
+          Math.floor(
+            (totalKnCountOfThisRun.generalKn + efectoAutomatron1) * 100
+          ) / 100,
+      });
+      setTotalKnOfAllTime({
+        ...knCount,
+        generalKn:
+          Math.floor((totalKnOfAllTime.generalKn + efectoAutomatron1) * 100) /
+          100,
+      });
     }
-    updateProgressBar();
+    /* updateProgressBar(); */
   };
 
   return {
