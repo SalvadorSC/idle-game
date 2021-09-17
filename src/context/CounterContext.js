@@ -121,7 +121,12 @@ export const CounterProvider = ({ children }) => {
     setClicks(0);
     setResets(0);
     setUpgrades(baseUpgrades);
-    setKnForfeitedAtReset(0);
+    setKnForfeitedAtReset({
+      generalKn: 0,
+      cultureKn: 0,
+      bioKn: 0,
+      technoKn: 0,
+    });
   };
   const cheat = () => {
     setKnCount({ ...knCount, generalKn: knCount.generalKn + 100000000 });
@@ -167,10 +172,6 @@ export const CounterProvider = ({ children }) => {
         setIsPlaying,
         volume,
         setVolume,
-        /* runStartTime,
-        currentTime,
-        firstRunStartTime,
-        setCurrentTime, */
       }}
     >
       {children}

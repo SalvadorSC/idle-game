@@ -14,6 +14,16 @@ export const Stats = () => {
     totalKnOfAllTime,
     knForfeitedAtReset,
   } = useContext(CounterContext);
+  const totalKnOfThisRun =
+    totalKnCountOfThisRun.generalKn +
+    totalKnCountOfThisRun.bioKn +
+    totalKnCountOfThisRun.technoKn +
+    totalKnCountOfThisRun.cultureKn;
+  const totalKnOfAllRuns =
+    totalKnOfAllTime.generalKn +
+    totalKnOfAllTime.bioKn +
+    totalKnOfAllTime.technoKn +
+    totalKnOfAllTime.cultureKn;
 
   return (
     <>
@@ -23,10 +33,8 @@ export const Stats = () => {
           <div className="stats-container">
             <p>Total clicks of this run: {clicks} clicks</p>
             <p>Total clicks of all time: {totalClicksOfAllTime} clicks</p>
-            <p>
-              Total Knowledge of this run: {totalKnCountOfThisRun.generalKn} kN
-            </p>
-            <p>Total Knowledge of all time: {totalKnOfAllTime.generalKn} kN</p>
+            <p>Total Knowledge of this run: {totalKnOfThisRun} kN</p>
+            <p>Total Knowledge of all time: {totalKnOfAllRuns} kN</p>
             {/* <p>Longest run time:</p> */}
             {/* <p>Current run time:{currentRunTime}</p> */}
             {/* <p>Number of resets: {resets}</p> */}

@@ -12,7 +12,7 @@ export const ShopItem = ({
   hasRequirements,
   requirement,
 }) => {
-  const { knCount, upgrades } = useContext(CounterContext);
+  const { knCount } = useContext(CounterContext);
   const { parseNumber } = useNumberParsing();
   const { setNewItemQuantity } = useIncrementItem();
   const handleDetails = () => {

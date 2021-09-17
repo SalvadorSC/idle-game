@@ -47,6 +47,11 @@
 .upgrade-bought:disabled {
   background-color: #333;
   color: white;
+  -webkit-box-shadow: 0px 0px 9px 3px #c7c2a9;
+  box-shadow: 0px 0px 9px 3px #c7c2a9;
+}
+
+.chosen-book {
   -webkit-box-shadow: 0px 0px 15px 5px #d3c26e;
   box-shadow: 0px 0px 15px 5px #d3c26e;
 }
@@ -58,5 +63,6 @@
 }
 .w-25 {
   display: flex;
+  justify-content: center;
   width: 25%;
 }

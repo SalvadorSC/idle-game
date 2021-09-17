@@ -49,17 +49,6 @@ body {
   text-align: center;
 }
 
-.display-stats {
-  background-color: #333;
-  margin: 0;
-  width: 100%;
-  font-size: 20px;
-  color: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .display-knCount {
   background-color: #333;
   background-image: url("./assets/libreria.png");
