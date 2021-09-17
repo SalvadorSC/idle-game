@@ -39,7 +39,7 @@ export const ShopItem = ({
       <div>
         <p className="shop-item-name">
           {hasRequirements ? (
-            upgrades.technology.length >= 1 ? (
+            requirement ? (
               <ShopItemName
                 nameInfo={{
                   name: name,
@@ -69,7 +69,7 @@ export const ShopItem = ({
         onClick={() => setNewItemQuantity(item, setItem, 1.15, 10)}
       >
         {hasRequirements
-          ? upgrades.technology.length >= 1
+          ? requirement
             ? `Buy ${name} (${parseNumber(itemPrice)})`
             : "???"
           : `Buy ${name} (${parseNumber(itemPrice)})`}

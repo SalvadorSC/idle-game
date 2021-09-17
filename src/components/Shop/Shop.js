@@ -31,7 +31,7 @@ export const Shop = (props) => {
         item={automatron1}
         setItem={setAutomatron1}
         hasRequirements={true}
-        requirement={upgrades.technology.length >= 1}
+        requirement={upgrades.technology.length >= 2}
       />
 
       {/* <div className="shop-item-container">
