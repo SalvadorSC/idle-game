@@ -34,6 +34,9 @@ export const CounterProvider = ({ children }) => {
         }
   );
   const [resets, setResets] = useState(savegame ? savegame.resets : 0);
+  const [potenciaClick, setPotenciaClick] = useState(
+    savegame ? savegame.potenciaClick : 0
+  );
   const [knForfeitedAtReset, setKnForfeitedAtReset] = useState(
     savegame
       ? savegame.knForfeitedAtReset
@@ -71,6 +74,7 @@ export const CounterProvider = ({ children }) => {
     resets: resets,
     upgrades: upgrades,
     chosenBook: chosenBook,
+    potenciaClick: potenciaClick,
   };
   const [volume, setVolume] = useState(0);
 
@@ -168,6 +172,8 @@ export const CounterProvider = ({ children }) => {
         setTotalKnOfAllTime,
         knForfeitedAtReset,
         setKnForfeitedAtReset,
+        potenciaClick,
+        setPotenciaClick,
         upgrades,
         setUpgrades,
         save,

@@ -9,6 +9,7 @@ import { useNumberParsing } from "../../hooks/useNumberParsing";
 import "./IdleApp.css";
 import BoopButton from "../BoopButton/BoopButton";
 import { useIncrementByClick } from "../../hooks/useIncrementByClick";
+import { Shelf } from "../Shelf/Shelf";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const { increment } = useIncrementByClick(dependencies);
@@ -88,8 +89,13 @@ const IdleApp = () => {
                 </Link>
               </li>
               <li className="second-half-ul-li">
+                <Link className="second-half-nav-button" to="/shelf">
+                  Shelf
+                </Link>
+              </li>
+              <li className="second-half-ul-li">
                 <Link className="second-half-nav-button" to="/tree">
-                  Tree
+                  tree
                 </Link>
               </li>
               <li className="second-half-ul-li">
@@ -108,6 +114,9 @@ const IdleApp = () => {
           </Route>
           <Route path="/stats">
             <Stats />
+          </Route>
+          <Route path="/shelf">
+            <Shelf />
           </Route>
           <Route path="/tree">
             <Tree />

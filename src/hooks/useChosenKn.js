@@ -47,20 +47,20 @@ export const useChosenKn = () => {
         break;
       case "Introduction to Nature":
         genrlKnCountWithEffects = efecto * 0.5;
-        bioKnCountWithEffects = efecto * 0;
-        technoKnCountWithEffects = efecto * 0.5;
+        bioKnCountWithEffects = efecto * 0.5;
+        technoKnCountWithEffects = efecto * 0;
         cultureKnCountWithEffects = efecto * 0;
         break;
       case "Nature inside out":
         genrlKnCountWithEffects = efecto * 0.6;
-        bioKnCountWithEffects = efecto * 0;
-        technoKnCountWithEffects = efecto * 0.8;
+        bioKnCountWithEffects = efecto * 0.8;
+        technoKnCountWithEffects = efecto * 0;
         cultureKnCountWithEffects = efecto * 0;
         break;
       case "Novel":
         genrlKnCountWithEffects = efecto * 0.5;
-        bioKnCountWithEffects = efecto * 0;
         technoKnCountWithEffects = efecto * 0;
+        bioKnCountWithEffects = efecto * 0;
         cultureKnCountWithEffects = efecto * 0.5;
         break;
       case "Poems of Rose":

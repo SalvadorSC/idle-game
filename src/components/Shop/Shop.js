@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import CounterContext from "../../context/CounterContext";
 import { DetailsBox } from "../DetailsBox/DetailsBox";
+import { NewBooks } from "../NewBooks/NewBooks";
 import { ShopItem } from "../ShopItem/ShopItem";
 import "./Shop.css";
 
@@ -17,6 +18,7 @@ export const Shop = (props) => {
 
   return (
     <>
+      <NewBooks />
       {showDetails && <DetailsBox />}
       <ShopItem
         setShowDetails={setShowDetails}
@@ -31,7 +33,7 @@ export const Shop = (props) => {
         item={automatron1}
         setItem={setAutomatron1}
         hasRequirements={true}
-        requirement={upgrades.technology.length >= 2}
+        requirement={upgrades.technology.length >= 1}
       />
     </>
   );

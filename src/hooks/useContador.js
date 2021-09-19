@@ -21,11 +21,9 @@ export const useContador = ({
   const incrementEverySecond = (upgrades) => {
     let efectoAutomatron1;
     if (upgrades.technology.length === 0) {
-      efectoAutomatron1 = automatron1 * 1.5;
-    } else if (upgrades.technology.includes("DIY at home")) {
-      efectoAutomatron1 = automatron1 * 2.5;
-    } else {
       efectoAutomatron1 = automatron1 * 1;
+    } else if (upgrades.technology.includes("DIY at home")) {
+      efectoAutomatron1 = automatron1 * 1.25;
     }
     const {
       genrlKnCountWithEffects,

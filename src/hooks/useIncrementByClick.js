@@ -20,6 +20,8 @@ export const useIncrementByClick = () => {
     setTotalKnCountOfThisRun,
     upgrades,
     save,
+    potenciaClick,
+    setPotenciaClick,
   } = useContext(CounterContext);
   const dependencies = useContext(CounterContext);
   const { incrementEverySecond } = useContador(dependencies);
@@ -40,13 +42,11 @@ export const useIncrementByClick = () => {
     let efectoMultiplicador;
     if (multiplicador) {
       if (upgrades.multiplicador.length === 0) {
-        efectoMultiplicador = multiplicador * 1.1;
+        efectoMultiplicador = multiplicador * 0.25;
       } else if (upgrades.multiplicador.includes("General Culture III")) {
-        efectoMultiplicador = multiplicador * 2;
-      } else if (upgrades.multiplicador.includes("General Culture II")) {
-        efectoMultiplicador = multiplicador * 1.5;
+        efectoMultiplicador = multiplicador * 1;
       } else if (upgrades.multiplicador.includes("General Culture I")) {
-        efectoMultiplicador = multiplicador * 1.25;
+        efectoMultiplicador = multiplicador * 0.5;
       }
     } else {
       efectoMultiplicador = 1;
@@ -58,7 +58,13 @@ export const useIncrementByClick = () => {
       technoKnCountWithEffects,
       cultureKnCountWithEffects,
     } = setChosenBookEffect(efectoMultiplicador);
-
+    setPotenciaClick(
+      Math.floor(genrlKnCountWithEffects * 100) / 100 +
+        Math.floor(bioKnCountWithEffects * 100) / 100 +
+        Math.floor(technoKnCountWithEffects * 100) / 100 +
+        Math.floor(cultureKnCountWithEffects * 100) / 100
+    );
+    console.log(potenciaClick);
     setKnCount({
       ...knCount,
       generalKn:
