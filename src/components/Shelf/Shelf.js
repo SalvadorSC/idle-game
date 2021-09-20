@@ -9,11 +9,13 @@ export const Shelf = () => {
     <div className="shelf-container">
       {upgradesInfo.map((upgradeInfo) => (
         <UpgradeItem
+          key={upgradeInfo.upgrade}
           price={upgradeInfo.price}
           field={upgradeInfo.field}
           upgrade={upgradeInfo.upgrade}
           requirementField={upgradeInfo.requirementField}
           requirement={upgradeInfo.requirement}
+          description={upgradeInfo.description}
         />
       ))}
     </div>

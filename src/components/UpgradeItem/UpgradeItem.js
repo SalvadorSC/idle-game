@@ -2,15 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import CounterContext from "../../context/CounterContext";
 import { useUpgrades } from "../../hooks/useUpgrades";
 import { useLocation } from "react-router-dom";
+import "./UpgradeItem.css";
 export const UpgradeItem = ({
   price,
   field,
   upgrade,
   requirementField,
   requirement,
+  description,
 }) => {
   const { setNewUpgrade } = useUpgrades();
   const [showUpgrade, setShowUpgrade] = useState(false);
+  let location = useLocation();
   const {
     knCount,
     upgrades,
@@ -19,7 +22,7 @@ export const UpgradeItem = ({
     potenciaClick,
     multiplicador,
   } = useContext(CounterContext);
-  let location = useLocation();
+
   const setDisabled = (
     price,
     field,
@@ -121,6 +124,7 @@ export const UpgradeItem = ({
     price,
     location,
   ]);
+
   return (
     <>
       {showUpgrade && (
@@ -146,6 +150,16 @@ export const UpgradeItem = ({
                 : `${upgrade} | ${price}`
             }`}
           </button>
+          {description && (
+            <div
+              className={`description description-${upgrade.replace(
+                / /g,
+                "-"
+              )} `}
+            >
+              {description}
+            </div>
+          )}
         </div>
       )}
     </>

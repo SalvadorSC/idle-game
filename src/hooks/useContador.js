@@ -18,19 +18,13 @@ export const useContador = ({
     totalKnCountOfThisRun.bioKn +
     totalKnCountOfThisRun.technoKn +
     totalKnCountOfThisRun.cultureKn;
-  const incrementEverySecond = (upgrades) => {
-    let efectoAutomatron1;
-    if (upgrades.technology.length === 0) {
-      efectoAutomatron1 = automatron1 * 1;
-    } else if (upgrades.technology.includes("DIY at home")) {
-      efectoAutomatron1 = automatron1 * 1.25;
-    }
+  const incrementEverySecond = () => {
     const {
       genrlKnCountWithEffects,
       bioKnCountWithEffects,
       technoKnCountWithEffects,
       cultureKnCountWithEffects,
-    } = setChosenBookEffect(efectoAutomatron1);
+    } = setChosenBookEffect(automatron1);
 
     setKnCount({
       ...knCount,
@@ -42,7 +36,7 @@ export const useContador = ({
       cultureKn:
         knCount.cultureKn + Math.floor(cultureKnCountWithEffects * 100) / 100,
     });
-    if (efectoAutomatron1 > 0) {
+    if (automatron1 > 0) {
       setTotalKnCountOfThisRun({
         ...totalKnCountOfThisRun,
         generalKn:

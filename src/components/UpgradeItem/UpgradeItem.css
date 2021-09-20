@@ -1,0 +1,22 @@
+.upgrade-box:hover .description {
+  display: block;
+}
+
+.upgrade-box {
+  position: relative;
+}
+.description {
+  position: absolute;
+  display: none;
+  /* height: auto; */
+  text-align: left;
+  top: 80px;
+  left: 40px;
+  background-color: #ccc;
+  width: 180px;
+  min-height: 120px;
+  /* opacity: 0; */
+  z-index: 2;
+  padding: 15px;
+  /* transition: opacity 0.3s ease; */
+}

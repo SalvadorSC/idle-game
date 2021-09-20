@@ -3,7 +3,8 @@
     {
       "price": 10,
       "field": "multiplicador",
-      "upgrade": "General Culture I"
+      "upgrade": "General Culture I",
+      "description": "This is your first book, it's been given to you from me, the system. Go on, read it, I'm sure you'll 100% understand it!"
     },
     {
       "price": 200,
