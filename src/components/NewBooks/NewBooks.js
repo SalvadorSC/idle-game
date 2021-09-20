@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import CounterContext from "../../context/CounterContext";
+import React from "react";
 import { UpgradeItem } from "../UpgradeItem/UpgradeItem";
 import upgradesInformation from "../../data/upgradesInfo.json";
 import "./NewBooks.css";
