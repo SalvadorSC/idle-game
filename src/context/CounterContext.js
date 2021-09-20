@@ -93,6 +93,7 @@ export const CounterProvider = ({ children }) => {
       bioKn: 0,
       technoKn: 0,
     });
+    setPotenciaClick(0);
     setAutomatron1(0);
     setResets(resets + 1);
     setClicks(0);
@@ -114,6 +115,7 @@ export const CounterProvider = ({ children }) => {
       bioKn: 0,
       technoKn: 0,
     });
+    setPotenciaClick(0);
     setTotalKnCountOfThisRun({
       generalKn: 0,
       cultureKn: 0,
