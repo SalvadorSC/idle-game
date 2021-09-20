@@ -104,7 +104,7 @@ export const UpgradeItem = ({
       }
       // si no hay requisitos y tampoco esta comprado (aún no pasa pero puede pasar mas adelante)
       else {
-        if (potenciaClick >= price / 100 || knCount * 2 > price) {
+        if (potenciaClick >= price / 100 || knCount.generalKn * 2 > price) {
           setShowUpgrade(true);
         }
       }
