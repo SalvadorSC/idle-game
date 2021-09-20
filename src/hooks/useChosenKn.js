@@ -10,7 +10,7 @@ export const useChosenKn = () => {
     let cultureKnCountWithEffects;
     switch (chosenBook) {
       case "General Culture I":
-        genrlKnCountWithEffects = multiplicador * 100;
+        genrlKnCountWithEffects = multiplicador * 1;
         bioKnCountWithEffects = multiplicador * 0;
         technoKnCountWithEffects = multiplicador * 0;
         cultureKnCountWithEffects = multiplicador * 0;

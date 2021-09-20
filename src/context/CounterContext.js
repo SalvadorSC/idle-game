@@ -61,6 +61,40 @@ export const CounterProvider = ({ children }) => {
     savegame ? savegame.chosenBook : "General Culture I"
   );
   const [isPlaying, setIsPlaying] = useState(false);
+
+  /* ///Calculate OFFLINE PRODUCTION
+  const { setChosenBookEffect } = useChosenKn();
+  const [lastLogin, setLastLogin] = useState(savegame ? savegame.lastLogin : 0);
+  const [showBuffer, setShowBuffer] = useState(true);
+  const {
+    genrlKnCountWithEffects,
+    bioKnCountWithEffects,
+    technoKnCountWithEffects,
+    cultureKnCountWithEffects,
+  } = setChosenBookEffect(multiplicador);
+  useEffect(() => {
+    if (showBuffer && lastLogin !== 0) {
+      console.log(Date.now() - lastLogin);
+      setShowBuffer(false);
+      if (Date.now() - lastLogin > 60000) {
+        alert(
+          `You have gained ${genrlKnCountWithEffects} general kN,
+            ${bioKnCountWithEffects} bio kN,
+            ${technoKnCountWithEffects} tech kN,
+            ${cultureKnCountWithEffects} cultural kN,
+          while offline`
+        );
+      }
+    } else if (lastLogin === 0) {
+      const timer = setTimeout(() => {
+        setLastLogin(Date.now());
+        setShowBuffer(false);
+      }, 1e3);
+      return () => clearTimeout(timer);
+    }
+  });
+  /// */
+
   let save = {
     multiplicador: multiplicador,
     automatron1: automatron1,
@@ -151,6 +185,7 @@ export const CounterProvider = ({ children }) => {
       generalKn: totalKnOfAllTime.generalKn + 100000000,
     });
   };
+
   return (
     <CounterContext.Provider
       value={{
@@ -187,6 +222,10 @@ export const CounterProvider = ({ children }) => {
         setIsPlaying,
         volume,
         setVolume,
+        /* showBuffer,
+        lastLogin,
+        setShowBuffer,
+        setLastLogin, */
       }}
     >
       {children}

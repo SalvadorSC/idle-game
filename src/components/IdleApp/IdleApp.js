@@ -10,6 +10,7 @@ import "./IdleApp.css";
 import BoopButton from "../BoopButton/BoopButton";
 import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 import { Shelf } from "../Shelf/Shelf";
+import buffer from "../../assets/Infinity.svg";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const { increment } = useIncrementByClick(dependencies);
@@ -22,6 +23,12 @@ const IdleApp = () => {
   return (
     <>
       <div className="contador">
+        {/* {dependencies.showBuffer && (
+          <div className="buffer">
+            <img src={buffer} alt="loading infinite lopp gif" />
+          </div>
+        )} */}
+
         <div className="first-half">
           <div className="header">
             <div className="music-div">

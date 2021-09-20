@@ -20,7 +20,6 @@ export const useIncrementByClick = () => {
     setTotalKnCountOfThisRun,
     upgrades,
     save,
-    potenciaClick,
     setPotenciaClick,
   } = useContext(CounterContext);
   const dependencies = useContext(CounterContext);
@@ -52,7 +51,6 @@ export const useIncrementByClick = () => {
         Math.floor(technoKnCountWithEffects * 100) / 100 +
         Math.floor(cultureKnCountWithEffects * 100) / 100
     );
-    console.log(potenciaClick);
 
     setKnCount({
       ...knCount,

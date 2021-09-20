@@ -12,7 +12,6 @@ export const useContador = ({
   setTotalKnCountOfThisRun,
 }) => {
   const { setChosenBookEffect } = useChosenKn();
-
   const totalKnOfThisRun =
     totalKnCountOfThisRun.generalKn +
     totalKnCountOfThisRun.bioKn +

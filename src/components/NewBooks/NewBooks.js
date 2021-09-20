@@ -11,6 +11,7 @@ export const NewBooks = () => {
         <div className="newBooks-container">
           {upgradesInfo.map((upgradeInfo) => (
             <UpgradeItem
+              key={upgradeInfo.upgrade}
               price={upgradeInfo.price}
               field={upgradeInfo.field}
               upgrade={upgradeInfo.upgrade}
