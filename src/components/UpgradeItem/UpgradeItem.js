@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CounterContext from "../../context/CounterContext";
 import { useUpgrades } from "../../hooks/useUpgrades";
-
+import { useLocation } from "react-router-dom";
 export const UpgradeItem = ({
   price,
   field,
@@ -10,8 +10,16 @@ export const UpgradeItem = ({
   requirement,
 }) => {
   const { setNewUpgrade } = useUpgrades();
-  const { knCount, upgrades, chosenBook, setChosenBook } =
-    useContext(CounterContext);
+  const [showUpgrade, setShowUpgrade] = useState(false);
+  const {
+    knCount,
+    upgrades,
+    chosenBook,
+    setChosenBook,
+    potenciaClick,
+    multiplicador,
+  } = useContext(CounterContext);
+  let location = useLocation();
   const setDisabled = (
     price,
     field,
@@ -60,32 +68,86 @@ export const UpgradeItem = ({
       return "upgrade-name ";
     }
   };
-
-  return (
-    <div className="upgrade-box">
-      <button
-        className={setClasses(field, upgrade)}
-        disabled={setDisabled(
-          price,
-          field,
-          upgrade,
-          requirementField,
-          requirement
-        )}
-        onClick={() =>
-          upgrades[field].includes(upgrade)
-            ? setChosenBook(upgrade)
-            : setNewUpgrade(field, upgrade, price)
+  useEffect(() => {
+    const toggleShowUpgrade = (
+      price,
+      field,
+      upgrade,
+      requirementField,
+      requirement
+    ) => {
+      if (requirement && requirementField) {
+        if (upgrades[requirementField].includes(requirement)) {
+          if (upgrades[field].includes(upgrade)) {
+            if (location.pathname === "/shelf") {
+              setShowUpgrade(true);
+            } else {
+              setShowUpgrade(false);
+            }
+          } else {
+            if (location.pathname === "/shelf") {
+              setShowUpgrade(false);
+            } else if (potenciaClick >= price / 100) {
+              setShowUpgrade(true);
+            } else setShowUpgrade(false);
+          }
+        } else setShowUpgrade(false);
+      } else if (upgrades[field].includes(upgrade)) {
+        if (location.pathname === "/shelf") {
+          setShowUpgrade(true);
+        } else {
+          setShowUpgrade(false);
         }
-      >
-        {`${
-          requirement
-            ? upgrades[requirementField].includes(requirement)
-              ? `${upgrade} | ${price}`
-              : "???"
-            : `${upgrade} | ${price}`
-        }`}
-      </button>
-    </div>
+      }
+      // si no hay requisitos y tampoco esta comprado (aún no pasa pero puede pasar mas adelante)
+      else {
+        if (potenciaClick >= price / 100 || knCount > price) {
+          setShowUpgrade(true);
+        }
+      }
+      return showUpgrade;
+    };
+    toggleShowUpgrade(price, field, upgrade, requirementField, requirement);
+  }, [
+    multiplicador,
+    knCount,
+    requirement,
+    requirementField,
+    upgrades,
+    field,
+    upgrade,
+    showUpgrade,
+    potenciaClick,
+    price,
+    location,
+  ]);
+  return (
+    <>
+      {showUpgrade && (
+        <div className="upgrade-box">
+          <button
+            className={setClasses(field, upgrade)}
+            disabled={setDisabled(
+              price,
+              field,
+              upgrade,
+              requirementField,
+              requirement
+            )}
+            onClick={() =>
+              upgrades[field].includes(upgrade)
+                ? setChosenBook(upgrade)
+                : setNewUpgrade(field, upgrade, price)
+            }
+          >
+            {`${
+              upgrades[field].includes(upgrade)
+                ? `${upgrade}`
+                : `${upgrade} | ${price}`
+            }`}
+          </button>
+        </div>
+      )}
+    </>
   );
 };

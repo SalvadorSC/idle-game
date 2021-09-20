@@ -1,0 +1,79 @@
+{
+  "upgradesInfo": [
+    {
+      "price": 10,
+      "field": "multiplicador",
+      "upgrade": "General Culture I"
+    },
+    {
+      "price": 150,
+      "field": "multiplicador",
+      "upgrade": "General Culture II",
+      "requirementField": "multiplicador",
+      "requirement": "General Culture I"
+    },
+    {
+      "price": 200,
+      "field": "multiplicador",
+      "upgrade": "General Culture III",
+      "requirementField": "multiplicador",
+      "requirement": "General Culture II"
+    },
+    {
+      "price": 500,
+      "field": "multiplicador",
+      "upgrade": "Stuff 101",
+      "requirementField": "multiplicador",
+      "requirement": "General Culture III"
+    },
+    {
+      "price": 500,
+      "field": "culture",
+      "upgrade": "Novel",
+      "requirementField": "multiplicador",
+      "requirement": "General Culture III"
+    },
+    {
+      "price": 650,
+      "field": "technology",
+      "upgrade": "Technology for dummies",
+      "requirementField": "multiplicador",
+      "requirement": "Stuff 101"
+    },
+    {
+      "price": 650,
+      "field": "nature",
+      "upgrade": "Introduction to Nature",
+      "requirementField": "multiplicador",
+      "requirement": "Stuff 101"
+    },
+    {
+      "price": 650,
+      "field": "culture",
+      "upgrade": "Poems of Rose",
+      "requirementField": "culture",
+      "requirement": "Novel"
+    },
+    {
+      "price": 2000,
+      "field": "technology",
+      "upgrade": "DIY at home",
+      "requirementField": "technology",
+      "requirement": "Technology for dummies"
+    },
+    {
+      "price": 2000,
+      "field": "nature",
+      "upgrade": "Nature inside out",
+      "requirementField": "nature",
+      "requirement": "Introduction to Nature"
+    },
+    {
+      "price": 2000,
+      "field": "culture",
+      "upgrade": "History about humanity I",
+      "requirementField": "culture",
+      "requirement": "Poems of Rose"
+    }
+  ]
+}

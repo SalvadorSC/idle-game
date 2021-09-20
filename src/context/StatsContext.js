@@ -1,10 +1,10 @@
 import React, { createContext, useState } from "react";
 const CounterContext = createContext();
 
-export const CounterProvider = ({ children }) => {
+export const StatsProvider = ({ children }) => {
   let savegame = JSON.parse(localStorage.getItem("save"));
   const [multiplicador, setMultiplicador] = useState(
-    savegame ? savegame.multiplicador : 1
+    savegame ? savegame.multiplicador : 0
   );
   const [automatron1, setAutomatron1] = useState(
     savegame ? savegame.automatron1 : 0
@@ -49,7 +49,7 @@ export const CounterProvider = ({ children }) => {
   );
   const [goal, setGoal] = useState(savegame ? savegame.goal : 100);
   const baseUpgrades = {
-    multiplicador: ["General Culture I"],
+    multiplicador: [],
     technology: [],
     nature: [],
     culture: [],
@@ -58,7 +58,7 @@ export const CounterProvider = ({ children }) => {
     savegame ? savegame.upgrades : baseUpgrades
   );
   const [chosenBook, setChosenBook] = useState(
-    savegame ? savegame.chosenBook : "General Culture I"
+    savegame ? savegame.chosenBook : ""
   );
   const [isPlaying, setIsPlaying] = useState(false);
   let save = {
@@ -80,7 +80,7 @@ export const CounterProvider = ({ children }) => {
 
   const resetGame = () => {
     setGoal(100);
-    setMultiplicador(1);
+    setMultiplicador(0);
     setTotalKnCountOfThisRun({
       generalKn: 0,
       cultureKn: 0,
@@ -102,12 +102,12 @@ export const CounterProvider = ({ children }) => {
       ...knForfeitedAtReset,
       generalKn: knForfeitedAtReset.generalKn + knCount.generalKn,
     });
-    setChosenBook("General Culture I");
+    setChosenBook("");
   };
   const resetAllGame = () => {
     setGoal(100);
-    setChosenBook("General Culture I");
-    setMultiplicador(1);
+    setChosenBook("");
+    setMultiplicador(0);
     setTotalKnOfAllTime({
       generalKn: 0,
       cultureKn: 0,

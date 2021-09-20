@@ -33,31 +33,19 @@ export const useIncrementByClick = () => {
     }, 1e3);
     return () => clearTimeout(timer);
   });
+
   // save function
   useEffect(() => {
     localStorage.setItem("save", JSON.stringify(save));
   }, [save]);
 
   const increment = (upgrades) => {
-    let efectoMultiplicador;
-    if (multiplicador) {
-      if (upgrades.multiplicador.length === 0) {
-        efectoMultiplicador = multiplicador * 0.25;
-      } else if (upgrades.multiplicador.includes("General Culture III")) {
-        efectoMultiplicador = multiplicador * 1;
-      } else if (upgrades.multiplicador.includes("General Culture I")) {
-        efectoMultiplicador = multiplicador * 0.5;
-      }
-    } else {
-      efectoMultiplicador = 1;
-    }
-
     const {
       genrlKnCountWithEffects,
       bioKnCountWithEffects,
       technoKnCountWithEffects,
       cultureKnCountWithEffects,
-    } = setChosenBookEffect(efectoMultiplicador);
+    } = setChosenBookEffect(multiplicador);
     setPotenciaClick(
       Math.floor(genrlKnCountWithEffects * 100) / 100 +
         Math.floor(bioKnCountWithEffects * 100) / 100 +
@@ -65,6 +53,7 @@ export const useIncrementByClick = () => {
         Math.floor(cultureKnCountWithEffects * 100) / 100
     );
     console.log(potenciaClick);
+
     setKnCount({
       ...knCount,
       generalKn:

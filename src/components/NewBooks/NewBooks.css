@@ -1,0 +1,21 @@
+.newBooks {
+  margin: 0 auto;
+  width: 60%;
+  background-color: #666;
+  padding: 25px;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+
+.newBooks-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* 
+  align-content: space-around;
+  align-items: flex-start; */
+}
+
+.newBooks-title {
+  text-align: left;
+}

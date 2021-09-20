@@ -18,23 +18,25 @@ export const Shop = (props) => {
 
   return (
     <>
-      <NewBooks />
-      {showDetails && <DetailsBox />}
-      <ShopItem
-        setShowDetails={setShowDetails}
-        name={"Multiplicador"}
-        item={multiplicador}
-        setItem={setMultiplicador}
-        hasRequirements={false}
-      />
-      <ShopItem
-        setShowDetails={setShowDetails}
-        name={"Automatron v1"}
-        item={automatron1}
-        setItem={setAutomatron1}
-        hasRequirements={true}
-        requirement={upgrades.technology.length >= 1}
-      />
+      <div className="shop">
+        <NewBooks />
+        {showDetails && <DetailsBox />}
+        <ShopItem
+          setShowDetails={setShowDetails}
+          name={"Multiplicador"}
+          item={multiplicador}
+          setItem={setMultiplicador}
+          hasRequirements={false}
+        />
+        <ShopItem
+          setShowDetails={setShowDetails}
+          name={"Automatron v1"}
+          item={automatron1}
+          setItem={setAutomatron1}
+          hasRequirements={true}
+          requirement={upgrades.technology.length >= 1}
+        />
+      </div>
     </>
   );
 };

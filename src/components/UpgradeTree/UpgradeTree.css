@@ -47,8 +47,8 @@
 .upgrade-bought {
   background-color: #333;
   color: white;
-  -webkit-box-shadow: 0px 0px 9px 3px #c7c2a9;
-  box-shadow: 0px 0px 9px 3px #c7c2a9;
+  /* -webkit-box-shadow: 0px 0px 9px 3px #c7c2a9;
+  box-shadow: 0px 0px 9px 3px #c7c2a9; */
 }
 span.upgrade-bought {
   background-color: transparent;
