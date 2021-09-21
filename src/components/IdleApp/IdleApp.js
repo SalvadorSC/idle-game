@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, Route } from "react-router-dom";
 import { Options } from "../Options/Options";
 import { Shop } from "../Shop/Shop";
