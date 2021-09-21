@@ -63,7 +63,7 @@ export const CounterProvider = ({ children }) => {
     savegame ? savegame.chosenBook : "General Culture I"
   );
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const [detailsInfo, setDetailsInfo] = useState("Hehe");
   /* ///Calculate OFFLINE PRODUCTION
   const { setChosenBookEffect } = useChosenKn();
   const [lastLogin, setLastLogin] = useState(savegame ? savegame.lastLogin : 0);
@@ -231,6 +231,8 @@ export const CounterProvider = ({ children }) => {
         setMute,
         squirrels,
         setSquirrels,
+        detailsInfo,
+        setDetailsInfo,
         /* showBuffer,
         lastLogin,
         setShowBuffer,

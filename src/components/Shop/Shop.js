@@ -25,7 +25,7 @@ export const Shop = (props) => {
         {showDetails && <DetailsBox />}
         <ShopItem
           setShowDetails={setShowDetails}
-          name={"Multiplicador"}
+          name={"Multiplyier"}
           item={multiplicador}
           setItem={setMultiplicador}
           hasRequirements={false}
@@ -33,6 +33,9 @@ export const Shop = (props) => {
           priceTkn={0}
           priceBkn={0}
           priceCkn={0}
+          detailsInfo={
+            "Multiplyiers make you comprehend information much better"
+          }
         />
         <ShopItem
           setShowDetails={setShowDetails}
@@ -45,6 +48,7 @@ export const Shop = (props) => {
           priceTkn={10}
           priceBkn={0}
           priceCkn={0}
+          detailsInfo={"Automatron let you scan pages for important kN!"}
         />
         <ShopItem
           setShowDetails={setShowDetails}
@@ -52,6 +56,9 @@ export const Shop = (props) => {
           item={squirrels}
           setItem={setSquirrels}
           hasRequirements={true}
+          detailsInfo={
+            "Wow, you learned how to teach... squirrels? And they read for you??"
+          }
           requirement={
             upgrades.nature.length >= 2 && upgrades.culture.length >= 3
           }

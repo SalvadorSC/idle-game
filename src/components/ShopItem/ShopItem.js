@@ -15,12 +15,14 @@ export const ShopItem = ({
   priceTkn,
   priceBkn,
   priceCkn,
+  detailsInfo,
 }) => {
-  const { knCount } = useContext(CounterContext);
+  const { knCount, setDetailsInfo } = useContext(CounterContext);
   const { parseNumber } = useNumberParsing();
   const { setNewItemQuantity } = useIncrementItem();
   const handleDetails = () => {
     setShowDetails(true);
+    setDetailsInfo(detailsInfo ? detailsInfo : "hehe");
   };
   const itemPriceGkn = Math.floor(priceGkn * Math.pow(1.2, item));
   const itemPriceTkn = Math.floor(priceTkn * Math.pow(1.2, item));
