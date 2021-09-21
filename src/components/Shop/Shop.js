@@ -25,7 +25,7 @@ export const Shop = (props) => {
         {showDetails && <DetailsBox />}
         <ShopItem
           setShowDetails={setShowDetails}
-          name={"Multiplyier"}
+          name={"Multiplier"}
           item={multiplicador}
           setItem={setMultiplicador}
           hasRequirements={false}
@@ -34,7 +34,7 @@ export const Shop = (props) => {
           priceBkn={0}
           priceCkn={0}
           detailsInfo={
-            "Multiplyiers make you comprehend information much better"
+            "Multipliers make you comprehend information much better"
           }
         />
         <ShopItem

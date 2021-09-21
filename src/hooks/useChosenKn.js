@@ -1,14 +1,11 @@
-import { useContext } from "react";
-import CounterContext from "../context/CounterContext";
-
-export const useChosenKn = () => {
-  const { chosenBook } = useContext(CounterContext);
+export const useChosenKn = (libro) => {
   const setChosenBookEffect = (multiplicador) => {
     let genrlKnCountWithEffects;
     let bioKnCountWithEffects;
     let technoKnCountWithEffects;
     let cultureKnCountWithEffects;
-    switch (chosenBook) {
+
+    switch (libro) {
       case "General Culture I":
         genrlKnCountWithEffects = multiplicador * 1;
         bioKnCountWithEffects = multiplicador * 0;

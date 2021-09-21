@@ -23,14 +23,17 @@ export const useIncrementByClick = () => {
     setPotenciaClick,
     maxKn,
     setMaxKn,
+    chosenBook,
+    setLastLogin,
   } = useContext(CounterContext);
   const dependencies = useContext(CounterContext);
   const { incrementEverySecond } = useContador(dependencies);
-  const { setChosenBookEffect } = useChosenKn();
+  const { setChosenBookEffect } = useChosenKn(chosenBook);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       incrementEverySecond(upgrades);
+      setLastLogin(Date.now());
     }, 1e3);
     return () => clearTimeout(timer);
   });

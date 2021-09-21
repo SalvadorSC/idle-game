@@ -17,10 +17,11 @@ export const useContador = ({
   squirrels,
   maxKn,
   setMaxKn,
+  chosenBook,
 }) => {
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
-  const { setChosenBookEffect } = useChosenKn();
+  const { setChosenBookEffect } = useChosenKn(chosenBook);
   const totalKnOfThisRun =
     totalKnCountOfThisRun.generalKn +
     totalKnCountOfThisRun.bioKn +

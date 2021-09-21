@@ -1,4 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { useChosenKn } from "../hooks/useChosenKn";
+
 const CounterContext = createContext();
 
 export const CounterProvider = ({ children }) => {
@@ -74,10 +76,17 @@ export const CounterProvider = ({ children }) => {
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [detailsInfo, setDetailsInfo] = useState("Hehe");
-  /* ///Calculate OFFLINE PRODUCTION
-  const { setChosenBookEffect } = useChosenKn();
+  ///Calculate OFFLINE PRODUCTION
+  const { setChosenBookEffect } = useChosenKn(chosenBook);
   const [lastLogin, setLastLogin] = useState(savegame ? savegame.lastLogin : 0);
   const [showBuffer, setShowBuffer] = useState(true);
+  const [showGeneratedKnAlert, setShowGeneratedKnAlert] = useState(true);
+  const [generatedKn, setGeneratedKn] = useState({
+    generatedGnKn: 0,
+    generatedBioKn: 0,
+    generatedTechnoKn: 0,
+    generatedCultureKn: 0,
+  });
   const {
     genrlKnCountWithEffects,
     bioKnCountWithEffects,
@@ -88,15 +97,79 @@ export const CounterProvider = ({ children }) => {
     if (showBuffer && lastLogin !== 0) {
       console.log(Date.now() - lastLogin);
       setShowBuffer(false);
-      if (Date.now() - lastLogin > 60000) {
-        alert(
-          `You have gained ${genrlKnCountWithEffects} general kN,
-            ${bioKnCountWithEffects} bio kN,
-            ${technoKnCountWithEffects} tech kN,
-            ${cultureKnCountWithEffects} cultural kN,
+      if (Date.now() - lastLogin > 60 * 1000) {
+        const secondsElapsedSinceLastLogin = (Date.now() - lastLogin) / 1000;
+        const getGeneratedKn = (knWithEffects) =>
+          Math.floor(knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100) /
+          100;
+        setKnCount({
+          ...knCount,
+          generalKn:
+            knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects),
+          bioKn: knCount.bioKn + getGeneratedKn(bioKnCountWithEffects),
+          technoKn: knCount.technoKn + getGeneratedKn(technoKnCountWithEffects),
+          cultureKn:
+            knCount.cultureKn + getGeneratedKn(cultureKnCountWithEffects),
+        });
+        setMaxKn({
+          generalKn:
+            maxKn.generalKn < knCount.generalKn
+              ? knCount.generalKn
+              : maxKn.generalKn,
+          cultureKn:
+            maxKn.cultureKn < knCount.cultureKn
+              ? knCount.cultureKn
+              : maxKn.cultureKn,
+          bioKn: maxKn.bioKn < knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
+          technoKn:
+            maxKn.technoKn < knCount.technoKn
+              ? knCount.technoKn
+              : maxKn.technoKn,
+        });
+        setTotalKnCountOfThisRun({
+          ...totalKnCountOfThisRun,
+          generalKn:
+            totalKnCountOfThisRun.generalKn +
+            getGeneratedKn(genrlKnCountWithEffects),
+          bioKn:
+            totalKnCountOfThisRun.bioKn + getGeneratedKn(bioKnCountWithEffects),
+          technoKn:
+            totalKnCountOfThisRun.technoKn +
+            getGeneratedKn(technoKnCountWithEffects),
+          cultureKn:
+            totalKnCountOfThisRun.cultureKn +
+            getGeneratedKn(cultureKnCountWithEffects),
+        });
+        setTotalKnOfAllTime({
+          ...totalKnOfAllTime,
+          generalKn:
+            totalKnOfAllTime.generalKn +
+            getGeneratedKn(genrlKnCountWithEffects),
+          bioKn: totalKnOfAllTime.bioKn + getGeneratedKn(bioKnCountWithEffects),
+          technoKn:
+            totalKnOfAllTime.technoKn +
+            getGeneratedKn(technoKnCountWithEffects),
+          cultureKn:
+            totalKnOfAllTime.cultureKn +
+            getGeneratedKn(cultureKnCountWithEffects),
+        });
+        setGeneratedKn({
+          generatedGnKn: getGeneratedKn(genrlKnCountWithEffects),
+          generatedBioKn: getGeneratedKn(bioKnCountWithEffects),
+          generatedTechnoKn: getGeneratedKn(technoKnCountWithEffects),
+          generatedCultureKn: getGeneratedKn(cultureKnCountWithEffects),
+        });
+        /* alert(
+          `${secondsElapsedSinceLastLogin} You have gained ${getGeneratedKn(
+            genrlKnCountWithEffects
+          )} general kN,
+            ${getGeneratedKn(bioKnCountWithEffects)} bio kN,
+            ${getGeneratedKn(technoKnCountWithEffects)} tech kN,
+            ${getGeneratedKn(cultureKnCountWithEffects)} cultural kN,
           while offline`
-        );
+        ); */
       }
+      setLastLogin(0);
     } else if (lastLogin === 0) {
       const timer = setTimeout(() => {
         setLastLogin(Date.now());
@@ -104,38 +177,39 @@ export const CounterProvider = ({ children }) => {
       }, 1e3);
       return () => clearTimeout(timer);
     }
-  });
-  /// */
+  }, []);
+  ///
 
   let save = {
-    multiplicador: multiplicador,
-    automatron1: automatron1,
-    squirrels: squirrels,
-    knCount: knCount,
-    totalKnCountOfThisRun: totalKnCountOfThisRun,
-    goal: goal,
-    clicks: clicks,
-    totalClicksOfAllTime: totalClicksOfAllTime,
-    totalKnOfAllTime: totalKnOfAllTime,
-    knForfeitedAtReset: knForfeitedAtReset,
-    resets: resets,
-    upgrades: upgrades,
-    chosenBook: chosenBook,
-    potenciaClick: potenciaClick,
-    maxKn: maxKn,
+    multiplicador,
+    automatron1,
+    squirrels,
+    knCount,
+    totalKnCountOfThisRun,
+    goal,
+    clicks,
+    totalClicksOfAllTime,
+    totalKnOfAllTime,
+    knForfeitedAtReset,
+    resets,
+    upgrades,
+    chosenBook,
+    potenciaClick,
+    maxKn,
+    lastLogin,
   };
   const [volume, setVolume] = useState(0);
 
   const resetGame = () => {
     setGoal(100);
     setMultiplicador(1);
-    setTotalKnCountOfThisRun({
+    setKnCount({
       generalKn: 0,
       cultureKn: 0,
       bioKn: 0,
       technoKn: 0,
     });
-    setKnCount({
+    setTotalKnCountOfThisRun({
       generalKn: 0,
       cultureKn: 0,
       bioKn: 0,
@@ -255,13 +329,17 @@ export const CounterProvider = ({ children }) => {
         squirrels,
         setSquirrels,
         detailsInfo,
+        generatedKn,
+        setGeneratedKn,
         setDetailsInfo,
         maxKn,
         setMaxKn,
-        /* showBuffer,
+        showBuffer,
         lastLogin,
         setShowBuffer,
-        setLastLogin, */
+        setLastLogin,
+        showGeneratedKnAlert,
+        setShowGeneratedKnAlert,
       }}
     >
       {children}

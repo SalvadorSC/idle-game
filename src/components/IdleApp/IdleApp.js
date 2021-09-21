@@ -12,9 +12,10 @@ import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
+import buffer from "../../assets/Infinity.svg";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
-  const { setMute } = useContext(CounterContext);
+  const { setMute, setShowGeneratedKnAlert } = useContext(CounterContext);
   const [play] = useSound(soundUrl, { volume: dependencies.mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
@@ -33,11 +34,30 @@ const IdleApp = () => {
   return (
     <>
       <div className="contador">
-        {/* {dependencies.showBuffer && (
+        {dependencies.showBuffer && (
           <div className="buffer">
-            <img src={buffer} alt="loading infinite lopp gif" />
+            <img src={buffer} alt="loading infinite loop gif" />
           </div>
-        )} */}
+        )}
+        {dependencies.showGeneratedKnAlert && (
+          <div className="buffer">
+            <p className="generatedKn-p">
+              You have gained {dependencies.generatedKn.generatedGnKn}
+              kN, {dependencies.generatedKn.generatedBioKn}
+              <span className="bioKn">kN</span>,{" "}
+              {dependencies.generatedKn.generatedTechnoKn}
+              <span className="technoKn">kN</span> and{" "}
+              {dependencies.generatedKn.generatedCultureKn}
+              <span className="cultureKn">kN</span>, while offline.
+              <button
+                className="generatedKn-button"
+                onClick={() => setShowGeneratedKnAlert(false)}
+              >
+                &times;
+              </button>
+            </p>
+          </div>
+        )}
 
         <div className="first-half">
           <div className="header">
