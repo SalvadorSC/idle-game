@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, Route } from "react-router-dom";
 import { Options } from "../Options/Options";
 import { Shop } from "../Shop/Shop";
@@ -10,10 +10,11 @@ import "./IdleApp.css";
 import BoopButton from "../BoopButton/BoopButton";
 import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 import { Shelf } from "../Shelf/Shelf";
+import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 const IdleApp = () => {
-  const soundUrl = "../../assets/page-flip-01a.mp3";
-  const [play] = useSound(soundUrl);
+  const [mute, setMute] = useState(true);
+  const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const dependencies = useContext(CounterContext);
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
@@ -22,6 +23,13 @@ const IdleApp = () => {
     dependencies.totalKnCountOfThisRun.bioKn +
     dependencies.totalKnCountOfThisRun.technoKn +
     dependencies.totalKnCountOfThisRun.cultureKn;
+
+  const handleClick = () => {
+    increment(dependencies.upgrades);
+    //Sound Effect
+    play();
+  };
+
   return (
     <>
       <div className="contador">
@@ -32,7 +40,9 @@ const IdleApp = () => {
               {BoopButton()}
             </div>
 
-            <div></div>
+            <button onClick={() => setMute(!mute)}>
+              {mute ? "Mute" : "Unmute"}
+            </button>
           </div>
 
           <div className="display-stats">
@@ -51,8 +61,8 @@ const IdleApp = () => {
           </div>
           <div
             unselectable="on"
-            onClick={() => increment(dependencies.upgrades)}
-            onMouseDown={() => play()}
+            onClick={handleClick}
+            // onMouseDown={play}
             className="display-knCount unselectable"
           >
             <div className="kn-amount-display">
