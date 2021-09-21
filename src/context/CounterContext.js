@@ -170,7 +170,8 @@ export const CounterProvider = ({ children }) => {
         ); */
       }
       setLastLogin(0);
-    } else if (lastLogin === 0) {
+    } else {
+      setShowGeneratedKnAlert(false);
       const timer = setTimeout(() => {
         setLastLogin(Date.now());
         setShowBuffer(false);
