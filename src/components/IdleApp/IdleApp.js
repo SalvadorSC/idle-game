@@ -13,9 +13,9 @@ import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 const IdleApp = () => {
-  const [mute, setMute] = useState(true);
-  const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const dependencies = useContext(CounterContext);
+  const { setMute } = useContext(CounterContext);
+  const [play] = useSound(soundUrl, { volume: dependencies.mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
   const totalKn =
@@ -46,8 +46,8 @@ const IdleApp = () => {
               {BoopButton()}
             </div>
 
-            <button onClick={() => setMute(!mute)}>
-              {mute ? "Mute" : "Unmute"}
+            <button onClick={() => setMute(!dependencies.mute)}>
+              {dependencies.mute ? "Unmute" : "Mute"}
             </button>
           </div>
 

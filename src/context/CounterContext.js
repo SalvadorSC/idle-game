@@ -19,6 +19,7 @@ export const CounterProvider = ({ children }) => {
       ? savegame.totalKnCountOfThisRun
       : { generalKn: 0, cultureKn: 0, bioKn: 0, technoKn: 0 }
   );
+  const [mute, setMute] = useState(true);
   const [clicks, setClicks] = useState(savegame ? savegame.clicks : 0);
   const [totalClicksOfAllTime, setTotalClicksOfAllTime] = useState(
     savegame ? savegame.totalClicksOfAllTime : 0
@@ -222,6 +223,8 @@ export const CounterProvider = ({ children }) => {
         setIsPlaying,
         volume,
         setVolume,
+        mute,
+        setMute,
         /* showBuffer,
         lastLogin,
         setShowBuffer,

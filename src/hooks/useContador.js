@@ -1,4 +1,7 @@
+import useSound from "use-sound";
 import { useChosenKn } from "./useChosenKn";
+import soundUrl1 from "../assets/page-flip-01a.mp3";
+import soundUrl2 from "../assets/page-flip-03.mp3";
 
 export const useContador = ({
   goal,
@@ -10,7 +13,10 @@ export const useContador = ({
   setTotalKnOfAllTime,
   totalKnCountOfThisRun,
   setTotalKnCountOfThisRun,
+  mute,
 }) => {
+  const sounds = [soundUrl1, soundUrl2];
+  const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
   const { setChosenBookEffect } = useChosenKn();
   const totalKnOfThisRun =
     totalKnCountOfThisRun.generalKn +
@@ -71,6 +77,8 @@ export const useContador = ({
     if (totalKnOfThisRun >= goal) {
       setGoal(goal * 10);
     }
+    // Sound Effect
+    play();
   };
 
   return {
