@@ -90,7 +90,10 @@ export const UpgradeItem = ({
           } else {
             if (location.pathname === "/shelf") {
               setShowUpgrade(false);
-            } else if (potenciaClick >= price / 100) {
+            } else if (
+              potenciaClick >= price / 100 ||
+              knCount.generalKn * 2 >= price
+            ) {
               setShowUpgrade(true);
             } else setShowUpgrade(false);
           }
@@ -104,7 +107,8 @@ export const UpgradeItem = ({
       }
       // si no hay requisitos y tampoco esta comprado (aún no pasa pero puede pasar mas adelante)
       else {
-        if (potenciaClick >= price / 100 || knCount > price) {
+        debugger;
+        if (potenciaClick >= price / 100 || knCount.generalKn * 2 >= price) {
           setShowUpgrade(true);
         }
       }
