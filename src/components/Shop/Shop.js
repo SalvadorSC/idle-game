@@ -60,7 +60,7 @@ export const Shop = (props) => {
             "Wow, you learned how to teach... squirrels? And they read for you??"
           }
           requirement={
-            upgrades.nature.length >= 2 && upgrades.culture.length >= 3
+            upgrades.nature.length >= 3 && upgrades.culture.length >= 4
           }
           priceGkn={100}
           priceTkn={0}
