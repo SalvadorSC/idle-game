@@ -7,27 +7,21 @@ export const useIncrementItem = () => {
   const setNewItemQuantity = (
     item,
     setItem,
-    itemVar,
     precioGKn,
     precioTKn,
     precioBkn,
     precioCkn
   ) => {
-    debugger;
-    const costeItemGkn = Math.floor(precioGKn * Math.pow(itemVar, item));
-    const costeItemTkn = Math.floor(precioTKn * Math.pow(itemVar, item));
-    const costeItemBkn = Math.floor(precioBkn * Math.pow(itemVar, item));
-    const costeItemCkn = Math.floor(precioCkn * Math.pow(itemVar, item));
     if (
-      knCount.generalKn >= costeItemGkn &&
-      knCount.technoKn >= costeItemTkn &&
-      knCount.bioKn >= costeItemBkn &&
-      knCount.cultureKn >= costeItemCkn
+      knCount.generalKn >= precioGKn &&
+      knCount.technoKn >= precioTKn &&
+      knCount.bioKn >= precioBkn &&
+      knCount.cultureKn >= precioCkn
     ) {
-      const newGeneralKn = knCount.generalKn - costeItemGkn;
-      const newTechnoKn = knCount.technoKn - costeItemTkn;
-      const newBioKn = knCount.bioKn - costeItemBkn;
-      const newCultureKn = knCount.cultureKn - costeItemCkn;
+      const newGeneralKn = knCount.generalKn - precioGKn;
+      const newTechnoKn = knCount.technoKn - precioTKn;
+      const newBioKn = knCount.bioKn - precioBkn;
+      const newCultureKn = knCount.cultureKn - precioCkn;
       setItem(item + 1);
       setKnCount({
         ...knCount,

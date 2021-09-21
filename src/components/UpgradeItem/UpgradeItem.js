@@ -21,6 +21,7 @@ export const UpgradeItem = ({
     setChosenBook,
     potenciaClick,
     multiplicador,
+    maxKn,
   } = useContext(CounterContext);
 
   const setDisabled = (
@@ -92,7 +93,7 @@ export const UpgradeItem = ({
               setShowUpgrade(false);
             } else if (
               potenciaClick >= price / 100 ||
-              knCount.generalKn * 2 >= price
+              maxKn.generalKn * 2 >= price
             ) {
               setShowUpgrade(true);
             } else setShowUpgrade(false);
@@ -107,8 +108,7 @@ export const UpgradeItem = ({
       }
       // si no hay requisitos y tampoco esta comprado (aún no pasa pero puede pasar mas adelante)
       else {
-        debugger;
-        if (potenciaClick >= price / 100 || knCount.generalKn * 2 >= price) {
+        if (potenciaClick >= price / 100 || maxKn.generalKn * 2 >= price) {
           setShowUpgrade(true);
         }
       }
@@ -127,6 +127,7 @@ export const UpgradeItem = ({
     potenciaClick,
     price,
     location,
+    maxKn.generalKn,
   ]);
 
   return (

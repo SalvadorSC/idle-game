@@ -49,6 +49,16 @@ export const CounterProvider = ({ children }) => {
           technoKn: 0,
         }
   );
+  const [maxKn, setMaxKn] = useState(
+    savegame
+      ? savegame.maxKn
+      : {
+          generalKn: 0,
+          cultureKn: 0,
+          bioKn: 0,
+          technoKn: 0,
+        }
+  );
   const [goal, setGoal] = useState(savegame ? savegame.goal : 100);
   const baseUpgrades = {
     multiplicador: ["General Culture I"],
@@ -112,6 +122,7 @@ export const CounterProvider = ({ children }) => {
     upgrades: upgrades,
     chosenBook: chosenBook,
     potenciaClick: potenciaClick,
+    maxKn: maxKn,
   };
   const [volume, setVolume] = useState(0);
 
@@ -125,6 +136,12 @@ export const CounterProvider = ({ children }) => {
       technoKn: 0,
     });
     setKnCount({
+      generalKn: 0,
+      cultureKn: 0,
+      bioKn: 0,
+      technoKn: 0,
+    });
+    setMaxKn({
       generalKn: 0,
       cultureKn: 0,
       bioKn: 0,
@@ -148,6 +165,12 @@ export const CounterProvider = ({ children }) => {
     setChosenBook("General Culture I");
     setMultiplicador(1);
     setTotalKnOfAllTime({
+      generalKn: 0,
+      cultureKn: 0,
+      bioKn: 0,
+      technoKn: 0,
+    });
+    setMaxKn({
       generalKn: 0,
       cultureKn: 0,
       bioKn: 0,
@@ -233,6 +256,8 @@ export const CounterProvider = ({ children }) => {
         setSquirrels,
         detailsInfo,
         setDetailsInfo,
+        maxKn,
+        setMaxKn,
         /* showBuffer,
         lastLogin,
         setShowBuffer,

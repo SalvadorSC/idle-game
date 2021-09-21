@@ -21,6 +21,8 @@ export const useIncrementByClick = () => {
     upgrades,
     save,
     setPotenciaClick,
+    maxKn,
+    setMaxKn,
   } = useContext(CounterContext);
   const dependencies = useContext(CounterContext);
   const { incrementEverySecond } = useContador(dependencies);
@@ -38,7 +40,7 @@ export const useIncrementByClick = () => {
     localStorage.setItem("save", JSON.stringify(save));
   }, [save]);
 
-  const increment = (upgrades) => {
+  const increment = () => {
     const {
       genrlKnCountWithEffects,
       bioKnCountWithEffects,
@@ -51,7 +53,19 @@ export const useIncrementByClick = () => {
         Math.floor(technoKnCountWithEffects * 100) / 100 +
         Math.floor(cultureKnCountWithEffects * 100) / 100
     );
-
+    setMaxKn({
+      generalKn:
+        maxKn.generalKn < knCount.generalKn
+          ? knCount.generalKn
+          : maxKn.generalKn,
+      cultureKn:
+        maxKn.cultureKn < knCount.cultureKn
+          ? knCount.cultureKn
+          : maxKn.cultureKn,
+      bioKn: maxKn.bioKn < knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
+      technoKn:
+        maxKn.technoKn < knCount.technoKn ? knCount.technoKn : maxKn.technoKn,
+    });
     setKnCount({
       ...knCount,
       generalKn:

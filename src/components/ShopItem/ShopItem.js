@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
 import { useIncrementItem } from "../../hooks/useIncrementItem";
-import { useNumberParsing } from "../../hooks/useNumberParsing";
 import { ShopItemName } from "../ShopItemName/ShopItemName";
 
 export const ShopItem = ({
@@ -18,7 +17,6 @@ export const ShopItem = ({
   detailsInfo,
 }) => {
   const { knCount, setDetailsInfo } = useContext(CounterContext);
-  const { parseNumber } = useNumberParsing();
   const { setNewItemQuantity } = useIncrementItem();
   const handleDetails = () => {
     setShowDetails(true);
@@ -49,12 +47,13 @@ export const ShopItem = ({
 
   const setName = () => {
     const prepareReturn = (itemPrice, className) => {
-      return (
+      const cosas = (
         <>
-          {parseNumber(Math.floor(itemPrice * Math.pow(1.2, item)))}
+          {itemPrice}
           <span className={className}>kN</span>{" "}
         </>
       );
+      return cosas;
     };
     return (
       <>
@@ -102,7 +101,6 @@ export const ShopItem = ({
           setNewItemQuantity(
             item,
             setItem,
-            1.2,
             itemPriceGkn,
             itemPriceTkn,
             itemPriceBkn,

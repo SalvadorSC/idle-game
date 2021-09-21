@@ -15,6 +15,8 @@ export const useContador = ({
   setTotalKnCountOfThisRun,
   mute,
   squirrels,
+  maxKn,
+  setMaxKn,
 }) => {
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
@@ -25,6 +27,19 @@ export const useContador = ({
     totalKnCountOfThisRun.technoKn +
     totalKnCountOfThisRun.cultureKn;
   const incrementEverySecond = () => {
+    setMaxKn({
+      generalKn:
+        maxKn.generalKn < knCount.generalKn
+          ? knCount.generalKn
+          : maxKn.generalKn,
+      cultureKn:
+        maxKn.cultureKn < knCount.cultureKn
+          ? knCount.cultureKn
+          : maxKn.cultureKn,
+      bioKn: maxKn.bioKn < knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
+      technoKn:
+        maxKn.technoKn < knCount.technoKn ? knCount.technoKn : maxKn.technoKn,
+    });
     const {
       genrlKnCountWithEffects,
       bioKnCountWithEffects,
