@@ -10,7 +10,6 @@ import "./IdleApp.css";
 import BoopButton from "../BoopButton/BoopButton";
 import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 import { Shelf } from "../Shelf/Shelf";
-import buffer from "../../assets/Infinity.svg";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 const IdleApp = () => {
@@ -69,7 +68,6 @@ const IdleApp = () => {
           <div
             unselectable="on"
             onClick={handleClick}
-            // onMouseDown={play}
             className="display-knCount unselectable"
           >
             <div className="kn-amount-display">
