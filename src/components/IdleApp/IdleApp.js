@@ -10,7 +10,10 @@ import "./IdleApp.css";
 import BoopButton from "../BoopButton/BoopButton";
 import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 import { Shelf } from "../Shelf/Shelf";
+import useSound from "use-sound";
 const IdleApp = () => {
+  const soundUrl = "../../assets/page-flip-01a.mp3";
+  const [play] = useSound(soundUrl);
   const dependencies = useContext(CounterContext);
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
@@ -49,6 +52,7 @@ const IdleApp = () => {
           <div
             unselectable="on"
             onClick={() => increment(dependencies.upgrades)}
+            onMouseDown={() => play()}
             className="display-knCount unselectable"
           >
             <div className="kn-amount-display">

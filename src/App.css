@@ -64,14 +64,14 @@ body {
 }
 
 .first-half {
-  height: 45vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
 }
 
 .second-half {
   background-color: #555;
-  height: 55vh;
+  height: 50vh;
   overflow-y: scroll;
 }
 
