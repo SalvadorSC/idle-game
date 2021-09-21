@@ -11,70 +11,96 @@
       "field": "multiplicador",
       "upgrade": "General Culture II",
       "requirementField": "multiplicador",
-      "requirement": "General Culture I"
+      "requirement": "General Culture I",
+      "description": "Welp looks like you did it! Continue this saga, now the second book helps you get smarter faster! Read it."
     },
     {
       "price": 250,
       "field": "multiplicador",
       "upgrade": "General Culture III",
       "requirementField": "multiplicador",
-      "requirement": "General Culture II"
+      "requirement": "General Culture II",
+      "description": "Once you finish with this book, my friend, you'll have entered into the realm of knowledge. Become the best you can."
     },
     {
       "price": 750,
       "field": "multiplicador",
       "upgrade": "Stuff 101",
       "requirementField": "multiplicador",
-      "requirement": "General Culture III"
+      "requirement": "General Culture III",
+      "description": "Stuff 101. The title says it all. Learn 101 things about stuff. Biology and tech related only tho."
     },
     {
       "price": 1000,
       "field": "culture",
       "upgrade": "Novel",
       "requirementField": "multiplicador",
-      "requirement": "General Culture III"
+      "requirement": "General Culture III",
+      "description": "Novel"
     },
     {
       "price": 1000,
       "field": "technology",
       "upgrade": "Technology for dummies",
       "requirementField": "multiplicador",
-      "requirement": "Stuff 101"
+      "requirement": "Stuff 101",
+      "description": "Are you a dummy?"
     },
     {
       "price": 1000,
       "field": "nature",
       "upgrade": "Introduction to Nature",
       "requirementField": "multiplicador",
-      "requirement": "Stuff 101"
+      "requirement": "Stuff 101",
+      "description": "HAve you ever wondered how to talk with animals? Well keep wondering this is only the introduction."
     },
     {
       "price": 1250,
       "field": "culture",
       "upgrade": "Poems of Rose",
       "requirementField": "culture",
-      "requirement": "Novel"
+      "requirement": "Novel",
+      "description": "Rose left her Poems somewhere, here, have them."
     },
     {
       "price": 2000,
       "field": "technology",
       "upgrade": "DIY at home",
       "requirementField": "technology",
-      "requirement": "Technology for dummies"
+      "requirement": "Technology for dummies",
+      "description": "Not so dummy anymore, huh. Let's see you build something out of scratch!"
     },
     {
       "price": 2000,
       "field": "nature",
       "upgrade": "Nature inside out",
       "requirementField": "nature",
-      "requirement": "Introduction to Nature"
+      "requirement": "Introduction to Nature",
+      "description": "It really isn't so much inside out, it simply is more advanced, don't get your hopes up. Yet."
     },
     {
       "price": 2000,
       "field": "culture",
       "upgrade": "History about humanity I",
       "requirementField": "culture",
-      "requirement": "Poems of Rose"
+      "requirement": "Poems of Rose",
+      "description": "Learning from past mistakes will help us... For erasing them!"
+    },
+    {
+      "price": 10000,
+      "field": "nature",
+      "upgrade": "Nature's secrets",
+      "requirementField": "nature",
+      "requirement": "Nature inside out",
+      "description": "There's something about birds that I don't like... Don't trust them. Also why does the name of this book resemble a gossip magazine??"
+    },
+    {
+      "price": 10000,
+      "field": "culture",
+      "upgrade": "Learning how to teach",
+      "requirementField": "culture",
+      "requirement": "History about humanity I",
+      "description": "You learn by reading books, but what about those who can't read? Teach them."
     }
   ]
 }

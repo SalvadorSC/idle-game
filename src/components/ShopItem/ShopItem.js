@@ -11,6 +11,10 @@ export const ShopItem = ({
   setShowDetails,
   hasRequirements,
   requirement,
+  priceGkn,
+  priceTkn,
+  priceBkn,
+  priceCkn,
 }) => {
   const { knCount } = useContext(CounterContext);
   const { parseNumber } = useNumberParsing();
@@ -18,20 +22,46 @@ export const ShopItem = ({
   const handleDetails = () => {
     setShowDetails(true);
   };
-  const itemPrice = Math.floor(10 * Math.pow(1.15, item));
+  const itemPriceGkn = Math.floor(priceGkn * Math.pow(1.2, item));
+  const itemPriceTkn = Math.floor(priceTkn * Math.pow(1.2, item));
+  const itemPriceBkn = Math.floor(priceBkn * Math.pow(1.2, item));
+  const itemPriceCkn = Math.floor(priceCkn * Math.pow(1.2, item));
   const disableItemButton = () => {
-    // Tiene Requisitos
+    const priceCondition =
+      knCount.generalKn >= itemPriceGkn &&
+      knCount.technoKn >= itemPriceTkn &&
+      knCount.bioKn >= itemPriceBkn &&
+      knCount.cultureKn >= itemPriceCkn;
     if (hasRequirements) {
       if (requirement) {
-        if (knCount.generalKn >= itemPrice) {
+        if (priceCondition) {
           return false;
         } else return true;
       } else {
         return true;
       }
-    } else if (knCount.generalKn >= itemPrice) {
+    } else if (priceCondition) {
       return false;
     } else return true;
+  };
+
+  const setName = () => {
+    const prepareReturn = (itemPrice, className) => {
+      return (
+        <>
+          {parseNumber(Math.floor(itemPrice * Math.pow(1.2, item)))}
+          <span className={className}>kN</span>{" "}
+        </>
+      );
+    };
+    return (
+      <>
+        Buy {name} {itemPriceGkn > 0 && prepareReturn(itemPriceGkn)}
+        {itemPriceTkn > 0 && prepareReturn(itemPriceTkn, "technoKn")}
+        {itemPriceBkn > 0 && prepareReturn(itemPriceBkn, "bioKn")}
+        {itemPriceCkn > 0 && prepareReturn(itemPriceCkn, "cultureKn")}
+      </>
+    );
   };
 
   return (
@@ -66,13 +96,19 @@ export const ShopItem = ({
       <button
         className="shop-button"
         disabled={disableItemButton()}
-        onClick={() => setNewItemQuantity(item, setItem, 1.15, 10)}
+        onClick={() =>
+          setNewItemQuantity(
+            item,
+            setItem,
+            1.2,
+            itemPriceGkn,
+            itemPriceTkn,
+            itemPriceBkn,
+            itemPriceCkn
+          )
+        }
       >
-        {hasRequirements
-          ? requirement
-            ? `Buy ${name} (${parseNumber(itemPrice)})`
-            : "???"
-          : `Buy ${name} (${parseNumber(itemPrice)})`}
+        {hasRequirements ? (requirement ? setName() : "???") : setName()}
       </button>
     </div>
   );

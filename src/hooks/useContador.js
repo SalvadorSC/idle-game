@@ -14,6 +14,7 @@ export const useContador = ({
   totalKnCountOfThisRun,
   setTotalKnCountOfThisRun,
   mute,
+  squirrels,
 }) => {
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
@@ -28,51 +29,64 @@ export const useContador = ({
       genrlKnCountWithEffects,
       bioKnCountWithEffects,
       technoKnCountWithEffects,
-      cultureKnCountWithEffects,
+      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CULTURE
+      /* cultureKnCountWithEffects, */
     } = setChosenBookEffect(automatron1);
 
     setKnCount({
       ...knCount,
       generalKn:
         knCount.generalKn + Math.floor(genrlKnCountWithEffects * 100) / 100,
-      bioKn: knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100,
+      bioKn:
+        squirrels > 0
+          ? knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100
+          : knCount.bioKn,
       technoKn:
-        knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100,
-      cultureKn:
-        knCount.cultureKn + Math.floor(cultureKnCountWithEffects * 100) / 100,
+        automatron1 > 0
+          ? knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100
+          : knCount.technoKn,
+      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CULTURE
+      /* cultureKn:
+        knCount.cultureKn + Math.floor(cultureKnCountWithEffects * 100) / 100, */
     });
-    if (automatron1 > 0) {
-      setTotalKnCountOfThisRun({
-        ...totalKnCountOfThisRun,
-        generalKn:
-          totalKnCountOfThisRun.generalKn +
-          Math.floor(genrlKnCountWithEffects * 100) / 100,
-        bioKn:
-          totalKnCountOfThisRun.bioKn +
-          Math.floor(bioKnCountWithEffects * 100) / 100,
-        technoKn:
-          totalKnCountOfThisRun.technoKn +
-          Math.floor(technoKnCountWithEffects * 100) / 100,
-        cultureKn:
-          totalKnCountOfThisRun.cultureKn +
-          Math.floor(cultureKnCountWithEffects * 100) / 100,
-      });
-      setTotalKnOfAllTime({
-        ...totalKnCountOfThisRun,
-        generalKn:
-          totalKnCountOfThisRun.generalKn +
-          Math.floor(genrlKnCountWithEffects * 100) / 100,
-        bioKn:
-          totalKnCountOfThisRun.bioKn +
-          Math.floor(bioKnCountWithEffects * 100) / 100,
-        technoKn:
-          totalKnCountOfThisRun.technoKn +
-          Math.floor(technoKnCountWithEffects * 100) / 100,
-        cultureKn:
-          totalKnCountOfThisRun.cultureKn +
-          Math.floor(cultureKnCountWithEffects * 100) / 100,
-      });
-    }
+    setTotalKnCountOfThisRun({
+      ...totalKnCountOfThisRun,
+      generalKn:
+        totalKnCountOfThisRun.generalKn +
+        Math.floor(genrlKnCountWithEffects * 100) / 100,
+      bioKn:
+        squirrels > 0
+          ? knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100
+          : knCount.bioKn,
+      technoKn:
+        automatron1 > 0
+          ? knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100
+          : knCount.technoKn,
+      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CULTURE
+      /* cultureKn:
+        totalKnCountOfThisRun.cultureKn +
+        Math.floor(cultureKnCountWithEffects * 100) / 100, */
+    });
+    setTotalKnOfAllTime({
+      ...totalKnCountOfThisRun,
+      generalKn:
+        automatron1 > 0
+          ? knCount.generalKn + Math.floor(technoKnCountWithEffects * 100) / 100
+          : knCount.generalKn,
+      bioKn:
+        squirrels > 0
+          ? knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100
+          : knCount.bioKn,
+      technoKn:
+        automatron1 > 0
+          ? knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100
+          : knCount.technoKn,
+      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CUTURE
+      /* cultureKn:
+        totalKnCountOfThisRun.cultureKn +
+        Math.floor(cultureKnCountWithEffects * 100) / 100, */
+    });
+
     // Update Progress Bar
     if (totalKnOfThisRun >= goal) {
       setGoal(goal * 10);

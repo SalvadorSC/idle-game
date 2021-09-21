@@ -40,9 +40,9 @@ export const useChosenKn = () => {
         cultureKnCountWithEffects = multiplicador * 0;
         break;
       case "DIY at home":
-        genrlKnCountWithEffects = multiplicador * 0.6;
+        genrlKnCountWithEffects = multiplicador * 1;
         bioKnCountWithEffects = multiplicador * 0;
-        technoKnCountWithEffects = multiplicador * 0.8;
+        technoKnCountWithEffects = multiplicador * 1;
         cultureKnCountWithEffects = multiplicador * 0;
         break;
       case "Introduction to Nature":
@@ -52,8 +52,8 @@ export const useChosenKn = () => {
         cultureKnCountWithEffects = multiplicador * 0;
         break;
       case "Nature inside out":
-        genrlKnCountWithEffects = multiplicador * 0.6;
-        bioKnCountWithEffects = multiplicador * 0.8;
+        genrlKnCountWithEffects = multiplicador * 1;
+        bioKnCountWithEffects = multiplicador * 1;
         technoKnCountWithEffects = multiplicador * 0;
         cultureKnCountWithEffects = multiplicador * 0;
         break;
@@ -74,6 +74,18 @@ export const useChosenKn = () => {
         bioKnCountWithEffects = multiplicador * 0;
         technoKnCountWithEffects = multiplicador * 0;
         cultureKnCountWithEffects = multiplicador * 1;
+        break;
+      case "Nature's secrets":
+        genrlKnCountWithEffects = multiplicador * 0;
+        bioKnCountWithEffects = multiplicador * 1.25;
+        technoKnCountWithEffects = multiplicador * 0;
+        cultureKnCountWithEffects = multiplicador * 0;
+        break;
+      case "Learning how to teach":
+        genrlKnCountWithEffects = multiplicador * 0;
+        bioKnCountWithEffects = multiplicador * 0;
+        technoKnCountWithEffects = multiplicador * 0;
+        cultureKnCountWithEffects = multiplicador * 1.25;
         break;
       default:
         genrlKnCountWithEffects = multiplicador * 0.25;

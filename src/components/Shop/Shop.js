@@ -12,6 +12,8 @@ export const Shop = (props) => {
     upgrades,
     setMultiplicador,
     setAutomatron1,
+    squirrels,
+    setSquirrels,
   } = useContext(CounterContext);
 
   const [showDetails, setShowDetails] = useState(false);
@@ -27,6 +29,10 @@ export const Shop = (props) => {
           item={multiplicador}
           setItem={setMultiplicador}
           hasRequirements={false}
+          priceGkn={10}
+          priceTkn={0}
+          priceBkn={0}
+          priceCkn={0}
         />
         <ShopItem
           setShowDetails={setShowDetails}
@@ -35,6 +41,24 @@ export const Shop = (props) => {
           setItem={setAutomatron1}
           hasRequirements={true}
           requirement={upgrades.technology.length >= 1}
+          priceGkn={100}
+          priceTkn={10}
+          priceBkn={0}
+          priceCkn={0}
+        />
+        <ShopItem
+          setShowDetails={setShowDetails}
+          name={"Squirrels"}
+          item={squirrels}
+          setItem={setSquirrels}
+          hasRequirements={true}
+          requirement={
+            upgrades.nature.length >= 2 && upgrades.culture.length >= 3
+          }
+          priceGkn={100}
+          priceTkn={0}
+          priceBkn={10}
+          priceCkn={0}
         />
       </div>
     </>

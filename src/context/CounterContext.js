@@ -9,6 +9,7 @@ export const CounterProvider = ({ children }) => {
   const [automatron1, setAutomatron1] = useState(
     savegame ? savegame.automatron1 : 0
   );
+  const [squirrels, setSquirrels] = useState(savegame ? savegame.squirrels : 0);
   const [knCount, setKnCount] = useState(
     savegame
       ? savegame.knCount
@@ -99,6 +100,7 @@ export const CounterProvider = ({ children }) => {
   let save = {
     multiplicador: multiplicador,
     automatron1: automatron1,
+    squirrels: squirrels,
     knCount: knCount,
     totalKnCountOfThisRun: totalKnCountOfThisRun,
     goal: goal,
@@ -130,6 +132,7 @@ export const CounterProvider = ({ children }) => {
     });
     setPotenciaClick(0);
     setAutomatron1(0);
+    setSquirrels(0);
     setResets(resets + 1);
     setClicks(0);
     setTotalClicksOfAllTime(totalClicksOfAllTime);
@@ -165,6 +168,7 @@ export const CounterProvider = ({ children }) => {
       technoKn: 0,
     });
     setAutomatron1(0);
+    setSquirrels(0);
     setClicks(0);
     setResets(0);
     setUpgrades(baseUpgrades);
@@ -225,6 +229,8 @@ export const CounterProvider = ({ children }) => {
         setVolume,
         mute,
         setMute,
+        squirrels,
+        setSquirrels,
         /* showBuffer,
         lastLogin,
         setShowBuffer,
