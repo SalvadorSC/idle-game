@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import useSound from "use-sound";
 import CounterContext from "../../context/CounterContext";
-import boopSfx from "./music.mp3";
+import boopSfx from "../../assets/music.mp3";
 import "./BoopButton.css";
 const BoopButton = () => {
   const { isPlaying, setIsPlaying, volume, setVolume } = useContext(
