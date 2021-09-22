@@ -98,60 +98,72 @@ export const CounterProvider = ({ children }) => {
       console.log(Date.now() - lastLogin);
       setShowBuffer(false);
       if (Date.now() - lastLogin > 60 * 1000) {
+        debugger;
         const secondsElapsedSinceLastLogin = (Date.now() - lastLogin) / 1000;
         const getGeneratedKn = (knWithEffects) =>
           Math.floor(knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100) /
           100;
-        setKnCount({
-          ...knCount,
-          generalKn:
-            knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects),
-          bioKn: knCount.bioKn + getGeneratedKn(bioKnCountWithEffects),
-          technoKn: knCount.technoKn + getGeneratedKn(technoKnCountWithEffects),
-          cultureKn:
-            knCount.cultureKn + getGeneratedKn(cultureKnCountWithEffects),
+        setKnCount((knCount) => {
+          return {
+            ...knCount,
+            generalKn:
+              knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects),
+            bioKn: knCount.bioKn + getGeneratedKn(bioKnCountWithEffects),
+            technoKn:
+              knCount.technoKn + getGeneratedKn(technoKnCountWithEffects),
+            cultureKn:
+              knCount.cultureKn + getGeneratedKn(cultureKnCountWithEffects),
+          };
         });
-        setMaxKn({
-          generalKn:
-            maxKn.generalKn < knCount.generalKn
-              ? knCount.generalKn
-              : maxKn.generalKn,
-          cultureKn:
-            maxKn.cultureKn < knCount.cultureKn
-              ? knCount.cultureKn
-              : maxKn.cultureKn,
-          bioKn: maxKn.bioKn < knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
-          technoKn:
-            maxKn.technoKn < knCount.technoKn
-              ? knCount.technoKn
-              : maxKn.technoKn,
+        setMaxKn((maxKn) => {
+          return {
+            generalKn:
+              maxKn.generalKn < knCount.generalKn
+                ? knCount.generalKn
+                : maxKn.generalKn,
+            cultureKn:
+              maxKn.cultureKn < knCount.cultureKn
+                ? knCount.cultureKn
+                : maxKn.cultureKn,
+            bioKn: maxKn.bioKn < knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
+            technoKn:
+              maxKn.technoKn < knCount.technoKn
+                ? knCount.technoKn
+                : maxKn.technoKn,
+          };
         });
-        setTotalKnCountOfThisRun({
-          ...totalKnCountOfThisRun,
-          generalKn:
-            totalKnCountOfThisRun.generalKn +
-            getGeneratedKn(genrlKnCountWithEffects),
-          bioKn:
-            totalKnCountOfThisRun.bioKn + getGeneratedKn(bioKnCountWithEffects),
-          technoKn:
-            totalKnCountOfThisRun.technoKn +
-            getGeneratedKn(technoKnCountWithEffects),
-          cultureKn:
-            totalKnCountOfThisRun.cultureKn +
-            getGeneratedKn(cultureKnCountWithEffects),
+        setTotalKnCountOfThisRun((totalKnCountOfThisRun) => {
+          return {
+            ...totalKnCountOfThisRun,
+            generalKn:
+              totalKnCountOfThisRun.generalKn +
+              getGeneratedKn(genrlKnCountWithEffects),
+            bioKn:
+              totalKnCountOfThisRun.bioKn +
+              getGeneratedKn(bioKnCountWithEffects),
+            technoKn:
+              totalKnCountOfThisRun.technoKn +
+              getGeneratedKn(technoKnCountWithEffects),
+            cultureKn:
+              totalKnCountOfThisRun.cultureKn +
+              getGeneratedKn(cultureKnCountWithEffects),
+          };
         });
-        setTotalKnOfAllTime({
-          ...totalKnOfAllTime,
-          generalKn:
-            totalKnOfAllTime.generalKn +
-            getGeneratedKn(genrlKnCountWithEffects),
-          bioKn: totalKnOfAllTime.bioKn + getGeneratedKn(bioKnCountWithEffects),
-          technoKn:
-            totalKnOfAllTime.technoKn +
-            getGeneratedKn(technoKnCountWithEffects),
-          cultureKn:
-            totalKnOfAllTime.cultureKn +
-            getGeneratedKn(cultureKnCountWithEffects),
+        setTotalKnOfAllTime((totalKnOfAllTime) => {
+          return {
+            ...totalKnOfAllTime,
+            generalKn:
+              totalKnOfAllTime.generalKn +
+              getGeneratedKn(genrlKnCountWithEffects),
+            bioKn:
+              totalKnOfAllTime.bioKn + getGeneratedKn(bioKnCountWithEffects),
+            technoKn:
+              totalKnOfAllTime.technoKn +
+              getGeneratedKn(technoKnCountWithEffects),
+            cultureKn:
+              totalKnOfAllTime.cultureKn +
+              getGeneratedKn(cultureKnCountWithEffects),
+          };
         });
         setGeneratedKn({
           generatedGnKn: getGeneratedKn(genrlKnCountWithEffects),
@@ -159,15 +171,6 @@ export const CounterProvider = ({ children }) => {
           generatedTechnoKn: getGeneratedKn(technoKnCountWithEffects),
           generatedCultureKn: getGeneratedKn(cultureKnCountWithEffects),
         });
-        /* alert(
-          `${secondsElapsedSinceLastLogin} You have gained ${getGeneratedKn(
-            genrlKnCountWithEffects
-          )} general kN,
-            ${getGeneratedKn(bioKnCountWithEffects)} bio kN,
-            ${getGeneratedKn(technoKnCountWithEffects)} tech kN,
-            ${getGeneratedKn(cultureKnCountWithEffects)} cultural kN,
-          while offline`
-        ); */
       }
       setLastLogin(0);
     } else {
@@ -178,7 +181,18 @@ export const CounterProvider = ({ children }) => {
       }, 1e3);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [
+    bioKnCountWithEffects,
+    cultureKnCountWithEffects,
+    genrlKnCountWithEffects,
+    knCount.bioKn,
+    knCount.cultureKn,
+    knCount.generalKn,
+    knCount.technoKn,
+    lastLogin,
+    showBuffer,
+    technoKnCountWithEffects,
+  ]);
   ///
 
   let save = {
