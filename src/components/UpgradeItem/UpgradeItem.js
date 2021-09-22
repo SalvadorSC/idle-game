@@ -84,6 +84,9 @@ export const UpgradeItem = ({
       return "upgrade-name chosen-book";
     } else if (upgrades[field].includes(upgrade)) {
       return "upgrade-name upgrade-bought";
+    }
+    if (cssClasses === []) {
+      setCssClasses(["", "bioKn", "technoKn", "cultureKn"]);
     } else {
       return "upgrade-name ";
     }
