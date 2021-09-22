@@ -7,14 +7,24 @@ export const useUpgrades = () => {
   );
 
   const setNewUpgrade = (field, newUpgrade, price) => {
-    if (!upgrades[field].includes(newUpgrade) && knCount.generalKn >= price) {
+    if (
+      !upgrades[field].includes(newUpgrade) &&
+      knCount.generalKn >= price[0] &&
+      knCount.bioKn >= price[1] &&
+      knCount.technoKn >= price[2] &&
+      knCount.cultureKn >= price[3]
+    ) {
       setUpgrades({
         ...upgrades,
         [field]: [...upgrades[field], newUpgrade],
       });
-      setKnCount({ ...knCount, generalKn: knCount.generalKn - price });
-      // console.log(knCount.generalKn - price);
-      // console.log(knCount);
+      setKnCount({
+        ...knCount,
+        generalKn: knCount.generalKn - price[0],
+        bioKn: knCount.bioKn - price[1],
+        technoKn: knCount.technoKn - price[2],
+        cultureKn: knCount.cultureKn - price[3],
+      });
     }
   };
 

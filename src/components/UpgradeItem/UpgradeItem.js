@@ -13,6 +13,12 @@ export const UpgradeItem = ({
 }) => {
   const { setNewUpgrade } = useUpgrades();
   const [showUpgrade, setShowUpgrade] = useState(false);
+  const [cssClasses, setCssClasses] = useState([
+    "",
+    "bioKn",
+    "technoKn",
+    "cultureKn",
+  ]);
   let location = useLocation();
   const {
     knCount,
@@ -42,7 +48,12 @@ export const UpgradeItem = ({
         // Requisito comprado y Upgrade NO comprado
         else {
           // Requisito comprado y Upgrade NO comprada y knCount INsuficiente
-          if (knCount.generalKn < price) {
+          if (
+            knCount.generalKn <= price.gKnPrice &&
+            knCount.bioKn <= price.bKnPrice &&
+            knCount.technoKn <= price.tKnPrice &&
+            knCount.cultureKn <= price.cKnPrice
+          ) {
             return true;
           } else return false;
         }
@@ -55,7 +66,12 @@ export const UpgradeItem = ({
     // No requisito, No Upgrade
     else {
       // No requisito, No Upgrade, No Dinero
-      if (knCount.generalKn < price) {
+      if (
+        knCount.generalKn <= price.gKnPrice &&
+        knCount.bioKn <= price.bKnPrice &&
+        knCount.technoKn <= price.tKnPrice &&
+        knCount.cultureKn <= price.cKnPrice
+      ) {
         return true;
       }
       // No requisito, No Upgrade, Si dinero
@@ -92,8 +108,11 @@ export const UpgradeItem = ({
             if (location.pathname === "/shelf") {
               setShowUpgrade(false);
             } else if (
-              potenciaClick >= price / 100 ||
-              maxKn.generalKn * 2 >= price
+              potenciaClick >= price[0] / 100 ||
+              (maxKn.generalKn * 2 > price[0] &&
+                maxKn.bioKn * 2 > price[1] &&
+                maxKn.technoKn * 2 > price[2] &&
+                maxKn.cultureKn * 2 > price[3])
             ) {
               setShowUpgrade(true);
             } else setShowUpgrade(false);
@@ -108,7 +127,13 @@ export const UpgradeItem = ({
       }
       // si no hay requisitos y tampoco esta comprado (aún no pasa pero puede pasar mas adelante)
       else {
-        if (potenciaClick >= price / 100 || maxKn.generalKn * 2 >= price) {
+        if (
+          potenciaClick >= price[0] / 100 ||
+          (maxKn.generalKn * 2 > price[0] &&
+            maxKn.bioKn * 2 > price[1] &&
+            maxKn.technoKn * 2 > price[2] &&
+            maxKn.cultureKn * 2 > price[3])
+        ) {
           setShowUpgrade(true);
         }
       }
@@ -128,6 +153,9 @@ export const UpgradeItem = ({
     price,
     location,
     maxKn.generalKn,
+    maxKn.bioKn,
+    maxKn.technoKn,
+    maxKn.cultureKn,
   ]);
 
   return (
@@ -149,11 +177,18 @@ export const UpgradeItem = ({
                 : setNewUpgrade(field, upgrade, price)
             }
           >
-            {`${
-              upgrades[field].includes(upgrade)
-                ? `${upgrade}`
-                : `${upgrade} | ${price}`
-            }`}
+            {upgrade}
+            <span>
+              {!upgrades[field].includes(upgrade) &&
+                price.map((price, i) => (
+                  <>
+                    {price > 0 && price}
+                    {price > 0 && (
+                      <span className={cssClasses[i]}>kn</span>
+                    )}{" "}
+                  </>
+                ))}
+            </span>
           </button>
           {description && (
             <div

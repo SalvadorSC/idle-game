@@ -51,7 +51,10 @@ const IdleApp = () => {
               <span className="cultureKn">kN</span>, while offline.
               <button
                 className="generatedKn-button"
-                onClick={() => setShowGeneratedKnAlert(false)}
+                onClick={() => {
+                  debugger;
+                  setShowGeneratedKnAlert(false);
+                }}
               >
                 &times;
               </button>

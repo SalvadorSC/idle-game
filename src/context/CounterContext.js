@@ -95,7 +95,6 @@ export const CounterProvider = ({ children }) => {
   } = setChosenBookEffect(multiplicador);
   useEffect(() => {
     if (showBuffer && lastLogin !== 0) {
-      console.log(Date.now() - lastLogin);
       setShowBuffer(false);
       if (Date.now() - lastLogin > 60 * 1000) {
         debugger;
@@ -292,14 +291,26 @@ export const CounterProvider = ({ children }) => {
     });
   };
   const cheat = () => {
-    setKnCount({ ...knCount, generalKn: knCount.generalKn + 100000000 });
+    setKnCount({
+      ...knCount,
+      generalKn: knCount.generalKn + 100000000,
+      bioKn: knCount.bioKn + 100000000,
+      technoKn: knCount.technoKn + 100000000,
+      cultureKn: knCount.cultureKn + 100000000,
+    });
     setTotalKnCountOfThisRun({
       ...totalKnCountOfThisRun,
       generalKn: totalKnCountOfThisRun.generalKn + 100000000,
+      bioKn: totalKnCountOfThisRun.bioKn + 100000000,
+      technoKn: totalKnCountOfThisRun.technoKn + 100000000,
+      cultureKn: totalKnCountOfThisRun.cultureKn + 100000000,
     });
     setTotalKnOfAllTime({
       ...totalKnOfAllTime,
       generalKn: totalKnOfAllTime.generalKn + 100000000,
+      bioKn: totalKnOfAllTime.bioKn + 100000000,
+      technoKn: totalKnOfAllTime.technoKn + 100000000,
+      cultureKn: totalKnOfAllTime.cultureKn + 100000000,
     });
   };
 

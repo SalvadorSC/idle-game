@@ -1,13 +1,13 @@
 {
   "upgradesInfo": [
     {
-      "price": 10,
+      "price": [10],
       "field": "multiplicador",
       "upgrade": "General Culture I",
       "description": "This is your first book, it's been given to you from me, the system. Go on, read it, I'm sure you'll 100% understand it!"
     },
     {
-      "price": 200,
+      "price": [200, 0, 0, 0],
       "field": "multiplicador",
       "upgrade": "General Culture II",
       "requirementField": "multiplicador",
@@ -15,7 +15,7 @@
       "description": "Welp looks like you did it! Continue this saga, now the second book helps you get smarter faster! Read it."
     },
     {
-      "price": 250,
+      "price": [250, 0, 0, 0],
       "field": "multiplicador",
       "upgrade": "General Culture III",
       "requirementField": "multiplicador",
@@ -23,7 +23,7 @@
       "description": "Once you finish with this book, my friend, you'll have entered into the realm of knowledge. Become the best you can."
     },
     {
-      "price": 750,
+      "price": [750, 0, 0, 0],
       "field": "multiplicador",
       "upgrade": "Stuff 101",
       "requirementField": "multiplicador",
@@ -31,7 +31,7 @@
       "description": "Stuff 101. The title says it all. Learn 101 things about stuff. Biology and tech related only tho."
     },
     {
-      "price": 1000,
+      "price": [1000, 0, 0, 0],
       "field": "culture",
       "upgrade": "Novel",
       "requirementField": "multiplicador",
@@ -39,7 +39,7 @@
       "description": "Novel"
     },
     {
-      "price": 1000,
+      "price": [1000, 0, 1000, 0],
       "field": "technology",
       "upgrade": "Technology for dummies",
       "requirementField": "multiplicador",
@@ -47,7 +47,7 @@
       "description": "Are you a dummy?"
     },
     {
-      "price": 1000,
+      "price": [1000, 1000, 0, 0],
       "field": "nature",
       "upgrade": "Introduction to Nature",
       "requirementField": "multiplicador",
@@ -55,7 +55,7 @@
       "description": "Have you ever wondered how to talk with animals? Well keep wondering this is only the introduction."
     },
     {
-      "price": 1250,
+      "price": [1250, 0, 0, 1250],
       "field": "culture",
       "upgrade": "Poems of Rose",
       "requirementField": "culture",
@@ -63,7 +63,7 @@
       "description": "Rose left her Poems somewhere, here, have them."
     },
     {
-      "price": 2000,
+      "price": [2000, 0, 2000, 0],
       "field": "technology",
       "upgrade": "DIY at home",
       "requirementField": "technology",
@@ -71,7 +71,7 @@
       "description": "Not so dummy anymore, huh. Let's see you build something out of scratch!"
     },
     {
-      "price": 2000,
+      "price": [2000, 2000, 0, 0],
       "field": "nature",
       "upgrade": "Nature inside out",
       "requirementField": "nature",
@@ -79,7 +79,7 @@
       "description": "It really isn't so much inside out, it simply is more advanced, don't get your hopes up. Yet."
     },
     {
-      "price": 2000,
+      "price": [2000, 0, 0, 2000],
       "field": "culture",
       "upgrade": "History about humanity I",
       "requirementField": "culture",
@@ -87,7 +87,7 @@
       "description": "Learning from past mistakes will help us... For erasing them!"
     },
     {
-      "price": 10000,
+      "price": [10000, 10000, 0, 0],
       "field": "nature",
       "upgrade": "Nature's secrets",
       "requirementField": "nature",
@@ -95,7 +95,7 @@
       "description": "There's something about birds that I don't like... Don't trust them. Also why does the name of this book resemble a gossip magazine??"
     },
     {
-      "price": 10000,
+      "price": [10000, 0, 0, 10000],
       "field": "culture",
       "upgrade": "Learning how to teach",
       "requirementField": "culture",
