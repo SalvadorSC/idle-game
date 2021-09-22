@@ -15,7 +15,9 @@ import useSound from "use-sound";
 import buffer from "../../assets/Infinity.svg";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
-  const { setMute, setShowGeneratedKnAlert } = useContext(CounterContext);
+  const { setMute, setShowGeneratedKnAlert, setRewardsTaken } = useContext(
+    CounterContext
+  );
   const [play] = useSound(soundUrl, { volume: dependencies.mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
@@ -52,8 +54,8 @@ const IdleApp = () => {
               <button
                 className="generatedKn-button"
                 onClick={() => {
-                  debugger;
                   setShowGeneratedKnAlert(false);
+                  setRewardsTaken(true);
                 }}
               >
                 &times;

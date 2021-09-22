@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import CounterContext from "../../context/CounterContext";
+import React from "react";
+import { useCheats } from "../../hooks/useCheats";
 import "./Options.css";
 
 export const Options = () => {
-  const { resetGame, resetAllGame, cheat } = useContext(CounterContext);
+  const { resetGame, resetAllGame, cheat } = useCheats();
 
   return (
     <div className="options-item-container">
