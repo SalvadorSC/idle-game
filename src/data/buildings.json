@@ -1,0 +1,40 @@
+{
+  "buildingsInfo": [
+    {
+      "name": "Multiplier",
+      "hasRequirements": false,
+      "priceGkn": 10,
+      "priceTkn": 0,
+      "priceBkn": 0,
+      "priceCkn": 0,
+      "detailsInfo": "Multipliers make you comprehend information much better"
+    },
+    {
+      "name": "Automatron v1",
+      "hasRequirements": true,
+      "priceGkn": 100,
+      "priceTkn": 100,
+      "priceBkn": 0,
+      "priceCkn": 0,
+      "detailsInfo": "Automatron let you scan pages for important kN!"
+    },
+    {
+      "name": "Squirrels",
+      "hasRequirements": true,
+      "priceGkn": 100,
+      "priceTkn": 0,
+      "priceBkn": 100,
+      "priceCkn": 0,
+      "detailsInfo": "Wow, you learned how to teach... squirrels? And they read for you??"
+    },
+    {
+      "name": "Unknown",
+      "hasRequirements": true,
+      "priceGkn": 100,
+      "priceTkn": 0,
+      "priceBkn": 0,
+      "priceCkn": 100,
+      "detailsInfo": "Wow, un&%/$2 &·3S nsei (&)787 ,,)()"
+    }
+  ]
+}

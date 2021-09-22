@@ -4,8 +4,10 @@ import { DetailsBox } from "../DetailsBox/DetailsBox";
 import { NewBooks } from "../NewBooks/NewBooks";
 import { ShopItem } from "../ShopItem/ShopItem";
 import "./Shop.css";
+import buildingsInformation from "../../data/buildings.json";
 
 export const Shop = (props) => {
+  const { buildingsInfo } = buildingsInformation;
   const {
     automatron1,
     multiplicador,
@@ -17,56 +19,35 @@ export const Shop = (props) => {
   } = useContext(CounterContext);
 
   const [showDetails, setShowDetails] = useState(false);
-
+  const buildingItems = [multiplicador, automatron1, squirrels];
+  const buildingSetItems = [setMultiplicador, setAutomatron1, setSquirrels];
+  const buildingRequirements = [
+    null,
+    upgrades.technology.length >= 1,
+    upgrades.nature.length >= 3 && upgrades.culture.length >= 4,
+  ];
   return (
     <>
       <div className="shop">
         <NewBooks />
         {showDetails && <DetailsBox />}
-        <ShopItem
-          setShowDetails={setShowDetails}
-          name={"Multiplier"}
-          item={multiplicador}
-          setItem={setMultiplicador}
-          hasRequirements={false}
-          priceGkn={10}
-          priceTkn={0}
-          priceBkn={0}
-          priceCkn={0}
-          detailsInfo={
-            "Multipliers make you comprehend information much better"
-          }
-        />
-        <ShopItem
-          setShowDetails={setShowDetails}
-          name={"Automatron v1"}
-          item={automatron1}
-          setItem={setAutomatron1}
-          hasRequirements={true}
-          requirement={upgrades.technology.length >= 1}
-          priceGkn={100}
-          priceTkn={10}
-          priceBkn={0}
-          priceCkn={0}
-          detailsInfo={"Automatron let you scan pages for important kN!"}
-        />
-        <ShopItem
-          setShowDetails={setShowDetails}
-          name={"Squirrels"}
-          item={squirrels}
-          setItem={setSquirrels}
-          hasRequirements={true}
-          detailsInfo={
-            "Wow, you learned how to teach... squirrels? And they read for you??"
-          }
-          requirement={
-            upgrades.nature.length >= 3 && upgrades.culture.length >= 4
-          }
-          priceGkn={100}
-          priceTkn={0}
-          priceBkn={10}
-          priceCkn={0}
-        />
+        {buildingsInfo.map((building, i) => {
+          return (
+            <ShopItem
+              setShowDetails={setShowDetails}
+              name={building.name}
+              item={buildingItems[i]}
+              setItem={buildingSetItems[i]}
+              hasRequirements={building.hasRequirements}
+              requirement={buildingRequirements[i]}
+              priceGkn={building.priceGkn}
+              priceTkn={building.priceTkn}
+              priceBkn={building.priceBkn}
+              priceCkn={building.priceCkn}
+              detailsInfo={building.detailsInfo}
+            />
+          );
+        })}
       </div>
     </>
   );

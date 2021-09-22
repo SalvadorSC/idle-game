@@ -117,11 +117,11 @@ const IdleApp = () => {
                 </p>
               </div>
             </div>
-            {/* <img
+            <img
               className="character"
               src="https://via.placeholder.com/64"
               alt="personaje"
-            /> */}
+            />
           </div>
         </div>
         <div className="second-half">
