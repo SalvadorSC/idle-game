@@ -28,13 +28,13 @@
       "detailsInfo": "Wow, you learned how to teach... squirrels? And they read for you??"
     },
     {
-      "name": "Unknown",
+      "name": "PageTrees",
       "hasRequirements": true,
-      "priceGkn": 100,
-      "priceTkn": 0,
-      "priceBkn": 0,
-      "priceCkn": 100,
-      "detailsInfo": "Wow, un&%/$2 &·3S nsei (&)787 ,,)()"
+      "priceGkn": 1000,
+      "priceTkn": 1000,
+      "priceBkn": 1000,
+      "priceCkn": 0,
+      "detailsInfo": "So... trees now generate pages, chapters and even books?? "
     }
   ]
 }

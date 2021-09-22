@@ -6,7 +6,7 @@ import { ShopItem } from "../ShopItem/ShopItem";
 import "./Shop.css";
 import buildingsInformation from "../../data/buildings.json";
 
-export const Shop = (props) => {
+export const Shop = () => {
   const { buildingsInfo } = buildingsInformation;
   const {
     automatron1,
@@ -16,15 +16,23 @@ export const Shop = (props) => {
     setAutomatron1,
     squirrels,
     setSquirrels,
+    trees,
+    setTrees,
   } = useContext(CounterContext);
 
   const [showDetails, setShowDetails] = useState(false);
-  const buildingItems = [multiplicador, automatron1, squirrels];
-  const buildingSetItems = [setMultiplicador, setAutomatron1, setSquirrels];
+  const buildingItems = [multiplicador, automatron1, squirrels, trees];
+  const buildingSetItems = [
+    setMultiplicador,
+    setAutomatron1,
+    setSquirrels,
+    setTrees,
+  ];
   const buildingRequirements = [
     null,
     upgrades.technology.length >= 1,
     upgrades.nature.length >= 3 && upgrades.culture.length >= 4,
+    upgrades.nature.length >= 4 && upgrades.technology.length >= 4,
   ];
   return (
     <>

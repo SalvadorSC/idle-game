@@ -72,7 +72,7 @@ export const useChosenKn = (libro) => {
         technoKnCountWithEffects = multiplicador * 0;
         cultureKnCountWithEffects = multiplicador * 1;
         break;
-      case "Nature's secrets":
+      case "The grand book of animals":
         genrlKnCountWithEffects = multiplicador * 0;
         bioKnCountWithEffects = multiplicador * 1.25;
         technoKnCountWithEffects = multiplicador * 0;
@@ -83,6 +83,18 @@ export const useChosenKn = (libro) => {
         bioKnCountWithEffects = multiplicador * 0;
         technoKnCountWithEffects = multiplicador * 0;
         cultureKnCountWithEffects = multiplicador * 1.25;
+        break;
+      case "The secret life of trees":
+        genrlKnCountWithEffects = multiplicador * 0.25;
+        bioKnCountWithEffects = multiplicador * 1.5;
+        technoKnCountWithEffects = multiplicador * 0;
+        cultureKnCountWithEffects = multiplicador * 0;
+        break;
+      case "Steps into robotics":
+        genrlKnCountWithEffects = multiplicador * 0.25;
+        bioKnCountWithEffects = multiplicador * 0;
+        technoKnCountWithEffects = multiplicador * 1.5;
+        cultureKnCountWithEffects = multiplicador * 0;
         break;
       default:
         genrlKnCountWithEffects = multiplicador * 0.25;

@@ -89,7 +89,7 @@
     {
       "price": [10000, 10000, 0, 0],
       "field": "nature",
-      "upgrade": "Nature's secrets",
+      "upgrade": "The grand book of animals",
       "requirementField": "nature",
       "requirement": "Nature inside out",
       "description": "There's something about birds that I don't like... Don't trust them. Also why does the name of this book resemble a gossip magazine??"
@@ -100,6 +100,22 @@
       "upgrade": "Learning how to teach",
       "requirementField": "culture",
       "requirement": "History about humanity I",
+      "description": "You learn by reading books, but what about those who can't read? Teach them."
+    },
+    {
+      "price": [50000, 50000, 0, 0],
+      "field": "nature",
+      "upgrade": "The secret life of trees",
+      "requirementField": "nature",
+      "requirement": "The grand book of animals",
+      "description": "There's something about birds that I don't like... Don't trust them. Also why does the name of this book resemble a gossip magazine??"
+    },
+    {
+      "price": [50000, 0, 50000, 0],
+      "field": "technology",
+      "upgrade": "Steps into robotics",
+      "requirementField": "technology",
+      "requirement": "DIY at home",
       "description": "You learn by reading books, but what about those who can't read? Teach them."
     }
   ]
