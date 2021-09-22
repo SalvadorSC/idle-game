@@ -103,145 +103,152 @@ export const CounterProvider = ({ children }) => {
     cultureKnCountWithEffects,
   } = setChosenBookEffect(multiplicador);
   useEffect(() => {
-    const newLogin = Date.now();
-    if (showBuffer && lastLogin !== 0) {
-      setShowBuffer(false);
-
-      if (newLogin - lastLogin > 60 * 1000) {
-        setShowGeneratedKnAlert(true);
-        debugger;
-        const secondsElapsedSinceLastLogin = (Date.now() - lastLogin) / 1000;
-        const getGeneratedKn = (knWithEffects) =>
-          Math.floor(knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100) /
-          100;
-        setKnCount((knCount) => {
-          return {
-            ...knCount,
-            generalKn:
-              Math.floor(
-                (knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (knCount.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (knCount.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (knCount.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setMaxKn((maxKn) => {
-          return {
-            generalKn:
-              Math.floor(
-                (maxKn.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (maxKn.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (maxKn.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (maxKn.cultureKn + getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setTotalKnCountOfThisRun((totalKnCountOfThisRun) => {
-          return {
-            ...totalKnCountOfThisRun,
-            generalKn:
-              Math.floor(
-                (totalKnCountOfThisRun.generalKn +
-                  getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (totalKnCountOfThisRun.bioKn +
-                  getGeneratedKn(bioKnCountWithEffects)) *
-                  100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (totalKnCountOfThisRun.technoKn +
-                  getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (totalKnCountOfThisRun.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setTotalKnOfAllTime((totalKnOfAllTime) => {
-          return {
-            ...totalKnOfAllTime,
-            generalKn:
-              Math.floor(
-                (totalKnOfAllTime.generalKn +
-                  getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (totalKnOfAllTime.bioKn +
-                  getGeneratedKn(bioKnCountWithEffects)) *
-                  100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (totalKnOfAllTime.technoKn +
-                  getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (totalKnOfAllTime.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setGeneratedKn({
-          generatedGnKn: getGeneratedKn(genrlKnCountWithEffects),
-          generatedBioKn: getGeneratedKn(bioKnCountWithEffects),
-          generatedTechnoKn: getGeneratedKn(technoKnCountWithEffects),
-          generatedCultureKn: getGeneratedKn(cultureKnCountWithEffects),
-        });
-      }
-      setLastLogin(0);
-    } else if (newLogin - lastLogin < 60 * 1000 && rewardsTaken) {
-      setShowGeneratedKnAlert(false);
-
-      const timer = setTimeout(() => {
-        setLastLogin(Date.now());
+    if (automatron1 > 0 || squirrels > 0) {
+      const newLogin = Date.now();
+      if (showBuffer && lastLogin !== 0) {
         setShowBuffer(false);
-      }, 1e3);
-      return () => clearTimeout(timer);
+
+        if (newLogin - lastLogin > 60 * 1000) {
+          setShowGeneratedKnAlert(true);
+          debugger;
+          const secondsElapsedSinceLastLogin = (Date.now() - lastLogin) / 1000;
+          const getGeneratedKn = (knWithEffects) =>
+            Math.floor(
+              knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100
+            ) / 100;
+          setKnCount((knCount) => {
+            return {
+              ...knCount,
+              generalKn:
+                Math.floor(
+                  (knCount.generalKn +
+                    getGeneratedKn(genrlKnCountWithEffects)) *
+                    100
+                ) / 100,
+
+              bioKn:
+                Math.floor(
+                  (knCount.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
+                ) / 100,
+              technoKn:
+                Math.floor(
+                  (knCount.technoKn +
+                    getGeneratedKn(technoKnCountWithEffects)) *
+                    100
+                ) / 100,
+              cultureKn:
+                Math.floor(
+                  (knCount.cultureKn +
+                    getGeneratedKn(cultureKnCountWithEffects)) *
+                    100
+                ) / 100,
+            };
+          });
+          setMaxKn((maxKn) => {
+            return {
+              generalKn:
+                Math.floor(
+                  (maxKn.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
+                    100
+                ) / 100,
+
+              bioKn:
+                Math.floor(
+                  (maxKn.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
+                ) / 100,
+              technoKn:
+                Math.floor(
+                  (maxKn.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
+                    100
+                ) / 100,
+              cultureKn:
+                Math.floor(
+                  (maxKn.cultureKn +
+                    getGeneratedKn(cultureKnCountWithEffects)) *
+                    100
+                ) / 100,
+            };
+          });
+          setTotalKnCountOfThisRun((totalKnCountOfThisRun) => {
+            return {
+              ...totalKnCountOfThisRun,
+              generalKn:
+                Math.floor(
+                  (totalKnCountOfThisRun.generalKn +
+                    getGeneratedKn(genrlKnCountWithEffects)) *
+                    100
+                ) / 100,
+
+              bioKn:
+                Math.floor(
+                  (totalKnCountOfThisRun.bioKn +
+                    getGeneratedKn(bioKnCountWithEffects)) *
+                    100
+                ) / 100,
+              technoKn:
+                Math.floor(
+                  (totalKnCountOfThisRun.technoKn +
+                    getGeneratedKn(technoKnCountWithEffects)) *
+                    100
+                ) / 100,
+              cultureKn:
+                Math.floor(
+                  (totalKnCountOfThisRun.cultureKn +
+                    getGeneratedKn(cultureKnCountWithEffects)) *
+                    100
+                ) / 100,
+            };
+          });
+          setTotalKnOfAllTime((totalKnOfAllTime) => {
+            return {
+              ...totalKnOfAllTime,
+              generalKn:
+                Math.floor(
+                  (totalKnOfAllTime.generalKn +
+                    getGeneratedKn(genrlKnCountWithEffects)) *
+                    100
+                ) / 100,
+
+              bioKn:
+                Math.floor(
+                  (totalKnOfAllTime.bioKn +
+                    getGeneratedKn(bioKnCountWithEffects)) *
+                    100
+                ) / 100,
+              technoKn:
+                Math.floor(
+                  (totalKnOfAllTime.technoKn +
+                    getGeneratedKn(technoKnCountWithEffects)) *
+                    100
+                ) / 100,
+              cultureKn:
+                Math.floor(
+                  (totalKnOfAllTime.cultureKn +
+                    getGeneratedKn(cultureKnCountWithEffects)) *
+                    100
+                ) / 100,
+            };
+          });
+          setGeneratedKn({
+            generatedGnKn: getGeneratedKn(genrlKnCountWithEffects),
+            generatedBioKn: getGeneratedKn(bioKnCountWithEffects),
+            generatedTechnoKn: getGeneratedKn(technoKnCountWithEffects),
+            generatedCultureKn: getGeneratedKn(cultureKnCountWithEffects),
+          });
+        }
+        setLastLogin(0);
+      } else if (newLogin - lastLogin < 60 * 1000 && rewardsTaken) {
+        setShowGeneratedKnAlert(false);
+
+        const timer = setTimeout(() => {
+          setLastLogin(Date.now());
+          setShowBuffer(false);
+        }, 1e3);
+        return () => clearTimeout(timer);
+      }
     }
   }, [
+    automatron1,
     bioKnCountWithEffects,
     cultureKnCountWithEffects,
     generatedKn.generatedBioKn,
@@ -256,6 +263,7 @@ export const CounterProvider = ({ children }) => {
     lastLogin,
     rewardsTaken,
     showBuffer,
+    squirrels,
     technoKnCountWithEffects,
   ]);
   ///
