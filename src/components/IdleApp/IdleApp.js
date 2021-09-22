@@ -3,7 +3,6 @@ import { Link, Route } from "react-router-dom";
 import { Options } from "../Options/Options";
 import { Shop } from "../Shop/Shop";
 import { Stats } from "../Stats/Stats";
-import { Tree } from "../UpgradeTree/UpgradeTree";
 import CounterContext from "../../context/CounterContext";
 import { useNumberParsing } from "../../hooks/useNumberParsing";
 import "./IdleApp.css";
