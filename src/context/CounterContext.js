@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useChosenKn } from "../hooks/useChosenKn";
+import { useOfflineProduction } from "../hooks/useOfflineProduction";
 
 const CounterContext = createContext();
 
@@ -85,182 +85,33 @@ export const CounterProvider = ({ children }) => {
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [detailsInfo, setDetailsInfo] = useState("Hehe");
-  ///Calculate OFFLINE PRODUCTION
-  const { setChosenBookEffect } = useChosenKn(chosenBook);
   const [lastLogin, setLastLogin] = useState(savegame ? savegame.lastLogin : 0);
-  const [showBuffer, setShowBuffer] = useState(true);
-  const [showGeneratedKnAlert, setShowGeneratedKnAlert] = useState(false);
-  const [rewardsTaken, setRewardsTaken] = useState(false);
-  const [generatedKn, setGeneratedKn] = useState({
-    generatedGnKn: 0,
-    generatedBioKn: 0,
-    generatedTechnoKn: 0,
-    generatedCultureKn: 0,
-  });
-  const {
-    genrlKnCountWithEffects,
-    bioKnCountWithEffects,
-    technoKnCountWithEffects,
-    cultureKnCountWithEffects,
-  } = setChosenBookEffect(multiplicador);
-  useEffect(() => {
-    const newLogin = Date.now();
-    if (showBuffer && lastLogin !== 0) {
-      setShowBuffer(false);
-
-      if (newLogin - lastLogin > 60 * 1000 && upgrades.culture.length >= 5) {
-        setShowGeneratedKnAlert(true);
-        debugger;
-        const secondsElapsedSinceLastLogin = (Date.now() - lastLogin) / 1000;
-        const getGeneratedKn = (knWithEffects) =>
-          Math.floor(knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100) /
-          100;
-        setKnCount((knCount) => {
-          return {
-            ...knCount,
-            generalKn:
-              Math.floor(
-                (knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (knCount.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (knCount.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (knCount.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setMaxKn((maxKn) => {
-          return {
-            generalKn:
-              Math.floor(
-                (maxKn.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (maxKn.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (maxKn.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (maxKn.cultureKn + getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setTotalKnCountOfThisRun((totalKnCountOfThisRun) => {
-          return {
-            ...totalKnCountOfThisRun,
-            generalKn:
-              Math.floor(
-                (totalKnCountOfThisRun.generalKn +
-                  getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (totalKnCountOfThisRun.bioKn +
-                  getGeneratedKn(bioKnCountWithEffects)) *
-                  100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (totalKnCountOfThisRun.technoKn +
-                  getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (totalKnCountOfThisRun.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setTotalKnOfAllTime((totalKnOfAllTime) => {
-          return {
-            ...totalKnOfAllTime,
-            generalKn:
-              Math.floor(
-                (totalKnOfAllTime.generalKn +
-                  getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
-
-            bioKn:
-              Math.floor(
-                (totalKnOfAllTime.bioKn +
-                  getGeneratedKn(bioKnCountWithEffects)) *
-                  100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (totalKnOfAllTime.technoKn +
-                  getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (totalKnOfAllTime.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
-        });
-        setGeneratedKn({
-          generatedGnKn: getGeneratedKn(genrlKnCountWithEffects),
-          generatedBioKn: getGeneratedKn(bioKnCountWithEffects),
-          generatedTechnoKn: getGeneratedKn(technoKnCountWithEffects),
-          generatedCultureKn: getGeneratedKn(cultureKnCountWithEffects),
-        });
-      }
-      setLastLogin(0);
-    } else if (newLogin - lastLogin < 60 * 1000 && rewardsTaken) {
-      setShowGeneratedKnAlert(false);
-
-      const timer = setTimeout(() => {
-        setLastLogin(Date.now());
-        setShowBuffer(false);
-      }, 1e3);
-      return () => clearTimeout(timer);
-    }
-  }, [
-    automatron1,
-    bioKnCountWithEffects,
-    cultureKnCountWithEffects,
-    generatedKn.generatedBioKn,
-    generatedKn.generatedCultureKn,
-    generatedKn.generatedGnKn,
-    generatedKn.generatedTechnoKn,
-    genrlKnCountWithEffects,
-    knCount.bioKn,
-    knCount.cultureKn,
-    knCount.generalKn,
-    knCount.technoKn,
+  ///Calculate OFFLINE PRODUCTION
+  const dependencies = {
+    chosenBook,
+    multiplicador,
+    upgrades,
+    setKnCount,
+    setTotalKnOfAllTime,
+    setMaxKn,
+    setTotalKnCountOfThisRun,
     lastLogin,
-    rewardsTaken,
+    setLastLogin,
+    knCount,
+  };
+  const {
     showBuffer,
-    squirrels,
-    technoKnCountWithEffects,
-  ]);
+    generatedKn,
+    showGeneratedKnAlert,
+    setShowBuffer,
+    setGeneratedKn,
+    setRewardsTaken,
+    setShowGeneratedKnAlert,
+    calculateOfflineProduction,
+  } = useOfflineProduction(dependencies);
+  useEffect(() => {
+    calculateOfflineProduction();
+  }, [calculateOfflineProduction]);
   ///
 
   let save = {
@@ -324,16 +175,16 @@ export const CounterProvider = ({ children }) => {
         setSquirrels,
         detailsInfo,
         generatedKn,
-        setGeneratedKn,
         setDetailsInfo,
         maxKn,
         setMaxKn,
-        showBuffer,
         lastLogin,
+        setGeneratedKn,
+        showBuffer,
         setShowBuffer,
         setLastLogin,
-        showGeneratedKnAlert,
         setShowGeneratedKnAlert,
+        showGeneratedKnAlert,
         setRewardsTaken,
         pageTrees,
         setPageTrees,
