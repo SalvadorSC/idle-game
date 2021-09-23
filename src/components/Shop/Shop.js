@@ -11,15 +11,14 @@ export const Shop = () => {
   const {
     automatron1,
     multiplicador,
-    upgrades,
     setMultiplicador,
     setAutomatron1,
     squirrels,
     setSquirrels,
     pageTrees,
     setPageTrees,
+    upgrades,
   } = useContext(CounterContext);
-
   const [showDetails, setShowDetails] = useState(false);
   const buildingItems = [multiplicador, automatron1, squirrels, pageTrees];
   const buildingSetItems = [

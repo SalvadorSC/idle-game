@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
+import StatsContext from "../../context/StatsContext";
 import "./Stats.css";
 
 export const Stats = () => {
+  const { automatron1, multiplicador } = useContext(CounterContext);
   const {
     goal,
     totalKnCountOfThisRun,
-    automatron1,
-    multiplicador,
     clicks,
     resets,
     totalClicksOfAllTime,
     totalKnOfAllTime,
     knForfeitedAtReset,
-  } = useContext(CounterContext);
+  } = useContext(StatsContext);
+
   const totalKnOfThisRun =
     totalKnCountOfThisRun.generalKn +
     totalKnCountOfThisRun.bioKn +

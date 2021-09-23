@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
+import MiscContext from "../../context/MiscContext";
 import { useIncrementItem } from "../../hooks/useIncrementItem";
 import { ShopItemName } from "../ShopItemName/ShopItemName";
 
@@ -16,7 +17,8 @@ export const ShopItem = ({
   priceCkn,
   detailsInfo,
 }) => {
-  const { knCount, setDetailsInfo } = useContext(CounterContext);
+  const { knCount } = useContext(CounterContext);
+  const { setDetailsInfo } = useContext(MiscContext);
   const { setNewItemQuantity } = useIncrementItem();
   const handleDetails = () => {
     setShowDetails(true);

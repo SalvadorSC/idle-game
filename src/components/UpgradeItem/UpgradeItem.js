@@ -3,6 +3,7 @@ import CounterContext from "../../context/CounterContext";
 import { useUpgrades } from "../../hooks/useUpgrades";
 import { useLocation } from "react-router-dom";
 import "./UpgradeItem.css";
+import StatsContext from "../../context/StatsContext";
 export const UpgradeItem = ({
   price,
   field,
@@ -22,14 +23,13 @@ export const UpgradeItem = ({
   let location = useLocation();
   const {
     knCount,
-    upgrades,
     chosenBook,
     setChosenBook,
     potenciaClick,
     multiplicador,
-    maxKn,
+    upgrades,
   } = useContext(CounterContext);
-
+  const { maxKn } = useContext(StatsContext);
   const setDisabled = (
     price,
     field,

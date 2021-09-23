@@ -2,7 +2,7 @@ import { useContext } from "react";
 import CounterContext from "../context/CounterContext";
 
 export const useUpgrades = () => {
-  const { upgrades, setUpgrades, knCount, setKnCount } = useContext(
+  const { knCount, setKnCount, upgrades, setUpgrades } = useContext(
     CounterContext
   );
 

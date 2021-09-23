@@ -2,24 +2,28 @@ import useSound from "use-sound";
 import { useChosenKn } from "./useChosenKn";
 import soundUrl1 from "../assets/page-flip-01a.mp3";
 import soundUrl2 from "../assets/page-flip-03.mp3";
+import { useContext } from "react";
+import StatsContext from "../context/StatsContext";
 
 export const useContador = ({
-  goal,
-  setGoal,
   knCount,
   setKnCount,
   automatron1,
   multiplicador,
-  setTotalKnOfAllTime,
-  totalKnCountOfThisRun,
-  setTotalKnCountOfThisRun,
   mute,
   squirrels,
-  maxKn,
-  setMaxKn,
   chosenBook,
   pageTrees,
 }) => {
+  const {
+    goal,
+    setGoal,
+    setTotalKnOfAllTime,
+    totalKnCountOfThisRun,
+    setTotalKnCountOfThisRun,
+    maxKn,
+    setMaxKn,
+  } = useContext(StatsContext);
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
   const { setChosenBookEffect } = useChosenKn(chosenBook);

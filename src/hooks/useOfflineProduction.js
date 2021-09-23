@@ -4,14 +4,13 @@ import { useChosenKn } from "./useChosenKn";
 export const useOfflineProduction = ({
   chosenBook,
   multiplicador,
-  upgrades,
   setKnCount,
   setTotalKnOfAllTime,
   setMaxKn,
   setTotalKnCountOfThisRun,
   lastLogin,
   setLastLogin,
-  knCount,
+  upgrades,
 }) => {
   const [showBuffer, setShowBuffer] = useState(true);
   const [showGeneratedKnAlert, setShowGeneratedKnAlert] = useState(false);

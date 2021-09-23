@@ -1,31 +1,80 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import CounterContext from "../context/CounterContext";
 import { useContador } from "./useContador";
 import { useChosenKn } from "./useChosenKn";
+import StatsContext from "../context/StatsContext";
 
 export const useIncrementByClick = () => {
+  const {
+    knCount,
+    setKnCount,
+    multiplicador,
+    chosenBook,
+    setLastLogin,
+    automatron1,
+    squirrels,
+    pageTrees,
+    lastLogin,
+    upgrades,
+  } = useContext(CounterContext);
   const {
     goal,
     setGoal,
     clicks,
     setClicks,
-    knCount,
-    setKnCount,
-    multiplicador,
     totalKnOfAllTime,
     setTotalKnOfAllTime,
     totalClicksOfAllTime,
     setTotalClicksOfAllTime,
     totalKnCountOfThisRun,
     setTotalKnCountOfThisRun,
-    upgrades,
-    save,
+
+    knForfeitedAtReset,
+    resets,
+    potenciaClick,
     setPotenciaClick,
     maxKn,
     setMaxKn,
+  } = useContext(StatsContext);
+  const save = useMemo(() => {
+    return {
+      multiplicador,
+      automatron1,
+      squirrels,
+      knCount,
+      totalKnCountOfThisRun,
+      goal,
+      clicks,
+      totalClicksOfAllTime,
+      totalKnOfAllTime,
+      knForfeitedAtReset,
+      resets,
+      upgrades,
+      chosenBook,
+      potenciaClick,
+      maxKn,
+      lastLogin,
+      pageTrees,
+    };
+  }, [
+    automatron1,
     chosenBook,
-    setLastLogin,
-  } = useContext(CounterContext);
+    clicks,
+    goal,
+    knCount,
+    knForfeitedAtReset,
+    lastLogin,
+    maxKn,
+    multiplicador,
+    pageTrees,
+    potenciaClick,
+    resets,
+    squirrels,
+    totalClicksOfAllTime,
+    totalKnCountOfThisRun,
+    totalKnOfAllTime,
+    upgrades,
+  ]);
   const dependencies = useContext(CounterContext);
   const { incrementEverySecond } = useContador(dependencies);
   const { setChosenBookEffect } = useChosenKn(chosenBook);

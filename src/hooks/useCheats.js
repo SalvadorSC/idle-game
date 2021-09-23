@@ -1,31 +1,35 @@
 import { useContext } from "react";
 import CounterContext from "../context/CounterContext";
+import StatsContext from "../context/StatsContext";
 
 export const useCheats = () => {
   const {
-    setGoal,
     setMultiplicador,
     setKnCount,
-    setTotalKnCountOfThisRun,
-    setMaxKn,
-    setPotenciaClick,
+
     setAutomatron1,
     setSquirrels,
+    knCount,
+    setChosenBook,
+    setPageTrees,
+    setUpgrades,
+    baseUpgrades,
+  } = useContext(CounterContext);
+  const {
+    setGoal,
     setResets,
     setClicks,
     setTotalClicksOfAllTime,
-    setUpgrades,
-    baseUpgrades,
     totalClicksOfAllTime,
     setKnForfeitedAtReset,
     knForfeitedAtReset,
-    knCount,
-    setChosenBook,
     setTotalKnOfAllTime,
     totalKnCountOfThisRun,
     totalKnOfAllTime,
-    setPageTrees,
-  } = useContext(CounterContext);
+    setMaxKn,
+    setPotenciaClick,
+    setTotalKnCountOfThisRun,
+  } = useContext(StatsContext);
   const resetGame = () => {
     setGoal(100);
     setMultiplicador(1);

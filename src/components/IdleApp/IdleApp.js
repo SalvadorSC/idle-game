@@ -12,19 +12,23 @@ import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 import buffer from "../../assets/Infinity.svg";
+import StatsContext from "../../context/StatsContext";
+import MiscContext from "../../context/MiscContext";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
-  const { setMute, setShowGeneratedKnAlert, setRewardsTaken } = useContext(
+  const statDependencies = useContext(StatsContext);
+  const { setShowGeneratedKnAlert, setRewardsTaken } = useContext(
     CounterContext
   );
+  const { setMute } = useContext(MiscContext);
   const [play] = useSound(soundUrl, { volume: dependencies.mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
   const totalKn =
-    dependencies.totalKnCountOfThisRun.generalKn +
-    dependencies.totalKnCountOfThisRun.bioKn +
-    dependencies.totalKnCountOfThisRun.technoKn +
-    dependencies.totalKnCountOfThisRun.cultureKn;
+    statDependencies.totalKnCountOfThisRun.generalKn +
+    statDependencies.totalKnCountOfThisRun.bioKn +
+    statDependencies.totalKnCountOfThisRun.technoKn +
+    statDependencies.totalKnCountOfThisRun.cultureKn;
 
   const handleClick = () => {
     increment(dependencies.upgrades);
@@ -76,12 +80,12 @@ const IdleApp = () => {
           </div>
 
           <div className="display-stats">
-            <p>Goal: {parseNumber(dependencies.goal)} kN</p>
+            <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
             <p>
               Progress:{" "}
               {Math.floor(
-                (dependencies.totalKnCountOfThisRun.generalKn /
-                  dependencies.goal) *
+                (statDependencies.totalKnCountOfThisRun.generalKn /
+                  statDependencies.goal) *
                   100 *
                   100
               ) / 100}
