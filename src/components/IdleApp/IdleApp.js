@@ -20,8 +20,8 @@ const IdleApp = () => {
   const { setShowGeneratedKnAlert, setRewardsTaken } = useContext(
     CounterContext
   );
-  const { setMute } = useContext(MiscContext);
-  const [play] = useSound(soundUrl, { volume: dependencies.mute ? 0 : 0.1 });
+  const { mute, setMute } = useContext(MiscContext);
+  const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
   const totalKn =
@@ -74,8 +74,8 @@ const IdleApp = () => {
               {BoopButton()}
             </div>
 
-            <button onClick={() => setMute(!dependencies.mute)}>
-              {dependencies.mute ? "Unmute" : "Mute"}
+            <button onClick={() => setMute(!mute)}>
+              {mute ? "Unmute" : "Mute"}
             </button>
           </div>
 

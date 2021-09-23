@@ -3,6 +3,7 @@ import CounterContext from "../context/CounterContext";
 import { useContador } from "./useContador";
 import { useChosenKn } from "./useChosenKn";
 import StatsContext from "../context/StatsContext";
+import MiscContext from "../context/MiscContext";
 
 export const useIncrementByClick = () => {
   const {
@@ -28,7 +29,6 @@ export const useIncrementByClick = () => {
     setTotalClicksOfAllTime,
     totalKnCountOfThisRun,
     setTotalKnCountOfThisRun,
-
     knForfeitedAtReset,
     resets,
     potenciaClick,
@@ -75,13 +75,24 @@ export const useIncrementByClick = () => {
     totalKnOfAllTime,
     upgrades,
   ]);
-  const dependencies = useContext(CounterContext);
-  const { incrementEverySecond } = useContador(dependencies);
+  const { mute } = useContext(MiscContext);
+  const { incrementEverySecond } = useContador({
+    knCount,
+    setKnCount,
+    automatron1,
+    multiplicador,
+    mute,
+    squirrels,
+    chosenBook,
+    pageTrees,
+  });
   const { setChosenBookEffect } = useChosenKn(chosenBook);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      incrementEverySecond(upgrades);
+      if (automatron1 > 0 || squirrels > 0 || pageTrees > 0) {
+        incrementEverySecond(upgrades);
+      }
       setLastLogin(Date.now());
     }, 1e3);
     return () => clearTimeout(timer);
