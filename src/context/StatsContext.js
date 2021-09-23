@@ -1,80 +1,124 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
 
 const StatsContext = createContext();
 
-export const StatsProvider = ({ children }) => {
-  let savegame = JSON.parse(localStorage.getItem("save"));
+let savegame = JSON.parse(localStorage.getItem("save"));
 
-  const [totalKnCountOfThisRun, setTotalKnCountOfThisRun] = useState(
-    savegame
-      ? savegame.totalKnCountOfThisRun
-      : { generalKn: 0, cultureKn: 0, bioKn: 0, technoKn: 0 }
-  );
-  const [clicks, setClicks] = useState(savegame ? savegame.clicks : 0);
-  const [totalClicksOfAllTime, setTotalClicksOfAllTime] = useState(
-    savegame ? savegame.totalClicksOfAllTime : 0
-  );
-  const [totalKnOfAllTime, setTotalKnOfAllTime] = useState(
-    savegame
-      ? savegame.totalKnOfAllTime
-      : {
-          generalKn: 0,
-          cultureKn: 0,
-          bioKn: 0,
-          technoKn: 0,
-        }
-  );
-  const [resets, setResets] = useState(savegame ? savegame.resets : 0);
-  const [potenciaClick, setPotenciaClick] = useState(
-    savegame ? savegame.potenciaClick : 0
-  );
-  const [knForfeitedAtReset, setKnForfeitedAtReset] = useState(
-    savegame
-      ? savegame.knForfeitedAtReset
-      : {
-          generalKn: 0,
-          cultureKn: 0,
-          bioKn: 0,
-          technoKn: 0,
-        }
-  );
-  const [maxKn, setMaxKn] = useState(
-    savegame
-      ? savegame.maxKn
-      : {
-          generalKn: 0,
-          cultureKn: 0,
-          bioKn: 0,
-          technoKn: 0,
-        }
-  );
-  const [goal, setGoal] = useState(savegame ? savegame.goal : 100);
+const initialState = {
+  totalKnCountOfThisRun: savegame
+    ? savegame.totalKnCountOfThisRun
+    : { generalKn: 0, cultureKn: 0, bioKn: 0, technoKn: 0 },
+  clicks: savegame ? savegame.clicks : 0,
+  totalClicksOfAllTime: savegame ? savegame.totalClicksOfAllTime : 0,
+  totalKnOfAllTime: savegame
+    ? savegame.totalKnOfAllTime
+    : {
+        generalKn: 0,
+        cultureKn: 0,
+        bioKn: 0,
+        technoKn: 0,
+      },
+  resets: savegame ? savegame.resets : 0,
+  potenciaClick: savegame ? savegame.potenciaClick : 0,
+  knForfeitedAtReset: savegame
+    ? savegame.knForfeitedAtReset
+    : {
+        generalKn: 0,
+        cultureKn: 0,
+        bioKn: 0,
+        technoKn: 0,
+      },
+  maxKn: savegame
+    ? savegame.maxKn
+    : {
+        generalKn: 0,
+        cultureKn: 0,
+        bioKn: 0,
+        technoKn: 0,
+      },
+  goal: savegame ? savegame.goal : 100,
+};
+
+const actions = {
+  SET_CLICKS: "SET_CLICKS",
+  SET_TOTALCLICKSOFALLTIME: "SET_TOTALCLICKSOFALLTIME",
+  SET_TOTALKNCOUNTOFTHISRUN: "SET_TOTALKNCOUNTOFTHISRUN",
+  SET_TOTALKNOFALLTIME: "SET_TOTALKNOFALLTIME",
+  SET_RESETS: "SET_RESETS",
+  SET_POTENCIACLICK: "SET_POTENCIACLICK",
+  SET_KNFORFEITEDATRESET: "SET_KNFORFEITEDATRESET",
+  SET_MAXKN: "SET_MAXKN",
+  SET_GOAL: "SET_GOAL",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case actions.SET_CLICKS:
+      return { ...state, clicks: action.value };
+    case actions.SET_TOTALCLICKSOFALLTIME:
+      return { ...state, totalClicksOfAllTime: action.value };
+    case actions.SET_TOTALKNCOUNTOFTHISRUN:
+      return { ...state, totalKnCountOfThisRun: action.value };
+    case actions.SET_TOTALKNOFALLTIME:
+      return { ...state, totalKnOfAllTime: action.value };
+    case actions.SET_RESETS:
+      return { ...state, resets: action.value };
+    case actions.SET_KNFORFEITEDATRESET:
+      return { ...state, knForfeitedAtReset: action.value };
+    case actions.SET_MAXKN:
+      return { ...state, maxKn: action.value };
+    case actions.SET_POTENCIACLICK:
+      return { ...state, potenciaClick: action.value };
+    case actions.SET_GOAL:
+      return { ...state, goal: action.value };
+    default:
+      return state;
+  }
+}
+export const StatsProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const value = {
+    goal: state.goal,
+    clicks: state.clicks,
+    totalKnCountOfThisRun: state.totalKnCountOfThisRun,
+    totalClicksOfAllTime: state.totalClicksOfAllTime,
+    totalKnOfAllTime: state.totalKnOfAllTime,
+    knForfeitedAtReset: state.knForfeitedAtReset,
+    potenciaClick: state.potenciaClick,
+    resets: state.resets,
+    maxKn: state.maxKn,
+    setGoal: (value) => {
+      dispatch({ type: actions.SET_GOAL, value });
+    },
+    setClicks: (value) => {
+      dispatch({ type: actions.SET_CLICKS, value });
+    },
+    setTotalKnCountOfThisRun: (value) => {
+      dispatch({ type: actions.SET_TOTALKNCOUNTOFTHISRUN, value });
+    },
+    setTotalClicksOfAllTime: (value) => {
+      dispatch({ type: actions.SET_TOTALCLICKSOFALLTIME, value });
+    },
+    setTotalKnOfAllTime: (value) => {
+      dispatch({ type: actions.SET_TOTALKNOFALLTIME, value });
+    },
+    setKnForfeitedAtReset: (value) => {
+      dispatch({ type: actions.SET_KNFORFEITEDATRESET, value });
+    },
+    setPotenciaClick: (value) => {
+      dispatch({ type: actions.SET_POTENCIACLICK, value });
+    },
+    setResets: (value) => {
+      dispatch({ type: actions.SET_RESETS, value });
+    },
+    setMaxKn: (value) => {
+      dispatch({ type: actions.SET_MAXKN, value });
+    },
+  };
 
   return (
-    <StatsContext.Provider
-      value={{
-        goal,
-        setGoal,
-        clicks,
-        setClicks,
-        totalKnCountOfThisRun,
-        setTotalKnCountOfThisRun,
-        totalClicksOfAllTime,
-        setTotalClicksOfAllTime,
-        totalKnOfAllTime,
-        setTotalKnOfAllTime,
-        knForfeitedAtReset,
-        setKnForfeitedAtReset,
-        potenciaClick,
-        setPotenciaClick,
-        resets,
-        setResets,
-        maxKn,
-        setMaxKn,
-      }}
-    >
-      {children}
-    </StatsContext.Provider>
+    <StatsContext.Provider value={value}>{children}</StatsContext.Provider>
   );
 };
 

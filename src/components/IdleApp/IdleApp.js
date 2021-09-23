@@ -91,7 +91,7 @@ const IdleApp = () => {
               ) / 100}
               %
             </p>
-            <p>Total: {Math.floor(totalKn * 100) / 100} kN</p>
+            <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p>
           </div>
           <div
             unselectable="on"
@@ -101,21 +101,21 @@ const IdleApp = () => {
             <div className="kn-amount-display">
               <div>
                 <p>
-                  {dependencies.knCount.generalKn}
+                  {parseNumber(dependencies.knCount.generalKn)}
                   <span>kN</span>{" "}
                 </p>
                 <p>
-                  {dependencies.knCount.bioKn}
+                  {parseNumber(dependencies.knCount.bioKn)}
                   <span className="bioKn">kN</span>{" "}
                 </p>
               </div>
               <div>
                 <p>
-                  {dependencies.knCount.technoKn}
+                  {parseNumber(dependencies.knCount.technoKn)}
                   <span className="technoKn">kN</span>{" "}
                 </p>
                 <p>
-                  {dependencies.knCount.cultureKn}
+                  {parseNumber(dependencies.knCount.cultureKn)}
                   <span className="cultureKn">kN</span>{" "}
                 </p>
               </div>
