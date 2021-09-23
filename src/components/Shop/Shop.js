@@ -16,23 +16,23 @@ export const Shop = () => {
     setAutomatron1,
     squirrels,
     setSquirrels,
-    trees,
-    setTrees,
+    pageTrees,
+    setPageTrees,
   } = useContext(CounterContext);
 
   const [showDetails, setShowDetails] = useState(false);
-  const buildingItems = [multiplicador, automatron1, squirrels, trees];
+  const buildingItems = [multiplicador, automatron1, squirrels, pageTrees];
   const buildingSetItems = [
     setMultiplicador,
     setAutomatron1,
     setSquirrels,
-    setTrees,
+    setPageTrees,
   ];
   const buildingRequirements = [
     null,
     upgrades.technology.length >= 1,
     upgrades.nature.length >= 3 && upgrades.culture.length >= 4,
-    upgrades.nature.length >= 4 && upgrades.technology.length >= 4,
+    upgrades.nature.length >= 4 && upgrades.technology.length >= 3,
   ];
   return (
     <>

@@ -18,6 +18,7 @@ export const useContador = ({
   maxKn,
   setMaxKn,
   chosenBook,
+  pageTrees,
 }) => {
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
@@ -43,64 +44,81 @@ export const useContador = ({
     });
     const {
       genrlKnCountWithEffects,
-      bioKnCountWithEffects,
       technoKnCountWithEffects,
-      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CULTURE
-      /* cultureKnCountWithEffects, */
     } = setChosenBookEffect(automatron1);
-
+    const {
+      genrlKnCountWithEffects: genrlKnCountWithSquirrelEffects,
+      bioKnCountWithEffects,
+    } = setChosenBookEffect(squirrels);
+    const {
+      bioKnCountWithEffects: bioKnCountWithPageTreeEffects,
+      technoKnCountWithEffects: technoKnCountWithPageTreeEffects,
+    } = setChosenBookEffect(pageTrees);
     setKnCount({
       ...knCount,
       generalKn:
-        knCount.generalKn + Math.floor(genrlKnCountWithEffects * 100) / 100,
+        knCount.generalKn +
+        Math.floor(
+          (genrlKnCountWithEffects + genrlKnCountWithSquirrelEffects) * 100
+        ) /
+          100,
       bioKn:
-        squirrels > 0
-          ? knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100
-          : knCount.bioKn,
+        knCount.bioKn +
+        Math.floor(
+          (bioKnCountWithEffects + bioKnCountWithPageTreeEffects * 2) * 100
+        ) /
+          100,
       technoKn:
-        automatron1 > 0
-          ? knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100
-          : knCount.technoKn,
-      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CULTURE
-      /* cultureKn:
-        knCount.cultureKn + Math.floor(cultureKnCountWithEffects * 100) / 100, */
+        knCount.technoKn +
+        Math.floor(
+          (technoKnCountWithEffects + technoKnCountWithPageTreeEffects * 2) *
+            100
+        ) /
+          100,
     });
     setTotalKnCountOfThisRun({
       ...totalKnCountOfThisRun,
       generalKn:
         totalKnCountOfThisRun.generalKn +
-        Math.floor(genrlKnCountWithEffects * 100) / 100,
+        Math.floor(
+          (genrlKnCountWithEffects + genrlKnCountWithSquirrelEffects) * 100
+        ) /
+          100,
       bioKn:
-        squirrels > 0
-          ? knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100
-          : knCount.bioKn,
+        knCount.bioKn +
+        Math.floor(
+          (bioKnCountWithEffects + bioKnCountWithPageTreeEffects * 2) * 100
+        ) /
+          100,
       technoKn:
-        automatron1 > 0
-          ? knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100
-          : knCount.technoKn,
-      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CULTURE
-      /* cultureKn:
-        totalKnCountOfThisRun.cultureKn +
-        Math.floor(cultureKnCountWithEffects * 100) / 100, */
+        knCount.technoKn +
+        Math.floor(
+          (technoKnCountWithEffects + technoKnCountWithPageTreeEffects * 2) *
+            100
+        ) /
+          100,
     });
     setTotalKnOfAllTime({
       ...totalKnCountOfThisRun,
       generalKn:
-        automatron1 > 0
-          ? knCount.generalKn + Math.floor(technoKnCountWithEffects * 100) / 100
-          : knCount.generalKn,
+        knCount.generalKn +
+        Math.floor(
+          (genrlKnCountWithEffects + genrlKnCountWithSquirrelEffects) * 100
+        ) /
+          100,
       bioKn:
-        squirrels > 0
-          ? knCount.bioKn + Math.floor(bioKnCountWithEffects * 100) / 100
-          : knCount.bioKn,
+        knCount.bioKn +
+        Math.floor(
+          (bioKnCountWithEffects + bioKnCountWithPageTreeEffects * 2) * 100
+        ) /
+          100,
       technoKn:
-        automatron1 > 0
-          ? knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100
-          : knCount.technoKn,
-      // UNTIL THERE'S AUTOMATRON or SQUIRREL EQUIVALENT for CUTURE
-      /* cultureKn:
-        totalKnCountOfThisRun.cultureKn +
-        Math.floor(cultureKnCountWithEffects * 100) / 100, */
+        knCount.technoKn +
+        Math.floor(
+          (technoKnCountWithEffects + technoKnCountWithPageTreeEffects * 2) *
+            100
+        ) /
+          100,
     });
 
     // Update Progress Bar

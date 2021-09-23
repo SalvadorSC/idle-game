@@ -24,6 +24,7 @@ export const useCheats = () => {
     setTotalKnOfAllTime,
     totalKnCountOfThisRun,
     totalKnOfAllTime,
+    setPageTrees,
   } = useContext(CounterContext);
   const resetGame = () => {
     setGoal(100);
@@ -49,6 +50,7 @@ export const useCheats = () => {
     setPotenciaClick(0);
     setAutomatron1(0);
     setSquirrels(0);
+    setPageTrees(0);
     setResets((resets) => resets + 1);
     setClicks(0);
     setTotalClicksOfAllTime(totalClicksOfAllTime);
@@ -100,6 +102,7 @@ export const useCheats = () => {
       bioKn: 0,
       technoKn: 0,
     });
+    setPageTrees(0);
   };
   const cheat = () => {
     setKnCount({
