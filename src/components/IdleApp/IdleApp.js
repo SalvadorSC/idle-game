@@ -49,7 +49,7 @@ const IdleApp = () => {
               {dependencies.generatedKn.generatedTechnoKn}
               <span className="technoKn">kN</span> and{" "}
               {dependencies.generatedKn.generatedCultureKn}
-              <span className="cultureKn">kN</span>, while offline.
+              <span className="cultureKn">kN</span>, while lucid dreaming.
               <button
                 className="generatedKn-button"
                 onClick={() => {

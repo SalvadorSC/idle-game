@@ -108,7 +108,7 @@
       "upgrade": "The secret life of trees",
       "requirementField": "nature",
       "requirement": "The grand book of animals",
-      "description": "There's something about birds that I don't like... Don't trust them. Also why does the name of this book resemble a gossip magazine??"
+      "description": "Maybe... maybe trees do hear and feel and communicate and everything!"
     },
     {
       "price": [50000, 0, 50000, 0],
@@ -116,7 +116,15 @@
       "upgrade": "Steps into robotics",
       "requirementField": "technology",
       "requirement": "DIY at home",
-      "description": "You learn by reading books, but what about those who can't read? Teach them."
+      "description": "One step to the left, one step to the right, one step into robotics."
+    },
+    {
+      "price": [50000, 50000, 50000, 50000],
+      "field": "culture",
+      "upgrade": "Are you dreaming?",
+      "requirementField": "technology",
+      "requirement": "Steps into robotics",
+      "description": "A thoroughly enjoyable, compendious and insightful guide for those interested in exploring their inner worlds."
     }
   ]
 }

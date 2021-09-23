@@ -108,10 +108,7 @@ export const CounterProvider = ({ children }) => {
     if (showBuffer && lastLogin !== 0) {
       setShowBuffer(false);
 
-      if (
-        newLogin - lastLogin > 60 * 1000 &&
-        (automatron1 > 0 || squirrels > 0)
-      ) {
+      if (newLogin - lastLogin > 60 * 1000 && upgrades.culture.length >= 5) {
         setShowGeneratedKnAlert(true);
         debugger;
         const secondsElapsedSinceLastLogin = (Date.now() - lastLogin) / 1000;
