@@ -93,6 +93,7 @@ export const CounterProvider = ({ children }) => {
         setPageTrees,
         upgrades,
         setUpgrades,
+        baseUpgrades,
       }}
     >
       {children}
