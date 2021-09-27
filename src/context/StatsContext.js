@@ -5,12 +5,14 @@ const StatsContext = createContext();
 let savegame = JSON.parse(localStorage.getItem("save"));
 
 const initialState = {
-  totalKnCountOfThisRun: savegame
+  totalKnCountOfThisRun: savegame.totalKnCountOfThisRun
     ? savegame.totalKnCountOfThisRun
     : { generalKn: 0, cultureKn: 0, bioKn: 0, technoKn: 0 },
-  clicks: savegame ? savegame.clicks : 0,
-  totalClicksOfAllTime: savegame ? savegame.totalClicksOfAllTime : 0,
-  totalKnOfAllTime: savegame
+  clicks: savegame.clicks ? savegame.clicks : 0,
+  totalClicksOfAllTime: savegame.totalClicksOfAllTime
+    ? savegame.totalClicksOfAllTime
+    : 0,
+  totalKnOfAllTime: savegame.totalKnOfAllTime
     ? savegame.totalKnOfAllTime
     : {
         generalKn: 0,
@@ -18,9 +20,9 @@ const initialState = {
         bioKn: 0,
         technoKn: 0,
       },
-  resets: savegame ? savegame.resets : 0,
-  potenciaClick: savegame ? savegame.potenciaClick : 0,
-  knForfeitedAtReset: savegame
+  resets: savegame.resets ? savegame.resets : 0,
+  potenciaClick: savegame.potenciaClick ? savegame.potenciaClick : 0,
+  knForfeitedAtReset: savegame.knForfeitedAtReset
     ? savegame.knForfeitedAtReset
     : {
         generalKn: 0,
@@ -28,7 +30,7 @@ const initialState = {
         bioKn: 0,
         technoKn: 0,
       },
-  maxKn: savegame
+  maxKn: savegame.maxKn
     ? savegame.maxKn
     : {
         generalKn: 0,
@@ -36,7 +38,7 @@ const initialState = {
         bioKn: 0,
         technoKn: 0,
       },
-  goal: savegame ? savegame.goal : 100,
+  goal: savegame.goal ? savegame.goal : 100,
 };
 
 const actions = {

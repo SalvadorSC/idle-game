@@ -37,7 +37,7 @@ const IdleApp = () => {
     if (
       !dependencies.automatron1 ||
       !dependencies.squirrels ||
-      !dependencies.pageTree
+      !dependencies.pageTrees
     ) {
       if (!personajeMoving) {
         characterGif.src = personajeOneLoop;

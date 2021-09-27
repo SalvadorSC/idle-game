@@ -10,16 +10,16 @@ const baseUpgrades = {
   culture: [],
 };
 const initialState = {
-  multiplicador: savegame ? savegame.multiplicador : 1,
-  automatron1: savegame ? savegame.automatron1 : 0,
-  squirrels: savegame ? savegame.squirrels : 0,
-  pageTrees: savegame ? savegame.pageTrees : 0,
-  knCount: savegame
+  multiplicador: savegame.multiplicador ? savegame.multiplicador : 1,
+  automatron1: savegame.automatron1 ? savegame.automatron1 : 0,
+  squirrels: savegame.squirrels ? savegame.squirrels : 0,
+  pageTrees: savegame.pageTrees ? savegame.pageTrees : 0,
+  knCount: savegame.knCount
     ? savegame.knCount
     : { generalKn: 0, cultureKn: 0, bioKn: 0, technoKn: 0 },
-  upgrades: savegame ? savegame.upgrades : baseUpgrades,
-  chosenBook: savegame ? savegame.chosenBook : "General Culture I",
-  lastLogin: savegame ? savegame.lastLogin : 0,
+  upgrades: savegame.upgrades ? savegame.upgrades : baseUpgrades,
+  chosenBook: savegame.chosenBook ? savegame.chosenBook : "General Culture I",
+  lastLogin: savegame.lastLogin ? savegame.lastLogin : 0,
 };
 
 const actions = {
@@ -43,7 +43,7 @@ function reducer(state, action) {
     case actions.SET_SQUIRRELS:
       return { ...state, squirrels: action.value };
     case actions.SET_PAGETREES:
-      return { ...state, pageTree: action.value };
+      return { ...state, pageTrees: action.value };
     case actions.SET_KNCOUNT:
       return { ...state, knCount: action.value };
     case actions.SET_UPGRADES:

@@ -187,7 +187,12 @@ export const UpgradeItem = ({
                   <>
                     {price > 0 && price}
                     {price > 0 && (
-                      <span className={cssClasses[i]}>kn</span>
+                      <span
+                        key={price + cssClasses[i]}
+                        className={cssClasses[i]}
+                      >
+                        kn
+                      </span>
                     )}{" "}
                   </>
                 ))}

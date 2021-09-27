@@ -37,7 +37,6 @@ export const useOfflineProduction = ({
         const getGeneratedKn = (knWithEffects) =>
           Math.floor(knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100) /
           100;
-        debugger;
         setKnCount({
           ...knCount,
           generalKn:
