@@ -1,4 +1,4 @@
-/* import React, { useContext } from "react";
+import React, { useContext } from "react";
 import useSound from "use-sound";
 import boopSfx from "../../assets/music.mp3";
 import "./BoopButton.css";
@@ -43,4 +43,3 @@ const BoopButton = () => {
   );
 };
 export default BoopButton;
- */

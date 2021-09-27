@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import CounterContext from "../../context/CounterContext";
+import MiscContext from "../../context/MiscContext";
 import { useCheats } from "../../hooks/useCheats";
 import "./Options.css";
 
 export const Options = () => {
   const { resetGame, resetAllGame, cheat } = useCheats();
   const { stop, setStop } = useContext(CounterContext);
+  const { mute, setMute } = useContext(MiscContext);
   let encodedSave = localStorage.getItem("encodedSave");
   const [showSave, setShowSave] = useState(false);
   const [rexport, setRexport] = useState(false);
@@ -75,6 +77,9 @@ export const Options = () => {
         <button className="reset-button" onClick={resetAllGame}>
           Reset All
         </button>
+        {/* <button className="mute-button" onClick={() => setMute(!mute)}>
+          {mute ? "Unmute" : "Mute"}
+        </button> */}
         {/* <button className="reset-button" onClick={() => handleSave("export")}>
           Export Save
         </button>
