@@ -3,7 +3,7 @@ import React from "react";
 export const ShopItemName = ({ nameInfo }) => {
   const { name, handleDetails, setShowDetails, item } = nameInfo;
   return (
-    <p className="shop-item-name">
+    <span className="shop-item-name">
       {name}: {item}
       <div
         onMouseEnter={() => handleDetails()}
@@ -12,6 +12,6 @@ export const ShopItemName = ({ nameInfo }) => {
       >
         i
       </div>
-    </p>
+    </span>
   );
 };
