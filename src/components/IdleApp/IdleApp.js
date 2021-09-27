@@ -101,7 +101,7 @@ const IdleApp = () => {
               {BoopButton()}
             </div>
 
-            <button onClick={() => setMute(!mute)}>
+            <button className="mute-button" onClick={() => setMute(!mute)}>
               {mute ? "Unmute" : "Mute"}
             </button>
           </div>

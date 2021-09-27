@@ -227,3 +227,9 @@ span.chosen-book {
   margin: 20px auto;
   width: 90%;
 }
+
+.mute-button {
+  background-color: rgba(204, 204, 204, 0.5);
+  border: none;
+  width: 60px;
+}
