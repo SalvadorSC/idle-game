@@ -6,7 +6,7 @@ import { Stats } from "../Stats/Stats";
 import CounterContext from "../../context/CounterContext";
 import { useNumberParsing } from "../../hooks/useNumberParsing";
 import "./IdleApp.css";
-import BoopButton from "../BoopButton/BoopButton";
+/* import BoopButton from "../BoopButton/BoopButton"; */
 import { useIncrementByClick } from "../../hooks/useIncrementByClick";
 import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
@@ -85,10 +85,10 @@ const IdleApp = () => {
 
         <div className="first-half">
           <div className="header">
-            <div className="music-div">
+            {/* <div className="music-div">
               <label className="music-tag">Music</label>
               {BoopButton()}
-            </div>
+            </div> */}
 
             <button className="mute-button" onClick={() => setMute(!mute)}>
               {mute ? "Unmute" : "Mute"}
