@@ -12,6 +12,8 @@ import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 import buffer from "../../assets/Infinity.svg";
+import personajeOneLoop from "../../assets/output-onlinegiftools.gif";
+import personajeStatic from "../../assets/lecteur-firstFrame.png";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
 const IdleApp = () => {
@@ -29,9 +31,34 @@ const IdleApp = () => {
     statDependencies.totalKnCountOfThisRun.bioKn +
     statDependencies.totalKnCountOfThisRun.technoKn +
     statDependencies.totalKnCountOfThisRun.cultureKn;
-
+  const resetAnimation = () => {
+    const characterGif = document.querySelector(".character");
+    let personajeMoving = null;
+    if (
+      !dependencies.automatron1 ||
+      !dependencies.squirrels ||
+      !dependencies.pageTree
+    ) {
+      if (!personajeMoving) {
+        characterGif.src = personajeOneLoop;
+      }
+      // eslint-disable-next-line no-self-assign
+      characterGif.src = characterGif.src;
+      setTimeout(() => {
+        characterGif.src = personajeStatic;
+        personajeMoving = false;
+      }, 1000);
+    } else {
+      if (!personajeMoving) {
+        characterGif.src = personajeOneLoop;
+      }
+      // eslint-disable-next-line no-self-assign
+      characterGif.src = characterGif.src;
+    }
+  };
   const handleClick = () => {
     increment(dependencies.upgrades);
+    resetAnimation();
     //Sound Effect
     play();
   };
@@ -101,30 +128,26 @@ const IdleApp = () => {
             <div className="kn-amount-display">
               <div>
                 <p>
-                  {parseNumber(dependencies.knCount.generalKn)}
+                  {/* parseNumber( */ dependencies.knCount.generalKn /* ) */}
                   <span>kN</span>{" "}
                 </p>
                 <p>
-                  {parseNumber(dependencies.knCount.bioKn)}
+                  {/* parseNumber( */ dependencies.knCount.bioKn /* ) */}
                   <span className="bioKn">kN</span>{" "}
                 </p>
               </div>
               <div>
                 <p>
-                  {parseNumber(dependencies.knCount.technoKn)}
+                  {/* parseNumber( */ dependencies.knCount.technoKn /* ) */}
                   <span className="technoKn">kN</span>{" "}
                 </p>
                 <p>
-                  {parseNumber(dependencies.knCount.cultureKn)}
+                  {/* parseNumber( */ dependencies.knCount.cultureKn /* ) */}
                   <span className="cultureKn">kN</span>{" "}
                 </p>
               </div>
             </div>
-            {/* <img
-              className="character"
-              src="https://via.placeholder.com/64"
-              alt="personaje"
-            /> */}
+            <img className="character" src={personajeStatic} alt="personaje" />
           </div>
         </div>
         <div className="second-half">

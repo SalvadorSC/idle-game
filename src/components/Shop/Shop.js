@@ -41,6 +41,7 @@ export const Shop = () => {
         {buildingsInfo.map((building, i) => {
           return (
             <ShopItem
+              key={building.name}
               setShowDetails={setShowDetails}
               name={building.name}
               item={buildingItems[i]}

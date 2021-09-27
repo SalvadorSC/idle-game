@@ -3,6 +3,7 @@ import CounterContext from "../context/CounterContext";
 import { useContador } from "./useContador";
 import { useChosenKn } from "./useChosenKn";
 import StatsContext from "../context/StatsContext";
+import personajeOneLoop from "../assets/output-onlinegiftools.gif";
 import MiscContext from "../context/MiscContext";
 
 export const useIncrementByClick = () => {
@@ -92,6 +93,10 @@ export const useIncrementByClick = () => {
     const timer = setTimeout(() => {
       if (automatron1 > 0 || squirrels > 0 || pageTrees > 0) {
         incrementEverySecond(upgrades);
+        const characterGif = document.querySelector(".character");
+        characterGif.src = personajeOneLoop;
+        // eslint-disable-next-line no-self-assign
+        characterGif.src = characterGif.src;
       }
       setLastLogin(Date.now());
     }, 1e3);
@@ -116,19 +121,7 @@ export const useIncrementByClick = () => {
         Math.floor(technoKnCountWithEffects * 100) / 100 +
         Math.floor(cultureKnCountWithEffects * 100) / 100
     );
-    setMaxKn({
-      generalKn:
-        maxKn.generalKn < knCount.generalKn
-          ? knCount.generalKn
-          : maxKn.generalKn,
-      cultureKn:
-        maxKn.cultureKn < knCount.cultureKn
-          ? knCount.cultureKn
-          : maxKn.cultureKn,
-      bioKn: maxKn.bioKn < knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
-      technoKn:
-        maxKn.technoKn < knCount.technoKn ? knCount.technoKn : maxKn.technoKn,
-    });
+
     setKnCount({
       ...knCount,
       generalKn:
@@ -138,6 +131,19 @@ export const useIncrementByClick = () => {
         knCount.technoKn + Math.floor(technoKnCountWithEffects * 100) / 100,
       cultureKn:
         knCount.cultureKn + Math.floor(cultureKnCountWithEffects * 100) / 100,
+    });
+    setMaxKn({
+      generalKn:
+        maxKn.generalKn <= knCount.generalKn
+          ? knCount.generalKn
+          : maxKn.generalKn,
+      cultureKn:
+        maxKn.cultureKn <= knCount.cultureKn
+          ? knCount.cultureKn
+          : maxKn.cultureKn,
+      bioKn: maxKn.bioKn <= knCount.bioKn ? knCount.bioKn : maxKn.bioKn,
+      technoKn:
+        maxKn.technoKn <= knCount.technoKn ? knCount.technoKn : maxKn.technoKn,
     });
     setTotalKnCountOfThisRun({
       ...totalKnCountOfThisRun,

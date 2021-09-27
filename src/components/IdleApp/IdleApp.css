@@ -43,6 +43,9 @@
   justify-content: space-around;
   align-items: center;
 }
+.display-knCount {
+  height: auto;
+}
 
 .buffer {
   width: 100vw;
@@ -92,6 +95,7 @@
   image-rendering: crisp-edges;
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
+  margin-top: 5px;
 }
 .tree-item-container {
   width: 100%;

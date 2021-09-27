@@ -88,7 +88,7 @@ export const UpgradeItem = ({
     if (cssClasses === []) {
       setCssClasses(["", "bioKn", "technoKn", "cultureKn"]);
     } else {
-      return "upgrade-name ";
+      return "upgrade-name";
     }
   };
   useEffect(() => {
@@ -112,10 +112,10 @@ export const UpgradeItem = ({
               setShowUpgrade(false);
             } else if (
               potenciaClick >= price[0] / 100 ||
-              (maxKn.generalKn * 2 > price[0] &&
-                maxKn.bioKn * 2 > price[1] &&
-                maxKn.technoKn * 2 > price[2] &&
-                maxKn.cultureKn * 2 > price[3])
+              (maxKn.generalKn * 2 >= price[0] &&
+                maxKn.bioKn * 2 >= price[1] &&
+                maxKn.technoKn * 2 >= price[2] &&
+                maxKn.cultureKn * 2 >= price[3])
             ) {
               setShowUpgrade(true);
             } else setShowUpgrade(false);

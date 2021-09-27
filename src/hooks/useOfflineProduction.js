@@ -2,12 +2,10 @@ import { useState } from "react";
 import { useChosenKn } from "./useChosenKn";
 
 export const useOfflineProduction = ({
+  knCount,
   chosenBook,
   multiplicador,
   setKnCount,
-  setTotalKnOfAllTime,
-  setMaxKn,
-  setTotalKnCountOfThisRun,
   lastLogin,
   setLastLogin,
   upgrades,
@@ -39,33 +37,31 @@ export const useOfflineProduction = ({
         const getGeneratedKn = (knWithEffects) =>
           Math.floor(knWithEffects * secondsElapsedSinceLastLogin * 0.1 * 100) /
           100;
-        setKnCount((knCount) => {
-          return {
-            ...knCount,
-            generalKn:
-              Math.floor(
-                (knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
-                  100
-              ) / 100,
+        debugger;
+        setKnCount({
+          ...knCount,
+          generalKn:
+            Math.floor(
+              (knCount.generalKn + getGeneratedKn(genrlKnCountWithEffects)) *
+                100
+            ) / 100,
 
-            bioKn:
-              Math.floor(
-                (knCount.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
-              ) / 100,
-            technoKn:
-              Math.floor(
-                (knCount.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
-                  100
-              ) / 100,
-            cultureKn:
-              Math.floor(
-                (knCount.cultureKn +
-                  getGeneratedKn(cultureKnCountWithEffects)) *
-                  100
-              ) / 100,
-          };
+          bioKn:
+            Math.floor(
+              (knCount.bioKn + getGeneratedKn(bioKnCountWithEffects)) * 100
+            ) / 100,
+          technoKn:
+            Math.floor(
+              (knCount.technoKn + getGeneratedKn(technoKnCountWithEffects)) *
+                100
+            ) / 100,
+          cultureKn:
+            Math.floor(
+              (knCount.cultureKn + getGeneratedKn(cultureKnCountWithEffects)) *
+                100
+            ) / 100,
         });
-        setMaxKn((maxKn) => {
+        /* setMaxKn((maxKn) => {
           return {
             generalKn:
               Math.floor(
@@ -148,7 +144,7 @@ export const useOfflineProduction = ({
                   100
               ) / 100,
           };
-        });
+        }); */
         setGeneratedKn({
           generatedGnKn: getGeneratedKn(genrlKnCountWithEffects),
           generatedBioKn: getGeneratedKn(bioKnCountWithEffects),
