@@ -49,19 +49,21 @@ export const Stats = () => {
         <div className="achievements-section">
           <p className="stats-section-title">Achievements </p>
           <div className="achievement-container">
-            <p className="achievement-box">{goal > 100 && "100kN"}</p>
-            <p className="achievement-box">{goal > 1000 && "1.000kN"}</p>
-            <p className="achievement-box">{goal > 100000 && "100.000kN"}</p>
-            <p className="achievement-box">{goal > 1000000 && "1.000.000kN"}</p>
-            <p className="achievement-box">{clicks > 500 && "500 clicks"}</p>
+            <p className="achievement-box">{goal >= 100 && "100kN"}</p>
+            <p className="achievement-box">{goal >= 1000 && "1.000kN"}</p>
+            <p className="achievement-box">{goal >= 100000 && "100.000kN"}</p>
             <p className="achievement-box">
-              {clicks > 10000 && "10.000 clicks"}
+              {goal >= 1000000 && "1.000.000kN"}
+            </p>
+            <p className="achievement-box">{clicks >= 500 && "500 clicks"}</p>
+            <p className="achievement-box">
+              {clicks >= 10000 && "10.000 clicks"}
             </p>
             <p className="achievement-box">
-              {clicks > 100000 && "100.000 clicks"}
+              {clicks >= 100000 && "100.000 clicks"}
             </p>
             <p className="achievement-box">
-              {goal > 1000000000 && "1.000.000.000"}
+              {goal >= 1000000000 && "1.000.000.000"}
             </p>
 
             <p className="achievement-box">
@@ -69,43 +71,51 @@ export const Stats = () => {
             </p>
 
             <p className="achievement-box">
-              {goal > 100000000000 && "100.000.000.000"}
+              {goal >= 100000000000 && "100.000.000.000"}
             </p>
             {multiplicador > 1 && <p className="achievement-box">1 MX</p>}
-            <p className="achievement-box">{multiplicador > 10 && "10 MX"}</p>
-            <p className="achievement-box">{multiplicador > 100 && "100 MX"}</p>
-
+            <p className="achievement-box">{multiplicador >= 10 && "10 MX"}</p>
             <p className="achievement-box">
-              {multiplicador > 1000 && "1000 MX"}
+              {multiplicador >= 100 && "100 MX"}
             </p>
 
             <p className="achievement-box">
-              {multiplicador > 100000 && "100000 MX"}
+              {multiplicador >= 1000 && "1000 MX"}
             </p>
-            <p className="achievement-box">{automatron1 > 1 && "1 AuM1"}</p>
-            <p className="achievement-box"> {automatron1 > 10 && "10 AuM1"}</p>
-            <p className="achievement-box">{automatron1 > 100 && "100 AuM1"}</p>
+
             <p className="achievement-box">
-              {automatron1 > 1000 && "1000 AuM1"}
+              {multiplicador >= 100000 && "100000 MX"}
+            </p>
+            <p className="achievement-box">{automatron1 >= 1 && "1 AuM1"}</p>
+            <p className="achievement-box"> {automatron1 >= 10 && "10 AuM1"}</p>
+            <p className="achievement-box">
+              {automatron1 >= 100 && "100 AuM1"}
             </p>
             <p className="achievement-box">
-              {automatron1 > 100000 && "100000 AuM1"}
+              {automatron1 >= 1000 && "1000 AuM1"}
             </p>
-            <p className="achievement-box">{squirrels > 1 && "1 Sqrr"}</p>
-            <p className="achievement-box"> {squirrels > 10 && "10 Sqrr"}</p>
-            <p className="achievement-box">{squirrels > 100 && "100 Sqrr"}</p>
-            <p className="achievement-box">{squirrels > 1000 && "1000 Sqrr"}</p>
             <p className="achievement-box">
-              {squirrels > 100000 && "100000 Sqrr"}
+              {automatron1 >= 100000 && "100000 AuM1"}
             </p>
-            <p className="achievement-box">{pageTrees > 1 && "1 PgTr"}</p>
-            <p className="achievement-box"> {pageTrees > 10 && "10 PgTr"}</p>
-            <p className="achievement-box">{pageTrees > 100 && "100 PgTr"}</p>
-            <p className="achievement-box">{pageTrees > 1000 && "1000 PgTr"}</p>
+            <p className="achievement-box">{squirrels >= 1 && "1 Sqrr"}</p>
+            <p className="achievement-box"> {squirrels >= 10 && "10 Sqrr"}</p>
+            <p className="achievement-box">{squirrels >= 100 && "100 Sqrr"}</p>
             <p className="achievement-box">
-              {pageTrees > 100000 && "100000 PgTr"}
+              {squirrels >= 1000 && "1000 Sqrr"}
             </p>
-            <p className="achievement-box">{resets > 0 && "Reset once"}</p>
+            <p className="achievement-box">
+              {squirrels >= 100000 && "100000 Sqrr"}
+            </p>
+            <p className="achievement-box">{pageTrees >= 1 && "1 PgTr"}</p>
+            <p className="achievement-box"> {pageTrees >= 10 && "10 PgTr"}</p>
+            <p className="achievement-box">{pageTrees >= 100 && "100 PgTr"}</p>
+            <p className="achievement-box">
+              {pageTrees >= 1000 && "1000 PgTr"}
+            </p>
+            <p className="achievement-box">
+              {pageTrees >= 100000 && "100000 PgTr"}
+            </p>
+            <p className="achievement-box">{resets >= 1 && "Reset once"}</p>
           </div>
         </div>
       </div>
