@@ -99,7 +99,9 @@ export const useIncrementByClick = () => {
         // eslint-disable-next-line no-self-assign
         characterGif.src = characterGif.src;
       }
-      setLastLogin(Date.now());
+      if (!stop) {
+        setLastLogin(Date.now());
+      }
     }, 1e3);
     return () => clearTimeout(timer);
   });

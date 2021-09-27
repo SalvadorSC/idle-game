@@ -12,7 +12,7 @@ export const Options = () => {
   const [rimport, setRimport] = useState(false);
   const [buttonOptions, setButtonOptions] = useState("");
   const [clicked, setClicked] = useState(true);
-  const handleSave = (action) => {
+  /* const handleSave = (action) => {
     setShowSave(true);
     if (action === "import") {
       setRimport(true);
@@ -21,7 +21,7 @@ export const Options = () => {
       setRexport(true);
       setButtonOptions("Copy");
     }
-  };
+  }; */
   const handleClick = () => {
     if (rimport) {
       localStorage.setItem(
@@ -75,12 +75,12 @@ export const Options = () => {
         <button className="reset-button" onClick={resetAllGame}>
           Reset All
         </button>
-        <button className="reset-button" onClick={() => handleSave("export")}>
+        {/* <button className="reset-button" onClick={() => handleSave("export")}>
           Export Save
         </button>
         <button className="reset-button" onClick={() => handleSave("import")}>
           Import Save
-        </button>
+        </button> */}
       </div>
       <div className="credits-container">
         <p>Credits</p>
