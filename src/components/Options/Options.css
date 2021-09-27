@@ -80,12 +80,13 @@
 .credits-container {
   width: 80%;
   text-align: left;
+  color: white;
 }
 
 .my-credits-link {
-  color: rgb(128, 175, 228);
+  color: rgb(175, 194, 216);
 }
 .credits-link {
-  color: black;
+  color: white;
   text-decoration: none;
 }

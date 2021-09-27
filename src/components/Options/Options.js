@@ -106,7 +106,7 @@ export const Options = () => {
             className="credits-link"
             href="https://www.freepik.es/vectores/fondo"
           >
-            Backround vector created by upklyak - www.freepik.es
+            Background vector created by upklyak - www.freepik.es
           </a>
         </p>
       </div>
