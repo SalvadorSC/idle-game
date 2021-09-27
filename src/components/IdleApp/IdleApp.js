@@ -85,10 +85,10 @@ const IdleApp = () => {
 
         <div className="first-half">
           <div className="header">
-            <div className="music-div">
+            <form className="music-div">
               <label className="music-tag">Music</label>
               {BoopButton()}
-            </div>
+            </form>
 
             <button className="mute-button" onClick={() => setMute(!mute)}>
               {mute ? "Unmute" : "Mute"}
