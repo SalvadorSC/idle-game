@@ -25,11 +25,11 @@ const IdleApp = () => {
   const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
-  const totalKn =
+  /* const totalKn =
     statDependencies.totalKnCountOfThisRun.generalKn +
     statDependencies.totalKnCountOfThisRun.bioKn +
     statDependencies.totalKnCountOfThisRun.technoKn +
-    statDependencies.totalKnCountOfThisRun.cultureKn;
+    statDependencies.totalKnCountOfThisRun.cultureKn; */
   const resetAnimation = () => {
     const characterGif = document.querySelector(".character");
     if (
