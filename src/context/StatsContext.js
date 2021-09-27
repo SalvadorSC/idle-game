@@ -1,18 +1,21 @@
 import React, { createContext, useReducer } from "react";
+import { decode } from "base-64";
 
 const StatsContext = createContext();
 
-let savegame = JSON.parse(localStorage.getItem("save"));
+let encodedSave = localStorage.getItem("encodedSave");
+let savegame;
+if (encodedSave) {
+  savegame = JSON.parse(decode(encodedSave));
+}
 
 const initialState = {
-  totalKnCountOfThisRun: savegame.totalKnCountOfThisRun
+  totalKnCountOfThisRun: savegame
     ? savegame.totalKnCountOfThisRun
     : { generalKn: 0, cultureKn: 0, bioKn: 0, technoKn: 0 },
-  clicks: savegame.clicks ? savegame.clicks : 0,
-  totalClicksOfAllTime: savegame.totalClicksOfAllTime
-    ? savegame.totalClicksOfAllTime
-    : 0,
-  totalKnOfAllTime: savegame.totalKnOfAllTime
+  clicks: savegame ? savegame.clicks : 0,
+  totalClicksOfAllTime: savegame ? savegame.totalClicksOfAllTime : 0,
+  totalKnOfAllTime: savegame
     ? savegame.totalKnOfAllTime
     : {
         generalKn: 0,
@@ -20,9 +23,9 @@ const initialState = {
         bioKn: 0,
         technoKn: 0,
       },
-  resets: savegame.resets ? savegame.resets : 0,
-  potenciaClick: savegame.potenciaClick ? savegame.potenciaClick : 0,
-  knForfeitedAtReset: savegame.knForfeitedAtReset
+  resets: savegame ? savegame.resets : 0,
+  potenciaClick: savegame ? savegame.potenciaClick : 0,
+  knForfeitedAtReset: savegame
     ? savegame.knForfeitedAtReset
     : {
         generalKn: 0,
@@ -30,7 +33,7 @@ const initialState = {
         bioKn: 0,
         technoKn: 0,
       },
-  maxKn: savegame.maxKn
+  maxKn: savegame
     ? savegame.maxKn
     : {
         generalKn: 0,
@@ -38,7 +41,7 @@ const initialState = {
         bioKn: 0,
         technoKn: 0,
       },
-  goal: savegame.goal ? savegame.goal : 100,
+  goal: savegame ? savegame.goal : 100,
 };
 
 const actions = {

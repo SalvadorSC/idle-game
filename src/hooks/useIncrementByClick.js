@@ -5,7 +5,7 @@ import { useChosenKn } from "./useChosenKn";
 import StatsContext from "../context/StatsContext";
 import personajeOneLoop from "../assets/lecteur-oneloop-2.gif";
 import MiscContext from "../context/MiscContext";
-
+import { encode } from "base-64";
 export const useIncrementByClick = () => {
   const {
     knCount,
@@ -105,7 +105,8 @@ export const useIncrementByClick = () => {
 
   // save function
   useEffect(() => {
-    localStorage.setItem("save", JSON.stringify(save));
+    // localStorage.setItem("save", JSON.stringify(save));
+    localStorage.setItem("encodedSave", encode(JSON.stringify(save)));
   }, [save]);
 
   const increment = () => {
