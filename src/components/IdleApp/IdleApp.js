@@ -12,7 +12,7 @@ import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 import buffer from "../../assets/Infinity.svg";
-import personajeOneLoop from "../../assets/output-onlinegiftools.gif";
+import personajeOneLoop from "../../assets/lecteur-oneloop-2.gif";
 import personajeStatic from "../../assets/lecteur-firstFrame.png";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
@@ -33,25 +33,14 @@ const IdleApp = () => {
     statDependencies.totalKnCountOfThisRun.cultureKn;
   const resetAnimation = () => {
     const characterGif = document.querySelector(".character");
-    let personajeMoving = null;
     if (
       !dependencies.automatron1 ||
       !dependencies.squirrels ||
       !dependencies.pageTrees
     ) {
-      if (!personajeMoving) {
-        characterGif.src = personajeOneLoop;
-      }
       // eslint-disable-next-line no-self-assign
       characterGif.src = characterGif.src;
-      setTimeout(() => {
-        characterGif.src = personajeStatic;
-        personajeMoving = false;
-      }, 1000);
     } else {
-      if (!personajeMoving) {
-        characterGif.src = personajeOneLoop;
-      }
       // eslint-disable-next-line no-self-assign
       characterGif.src = characterGif.src;
     }
@@ -147,7 +136,7 @@ const IdleApp = () => {
                 </p>
               </div>
             </div>
-            <img className="character" src={personajeStatic} alt="personaje" />
+            <img className="character" src={personajeOneLoop} alt="personaje" />
           </div>
         </div>
         <div className="second-half">
