@@ -5,13 +5,13 @@ export const ShopItemName = ({ nameInfo }) => {
   return (
     <span className="shop-item-name">
       {name}: {item}
-      <div
+      <span
         onMouseEnter={() => handleDetails()}
         onMouseOut={() => setShowDetails(false)}
         className="info-bullet"
       >
         i
-      </div>
+      </span>
     </span>
   );
 };
