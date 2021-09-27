@@ -6,7 +6,6 @@ export const useCheats = () => {
   const {
     setMultiplicador,
     setKnCount,
-
     setAutomatron1,
     setSquirrels,
     knCount,
@@ -17,6 +16,7 @@ export const useCheats = () => {
   } = useContext(CounterContext);
   const {
     setGoal,
+    resets,
     setResets,
     setClicks,
     setTotalClicksOfAllTime,
@@ -55,7 +55,7 @@ export const useCheats = () => {
     setAutomatron1(0);
     setSquirrels(0);
     setPageTrees(0);
-    setResets((resets) => resets + 1);
+    setResets(resets + 1);
     setClicks(0);
     setTotalClicksOfAllTime(totalClicksOfAllTime);
     setUpgrades(baseUpgrades);

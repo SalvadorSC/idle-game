@@ -13,7 +13,6 @@ import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 import buffer from "../../assets/Infinity.svg";
 import personajeOneLoop from "../../assets/lecteur-oneloop-2.gif";
-import personajeStatic from "../../assets/lecteur-firstFrame.png";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
 const IdleApp = () => {
@@ -33,8 +32,18 @@ const IdleApp = () => {
     statDependencies.totalKnCountOfThisRun.cultureKn;
   const resetAnimation = () => {
     const characterGif = document.querySelector(".character");
-    // eslint-disable-next-line no-self-assign
-    characterGif.src = characterGif.src;
+    if (
+      !dependencies.automatron1 ||
+      !dependencies.squirrels ||
+      !dependencies.pageTrees
+    ) {
+      characterGif.src = personajeOneLoop;
+      // eslint-disable-next-line no-self-assign
+      characterGif.src = characterGif.src;
+    } else {
+      // eslint-disable-next-line no-self-assign
+      characterGif.src = characterGif.src;
+    }
   };
   const handleClick = () => {
     increment(dependencies.upgrades);
