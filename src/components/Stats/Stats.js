@@ -38,9 +38,6 @@ export const Stats = () => {
             <p>Total clicks of all time: {totalClicksOfAllTime} clicks</p>
             <p>Total Knowledge of this run: {totalKnOfThisRun} kN</p>
             <p>Total Knowledge of all time: {totalKnOfAllRuns} kN</p>
-            {/* <p>Longest run time:</p> */}
-            {/* <p>Current run time:{currentRunTime}</p> */}
-            {/* <p>Number of resets: {resets}</p> */}
             <p>
               Total kN forfeited by reset: {knForfeitedAtReset.generalKn} kN
             </p>
