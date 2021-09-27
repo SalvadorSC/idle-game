@@ -86,7 +86,7 @@ const IdleApp = () => {
         <div className="first-half">
           <div className="header">
             <div className="music-div">
-              <p className="music-tag">Music</p>
+              <label className="music-tag">Music</label>
               {BoopButton()}
             </div>
 
