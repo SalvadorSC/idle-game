@@ -107,7 +107,7 @@ const IdleApp = () => {
               ) / 100}
               %
             </p>
-            <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p>
+            {/* <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p> */}
           </div>
           <div
             unselectable="on"
