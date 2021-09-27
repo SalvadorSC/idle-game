@@ -18,6 +18,7 @@ export const useIncrementByClick = () => {
     pageTrees,
     lastLogin,
     upgrades,
+    stop,
   } = useContext(CounterContext);
   const {
     goal,
@@ -91,7 +92,7 @@ export const useIncrementByClick = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (automatron1 > 0 || squirrels > 0 || pageTrees > 0) {
+      if ((automatron1 > 0 || squirrels > 0 || pageTrees > 0) && !stop) {
         incrementEverySecond(upgrades);
         const characterGif = document.querySelector(".character");
         characterGif.src = personajeOneLoop;

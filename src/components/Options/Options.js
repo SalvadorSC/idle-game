@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import CounterContext from "../../context/CounterContext";
 import { useCheats } from "../../hooks/useCheats";
 import "./Options.css";
 
 export const Options = () => {
   const { resetGame, resetAllGame, cheat } = useCheats();
+  const { stop, setStop } = useContext(CounterContext);
   let encodedSave = localStorage.getItem("encodedSave");
   const [showSave, setShowSave] = useState(false);
   const [rexport, setRexport] = useState(false);
@@ -63,6 +65,12 @@ export const Options = () => {
         </button>
         <button className="reset-button" onClick={cheat}>
           Cheat
+        </button>
+        <button
+          className="reset-button"
+          onClick={() => (stop ? setStop(false) : setStop(true))}
+        >
+          {stop ? "Start" : "Stop"} automatic production
         </button>
         <button className="reset-button" onClick={resetAllGame}>
           Reset All

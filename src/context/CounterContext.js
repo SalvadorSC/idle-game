@@ -6,8 +6,6 @@ let savegame;
 if (encodedSave) {
   savegame = JSON.parse(decode(encodedSave));
 }
-console.log(encodedSave);
-console.log(savegame);
 const CounterContext = createContext();
 const baseUpgrades = {
   multiplicador: ["General Culture I"],
@@ -16,6 +14,7 @@ const baseUpgrades = {
   culture: [],
 };
 const initialState = {
+  stop: false,
   multiplicador: savegame ? savegame.multiplicador : 1,
   automatron1: savegame ? savegame.automatron1 : 0,
   squirrels: savegame ? savegame.squirrels : 0,
@@ -29,6 +28,7 @@ const initialState = {
 };
 
 const actions = {
+  SET_STOP: "SET_STOP",
   SET_MULTIPLICADOR: "SET_MULTIPLICADOR",
   SET_AUTOMATRON1: "SET_AUTOMATRON1",
   SET_SQUIRRELS: "SET_SQUIRRELS",
@@ -42,6 +42,8 @@ const actions = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case actions.SET_STOP:
+      return { ...state, stop: action.value };
     case actions.SET_MULTIPLICADOR:
       return { ...state, multiplicador: action.value };
     case actions.SET_AUTOMATRON1:
@@ -96,8 +98,10 @@ export const CounterProvider = ({ children }) => {
     calculateOfflineProduction();
   }, [calculateOfflineProduction]);
   ///
+
   const value = {
     knCount: state.knCount,
+    stop: state.stop,
     chosenBook: state.chosenBook,
     automatron1: state.automatron1,
     multiplicador: state.multiplicador,
@@ -108,6 +112,9 @@ export const CounterProvider = ({ children }) => {
     lastLogin: state.lastLogin,
     setKnCount: (value) => {
       dispatch({ type: actions.SET_KNCOUNT, value });
+    },
+    setStop: (value) => {
+      dispatch({ type: actions.SET_STOP, value });
     },
     setChosenBook: (value) => {
       dispatch({ type: actions.SET_CHOSENBOOK, value });
