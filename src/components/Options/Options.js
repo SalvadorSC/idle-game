@@ -70,7 +70,7 @@ export const Options = () => {
           className="reset-button"
           onClick={() => (stop ? setStop(false) : setStop(true))}
         >
-          {stop ? "Start" : "Stop"} automatic production
+          {stop ? "Start" : "Stop"} auto production
         </button>
         <button className="reset-button" onClick={resetAllGame}>
           Reset All
