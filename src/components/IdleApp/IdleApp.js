@@ -33,17 +33,8 @@ const IdleApp = () => {
     statDependencies.totalKnCountOfThisRun.cultureKn;
   const resetAnimation = () => {
     const characterGif = document.querySelector(".character");
-    if (
-      !dependencies.automatron1 ||
-      !dependencies.squirrels ||
-      !dependencies.pageTrees
-    ) {
-      // eslint-disable-next-line no-self-assign
-      characterGif.src = characterGif.src;
-    } else {
-      // eslint-disable-next-line no-self-assign
-      characterGif.src = characterGif.src;
-    }
+    // eslint-disable-next-line no-self-assign
+    characterGif.src = characterGif.src;
   };
   const handleClick = () => {
     increment(dependencies.upgrades);
