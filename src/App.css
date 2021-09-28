@@ -58,8 +58,11 @@ body {
 
 .display-knCount {
   background-color: #333;
-  background-image: url("./assets/libreria.webp");
+  background-image: url("https://via.placeholder.com/256x384");
+  background-image: url("https://via.placeholder.com/384x384");
+  background-image: url("./assets/libreria.png");
   background-size: contain;
+  /* background-repeat: repeat; */
   margin: 0;
   font-size: 50px;
   color: white;

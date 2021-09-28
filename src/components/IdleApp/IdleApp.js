@@ -12,16 +12,15 @@ import { Shelf } from "../Shelf/Shelf";
 import soundUrl from "../../assets/page-flip-01a.mp3";
 import useSound from "use-sound";
 import buffer from "../../assets/Infinity.svg";
-import personajeOneLoop from "../../assets/lecteur-oneloop-2.gif";
+import personajeOneLoop from "../../assets/lecteur-oneloop-3-silla.gif";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
 import { Pomodoro } from "../Pomodoro/Pomodoro";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
-  const { setShowGeneratedKnAlert, setRewardsTaken } = useContext(
-    CounterContext
-  );
+  const { setShowGeneratedKnAlert, setRewardsTaken } =
+    useContext(CounterContext);
   const { mute, setMute } = useContext(MiscContext);
   const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
