@@ -6,13 +6,17 @@ const initialState = {
   isPlaying: true,
   detailsInfo: "hehe",
   volume: 0,
+  pomodoroMessage: "Start Pomodoro",
+  pomodoroClass: "unactive-pomodoro",
 };
 
 const actions = {
   SET_MUTE: "SET_MUTE",
   SET_ISPLAYING: "SET_ISPLAYING",
   SET_VOLUME: "SET_VOLUME",
+  SET_POMODOROMESSAGE: "SET_POMODOROMESSAGE",
   SET_DETAILSINFO: "SET_DETAILSINFO",
+  SET_POMODOROCLASS: "SET_POMODOROCLASS",
 };
 
 function reducer(state, action) {
@@ -25,6 +29,10 @@ function reducer(state, action) {
       return { ...state, volume: action.value };
     case actions.SET_DETAILSINFO:
       return { ...state, detailsInfo: action.value };
+    case actions.SET_POMODOROMESSAGE:
+      return { ...state, pomodoroMessage: action.value };
+    case actions.SET_POMODOROCLASS:
+      return { ...state, pomodoroClass: action.value };
     default:
       return state;
   }
@@ -37,6 +45,8 @@ export const MiscProvider = ({ children }) => {
     volume: state.volume,
     isPlaying: state.isPlaying,
     detailsInfo: state.detailsInfo,
+    pomodoroMessage: state.pomodoroMessage,
+    pomodoroClass: state.pomodoroClass,
     setMute: (value) => {
       dispatch({ type: actions.SET_MUTE, value });
     },
@@ -45,6 +55,12 @@ export const MiscProvider = ({ children }) => {
     },
     setVolume: (value) => {
       dispatch({ type: actions.SET_VOLUME, value });
+    },
+    setPomodoroMessage: (value) => {
+      dispatch({ type: actions.SET_POMODOROMESSAGE, value });
+    },
+    setPomodoroClass: (value) => {
+      dispatch({ type: actions.SET_POMODOROCLASS, value });
     },
     setDetailsInfo: (value) => {
       dispatch({ type: actions.SET_DETAILSINFO, value });

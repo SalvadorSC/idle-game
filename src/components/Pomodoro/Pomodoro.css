@@ -1,0 +1,24 @@
+button {
+  color: white;
+  background-color: #444;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: none;
+  border-radius: 3px;
+}
+button:hover {
+  background-color: #666;
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 0px 10px;
+}
+
+.active-pomodoro button {
+  box-shadow: none;
+  background-color: rgb(66, 92, 65);
+}
+.unactive-pomodoro button {
+  box-shadow: none;
+  background-color: rgb(63, 32, 32);
+}
+.unactive-pomodoro button:hover,
+.active-pomodoro button:hover {
+  box-shadow: none;
+}

@@ -15,6 +15,7 @@ import buffer from "../../assets/Infinity.svg";
 import personajeOneLoop from "../../assets/lecteur-oneloop-2.gif";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
+import { Pomodoro } from "../Pomodoro/Pomodoro";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
@@ -97,6 +98,7 @@ const IdleApp = () => {
 
           <div className="display-stats">
             <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
+            <Pomodoro />
             <p>
               Progress:{" "}
               {Math.floor(

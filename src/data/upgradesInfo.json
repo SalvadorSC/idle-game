@@ -125,6 +125,14 @@
       "requirementField": "technology",
       "requirement": "Steps into robotics",
       "description": "A thoroughly enjoyable, compendious and insightful guide for those interested in exploring their inner worlds."
+    },
+    {
+      "price": [50000, 0, 0, 50000],
+      "field": "culture",
+      "upgrade": "Atomic habits",
+      "requirementField": "culture",
+      "requirement": "History about humanity I",
+      "description": "Atomic Habits is a step-by-step manual for changing routines."
     }
   ]
 }

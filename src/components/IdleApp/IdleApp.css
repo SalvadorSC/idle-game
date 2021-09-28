@@ -45,6 +45,9 @@
   justify-content: space-around;
   align-items: center;
 }
+.display-stats :nth-child(n) {
+  width: 30%;
+}
 .display-knCount {
   height: auto;
   cursor: pointer;

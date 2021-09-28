@@ -38,6 +38,7 @@ export const useIncrementByClick = () => {
     maxKn,
     setMaxKn,
   } = useContext(StatsContext);
+  const { mute, pomodoroClass } = useContext(MiscContext);
   const save = useMemo(() => {
     return {
       multiplicador,
@@ -77,7 +78,6 @@ export const useIncrementByClick = () => {
     totalKnOfAllTime,
     upgrades,
   ]);
-  const { mute } = useContext(MiscContext);
   const { incrementEverySecond } = useContador({
     knCount,
     setKnCount,
@@ -108,7 +108,7 @@ export const useIncrementByClick = () => {
 
   // save function
   useEffect(() => {
-    // localStorage.setItem("save", JSON.stringify(save));
+    localStorage.setItem("save", JSON.stringify(save));
     localStorage.setItem("encodedSave", encode(JSON.stringify(save)));
   }, [save]);
 
@@ -118,7 +118,13 @@ export const useIncrementByClick = () => {
       bioKnCountWithEffects,
       technoKnCountWithEffects,
       cultureKnCountWithEffects,
-    } = setChosenBookEffect(multiplicador);
+    } = setChosenBookEffect(
+      pomodoroClass === "active-pomodoro" &&
+        pomodoroClass !== "unactive-pomodoro" &&
+        upgrades.culture.includes("Atomic habits")
+        ? multiplicador * 3
+        : multiplicador
+    );
     setPotenciaClick(
       Math.floor(genrlKnCountWithEffects * 100) / 100 +
         Math.floor(bioKnCountWithEffects * 100) / 100 +
