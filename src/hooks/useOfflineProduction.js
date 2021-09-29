@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useChosenKn } from "./useChosenKn";
 
-export const useOfflineProduction = ({
-  knCount,
-  chosenBook,
-  multiplicador,
-  setKnCount,
-  lastLogin,
-  setLastLogin,
-  upgrades,
-}) => {
+export const useOfflineProduction = (
+  {
+    knCount,
+    chosenBook,
+    multiplicador,
+    setKnCount,
+    lastLogin,
+    setLastLogin,
+    upgrades,
+  },
+  pomodoroClass
+) => {
   const [showBuffer, setShowBuffer] = useState(true);
   const [showGeneratedKnAlert, setShowGeneratedKnAlert] = useState(false);
   const [rewardsTaken, setRewardsTaken] = useState(false);
@@ -19,7 +22,11 @@ export const useOfflineProduction = ({
     generatedTechnoKn: 0,
     generatedCultureKn: 0,
   });
-  const { setChosenBookEffect } = useChosenKn(chosenBook);
+  const { setChosenBookEffect } = useChosenKn(
+    chosenBook,
+    pomodoroClass,
+    upgrades
+  );
   const {
     genrlKnCountWithEffects,
     bioKnCountWithEffects,

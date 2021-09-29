@@ -1,9 +1,15 @@
-export const useChosenKn = (libro) => {
+export const useChosenKn = (libro, pomodoroClass, upgrades) => {
   const setChosenBookEffect = (item) => {
     let genrlKnCountWithEffects;
     let bioKnCountWithEffects;
     let technoKnCountWithEffects;
     let cultureKnCountWithEffects;
+    if (
+      pomodoroClass === "active-pomodoro" &&
+      upgrades.culture.includes("Atomic habits")
+    ) {
+      item = item * 3;
+    }
     switch (libro) {
       case "General Culture I":
         genrlKnCountWithEffects = item * 1;

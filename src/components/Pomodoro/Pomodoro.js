@@ -11,8 +11,15 @@ export const Pomodoro = () => {
     setPomodoroClass,
   } = useContext(MiscContext);
 
+  const calculateNextBuff = (max, min) => {
+    const random =
+      Math.random() * (max * 60 * 1000 - min * 60 * 1000) + min * 60 * 1000;
+    //console.log(random);
+    return random;
+  };
+
   const startPomodoro = () => {
-    const countDownDate = new Date().getTime() + 20 * 60 * 1000;
+    const countDownDate = new Date().getTime() + 30 * 1000;
     // Update the count down every 1 second
     const x = setInterval(function () {
       const now = new Date().getTime();
@@ -33,32 +40,13 @@ export const Pomodoro = () => {
       // If the count down is over, write some text
       if (distance <= 0) {
         clearInterval(x);
-        /* document.getElementById("demo").innerHTML = "EXPIRED"; */
-        /* setPomodoroMessage("Start Pomodoro"); */
-        const unactiveCountDownDate = new Date().getTime() + 20 * 60 * 1000;
-        const y = setInterval(function () {
-          const now = new Date().getTime();
-          // Find the distance between now an the count down date
-          const distance = unactiveCountDownDate - now;
-
-          // Time calculations for days, hours, minutes and seconds
-          const minutes = Math.floor(
-            (distance % (1000 * 60 * 60)) / (1000 * 60)
-          );
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-          // Output the result in an element with id="demo"
-          setPomodoroMessage(`${minutes}m ${seconds}s`);
-          setPomodoroClass("unactive-pomodoro");
-
-          // If the count down is over, write some text
-          if (distance < 0) {
-            clearInterval(y);
-            /* document.getElementById("demo").innerHTML = "EXPIRED"; */
-            setPomodoroClass("");
-            setPomodoroMessage("Start Pomodoro");
-          }
-        }, 1000);
+        setPomodoroClass("");
+        setPomodoroMessage("Extreme Focus");
+        setPomodoroClass("unactive-pomodoro");
+        const nextBuff = calculateNextBuff(10, 3);
+        setTimeout(() => {
+          setPomodoroClass("");
+        }, nextBuff);
       }
     }, 1000);
   };
@@ -68,7 +56,7 @@ export const Pomodoro = () => {
         <div className={`pomodoro ${pomodoroClass}`}>
           <button
             onClick={() => {
-              if (pomodoroMessage === "Start Pomodoro") {
+              if (pomodoroMessage === "Extreme Focus") {
                 startPomodoro();
               }
             }}

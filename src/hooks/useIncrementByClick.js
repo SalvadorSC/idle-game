@@ -78,17 +78,25 @@ export const useIncrementByClick = () => {
     totalKnOfAllTime,
     upgrades,
   ]);
-  const { incrementEverySecond } = useContador({
-    knCount,
-    setKnCount,
-    automatron1,
-    multiplicador,
-    mute,
-    squirrels,
+  const { incrementEverySecond } = useContador(
+    {
+      knCount,
+      setKnCount,
+      automatron1,
+      multiplicador,
+      mute,
+      squirrels,
+      chosenBook,
+      pageTrees,
+      upgrades,
+    },
+    pomodoroClass
+  );
+  const { setChosenBookEffect } = useChosenKn(
     chosenBook,
-    pageTrees,
-  });
-  const { setChosenBookEffect } = useChosenKn(chosenBook);
+    pomodoroClass,
+    upgrades
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -118,13 +126,7 @@ export const useIncrementByClick = () => {
       bioKnCountWithEffects,
       technoKnCountWithEffects,
       cultureKnCountWithEffects,
-    } = setChosenBookEffect(
-      pomodoroClass === "active-pomodoro" &&
-        pomodoroClass !== "unactive-pomodoro" &&
-        upgrades.culture.includes("Atomic habits")
-        ? multiplicador * 3
-        : multiplicador
-    );
+    } = setChosenBookEffect(multiplicador);
     setPotenciaClick(
       Math.floor(genrlKnCountWithEffects * 100) / 100 +
         Math.floor(bioKnCountWithEffects * 100) / 100 +

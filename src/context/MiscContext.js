@@ -6,8 +6,8 @@ const initialState = {
   isPlaying: true,
   detailsInfo: "hehe",
   volume: 0,
-  pomodoroMessage: "Start Pomodoro",
-  pomodoroClass: "unactive-pomodoro",
+  pomodoroMessage: "Extreme Focus",
+  pomodoroClass: "",
 };
 
 const actions = {

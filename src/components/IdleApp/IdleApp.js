@@ -19,8 +19,9 @@ import { Pomodoro } from "../Pomodoro/Pomodoro";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
-  const { setShowGeneratedKnAlert, setRewardsTaken } =
-    useContext(CounterContext);
+  const { setShowGeneratedKnAlert, setRewardsTaken } = useContext(
+    CounterContext
+  );
   const { mute, setMute } = useContext(MiscContext);
   const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
@@ -97,7 +98,7 @@ const IdleApp = () => {
 
           <div className="display-stats">
             <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
-            <Pomodoro />
+
             <p>
               Progress:{" "}
               {Math.floor(
@@ -137,6 +138,7 @@ const IdleApp = () => {
                 </p>
               </div>
             </div>
+            <Pomodoro />
             <img className="character" src={personajeOneLoop} alt="personaje" />
           </div>
         </div>
