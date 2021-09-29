@@ -10,14 +10,14 @@ button:hover {
   box-shadow: rgba(255, 255, 255, 0.35) 0px 0px 10px;
 }
 
-.active-pomodoro button {
+.active-buff button {
   box-shadow: none;
   background-color: rgb(66, 92, 65);
 }
-.unactive-pomodoro button {
+.unactive-buff button {
   display: none;
 }
-.unactive-pomodoro button:hover,
-.active-pomodoro button:hover {
+.unactive-buff button:hover,
+.active-buff button:hover {
   box-shadow: none;
 }

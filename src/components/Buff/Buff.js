@@ -1,15 +1,12 @@
 import React, { useContext } from "react";
 import CounterContext from "../../context/CounterContext";
 import MiscContext from "../../context/MiscContext";
-import "./Pomodoro.css";
-export const Pomodoro = () => {
+import "./Buff.css";
+export const Buff = () => {
   const { upgrades } = useContext(CounterContext);
-  const {
-    pomodoroMessage,
-    setPomodoroMessage,
-    pomodoroClass,
-    setPomodoroClass,
-  } = useContext(MiscContext);
+  const { buffMessage, setBuffMessage, buffClass, setBuffClass } = useContext(
+    MiscContext
+  );
 
   const calculateNextBuff = (max, min) => {
     const random =
@@ -18,7 +15,7 @@ export const Pomodoro = () => {
     return random;
   };
 
-  const startPomodoro = () => {
+  const startBuff = () => {
     const countDownDate = new Date().getTime() + 30 * 1000;
     // Update the count down every 1 second
     const x = setInterval(function () {
@@ -34,18 +31,18 @@ export const Pomodoro = () => {
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Output the result in an element with id="demo"
-      setPomodoroMessage(`${minutes}m ${seconds}s`);
-      setPomodoroClass("active-pomodoro");
+      setBuffMessage(`${minutes}m ${seconds}s`);
+      setBuffClass("active-buff");
 
       // If the count down is over, write some text
       if (distance <= 0) {
         clearInterval(x);
-        setPomodoroClass("");
-        setPomodoroMessage("Extreme Focus");
-        setPomodoroClass("unactive-pomodoro");
+        setBuffClass("");
+        setBuffMessage("Extreme Focus");
+        setBuffClass("unactive-buff");
         const nextBuff = calculateNextBuff(10, 3);
         setTimeout(() => {
-          setPomodoroClass("");
+          setBuffClass("");
         }, nextBuff);
       }
     }, 1000);
@@ -53,15 +50,15 @@ export const Pomodoro = () => {
   return (
     <>
       {upgrades.culture.includes("Atomic habits") && (
-        <div className={`pomodoro ${pomodoroClass}`}>
+        <div className={`Buff ${buffClass}`}>
           <button
             onClick={() => {
-              if (pomodoroMessage === "Extreme Focus") {
-                startPomodoro();
+              if (buffMessage === "Extreme Focus") {
+                startBuff();
               }
             }}
           >
-            {pomodoroMessage}
+            {buffMessage}
           </button>
         </div>
       )}

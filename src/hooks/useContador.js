@@ -17,7 +17,7 @@ export const useContador = (
     pageTrees,
     upgrades,
   },
-  pomodoroClass
+  buffClass
 ) => {
   const {
     goal,
@@ -30,11 +30,7 @@ export const useContador = (
   } = useContext(StatsContext);
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
-  const { setChosenBookEffect } = useChosenKn(
-    chosenBook,
-    pomodoroClass,
-    upgrades
-  );
+  const { setChosenBookEffect } = useChosenKn(chosenBook, buffClass, upgrades);
   const totalKnOfThisRun =
     totalKnCountOfThisRun.generalKn +
     totalKnCountOfThisRun.bioKn +

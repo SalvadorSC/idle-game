@@ -11,7 +11,7 @@ export const useOfflineProduction = (
     setLastLogin,
     upgrades,
   },
-  pomodoroClass
+  buffClass
 ) => {
   const [showBuffer, setShowBuffer] = useState(true);
   const [showGeneratedKnAlert, setShowGeneratedKnAlert] = useState(false);
@@ -22,11 +22,7 @@ export const useOfflineProduction = (
     generatedTechnoKn: 0,
     generatedCultureKn: 0,
   });
-  const { setChosenBookEffect } = useChosenKn(
-    chosenBook,
-    pomodoroClass,
-    upgrades
-  );
+  const { setChosenBookEffect } = useChosenKn(chosenBook, buffClass, upgrades);
   const {
     genrlKnCountWithEffects,
     bioKnCountWithEffects,

@@ -15,7 +15,7 @@ import buffer from "../../assets/Infinity.svg";
 import personajeOneLoop from "../../assets/lecteur-oneloop-3-silla.gif";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
-import { Pomodoro } from "../Pomodoro/Pomodoro";
+import { Buff } from "../Buff/Buff";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
@@ -138,7 +138,7 @@ const IdleApp = () => {
                 </p>
               </div>
             </div>
-            <Pomodoro />
+            <Buff />
             <img className="character" src={personajeOneLoop} alt="personaje" />
           </div>
         </div>

@@ -38,7 +38,7 @@ export const useIncrementByClick = () => {
     maxKn,
     setMaxKn,
   } = useContext(StatsContext);
-  const { mute, pomodoroClass } = useContext(MiscContext);
+  const { mute, buffClass } = useContext(MiscContext);
   const save = useMemo(() => {
     return {
       multiplicador,
@@ -90,13 +90,9 @@ export const useIncrementByClick = () => {
       pageTrees,
       upgrades,
     },
-    pomodoroClass
+    buffClass
   );
-  const { setChosenBookEffect } = useChosenKn(
-    chosenBook,
-    pomodoroClass,
-    upgrades
-  );
+  const { setChosenBookEffect } = useChosenKn(chosenBook, buffClass, upgrades);
 
   useEffect(() => {
     const timer = setTimeout(() => {

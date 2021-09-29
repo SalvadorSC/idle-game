@@ -1,11 +1,11 @@
-export const useChosenKn = (libro, pomodoroClass, upgrades) => {
+export const useChosenKn = (libro, buffClass, upgrades) => {
   const setChosenBookEffect = (item) => {
     let genrlKnCountWithEffects;
     let bioKnCountWithEffects;
     let technoKnCountWithEffects;
     let cultureKnCountWithEffects;
     if (
-      pomodoroClass === "active-pomodoro" &&
+      buffClass === "active-buff" &&
       upgrades.culture.includes("Atomic habits")
     ) {
       item = item * 3;

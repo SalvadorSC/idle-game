@@ -6,17 +6,17 @@ const initialState = {
   isPlaying: true,
   detailsInfo: "hehe",
   volume: 0,
-  pomodoroMessage: "Extreme Focus",
-  pomodoroClass: "",
+  buffMessage: "Extreme Focus",
+  buffClass: "",
 };
 
 const actions = {
   SET_MUTE: "SET_MUTE",
   SET_ISPLAYING: "SET_ISPLAYING",
   SET_VOLUME: "SET_VOLUME",
-  SET_POMODOROMESSAGE: "SET_POMODOROMESSAGE",
+  SET_buffMessage: "SET_buffMessage",
   SET_DETAILSINFO: "SET_DETAILSINFO",
-  SET_POMODOROCLASS: "SET_POMODOROCLASS",
+  SET_buffClass: "SET_buffClass",
 };
 
 function reducer(state, action) {
@@ -29,10 +29,10 @@ function reducer(state, action) {
       return { ...state, volume: action.value };
     case actions.SET_DETAILSINFO:
       return { ...state, detailsInfo: action.value };
-    case actions.SET_POMODOROMESSAGE:
-      return { ...state, pomodoroMessage: action.value };
-    case actions.SET_POMODOROCLASS:
-      return { ...state, pomodoroClass: action.value };
+    case actions.SET_buffMessage:
+      return { ...state, buffMessage: action.value };
+    case actions.SET_buffClass:
+      return { ...state, buffClass: action.value };
     default:
       return state;
   }
@@ -45,8 +45,8 @@ export const MiscProvider = ({ children }) => {
     volume: state.volume,
     isPlaying: state.isPlaying,
     detailsInfo: state.detailsInfo,
-    pomodoroMessage: state.pomodoroMessage,
-    pomodoroClass: state.pomodoroClass,
+    buffMessage: state.buffMessage,
+    buffClass: state.buffClass,
     setMute: (value) => {
       dispatch({ type: actions.SET_MUTE, value });
     },
@@ -56,11 +56,11 @@ export const MiscProvider = ({ children }) => {
     setVolume: (value) => {
       dispatch({ type: actions.SET_VOLUME, value });
     },
-    setPomodoroMessage: (value) => {
-      dispatch({ type: actions.SET_POMODOROMESSAGE, value });
+    setBuffMessage: (value) => {
+      dispatch({ type: actions.SET_buffMessage, value });
     },
-    setPomodoroClass: (value) => {
-      dispatch({ type: actions.SET_POMODOROCLASS, value });
+    setBuffClass: (value) => {
+      dispatch({ type: actions.SET_buffClass, value });
     },
     setDetailsInfo: (value) => {
       dispatch({ type: actions.SET_DETAILSINFO, value });
