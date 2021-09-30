@@ -31,12 +31,12 @@ export const useContador = (
   const sounds = [soundUrl1, soundUrl2];
   const [play] = useSound(sounds[1], { volume: mute ? 0 : 0.05 });
   const { setChosenBookEffect } = useChosenKn(chosenBook, buffClass, upgrades);
-  const totalKnOfThisRun =
-    totalKnCountOfThisRun.generalKn +
-    totalKnCountOfThisRun.bioKn +
-    totalKnCountOfThisRun.technoKn +
-    totalKnCountOfThisRun.cultureKn;
   const incrementEverySecond = () => {
+    const totalKnOfThisRun =
+      totalKnCountOfThisRun.generalKn +
+      totalKnCountOfThisRun.bioKn +
+      totalKnCountOfThisRun.technoKn +
+      totalKnCountOfThisRun.cultureKn;
     setMaxKn({
       generalKn:
         maxKn.generalKn < knCount.generalKn

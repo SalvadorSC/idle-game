@@ -46,12 +46,10 @@ export const Stats = () => {
         <div className="achievements-section">
           <p className="stats-section-title">Achievements </p>
           <div className="achievement-container">
-            <p className="achievement-box">{goal >= 100 && "100kN"}</p>
-            <p className="achievement-box">{goal >= 1000 && "1.000kN"}</p>
-            <p className="achievement-box">{goal >= 100000 && "100.000kN"}</p>
-            <p className="achievement-box">
-              {goal >= 1000000 && "1.000.000kN"}
-            </p>
+            <p className="achievement-box">{goal > 100 && "100kN"}</p>
+            <p className="achievement-box">{goal > 1000 && "1.000kN"}</p>
+            <p className="achievement-box">{goal > 100000 && "100.000kN"}</p>
+            <p className="achievement-box">{goal > 1000000 && "1.000.000kN"}</p>
             <p className="achievement-box">{clicks >= 500 && "500 clicks"}</p>
             <p className="achievement-box">
               {clicks >= 10000 && "10.000 clicks"}
