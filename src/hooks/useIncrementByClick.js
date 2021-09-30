@@ -3,7 +3,7 @@ import CounterContext from "../context/CounterContext";
 import { useContador } from "./useContador";
 import { useChosenKn } from "./useChosenKn";
 import StatsContext from "../context/StatsContext";
-import personajeOneLoop from "../assets/lecteur-oneloop-3.gif";
+import personajeOneLoop from "../assets/lecteur-oneloop-3-silla.gif";
 import MiscContext from "../context/MiscContext";
 import { encode } from "base-64";
 export const useIncrementByClick = () => {
