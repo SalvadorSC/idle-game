@@ -53,7 +53,10 @@ export const Buff = () => {
         <div className={`Buff ${buffClass}`}>
           <button
             onClick={() => {
-              if (buffMessage === "Extreme Focus") {
+              if (
+                buffMessage === "Extreme Focus" &&
+                buffClass !== "unactive-buff"
+              ) {
                 startBuff();
               }
             }}

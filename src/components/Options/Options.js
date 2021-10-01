@@ -139,9 +139,12 @@ export const Options = () => {
         <a className="my-credits-link" href="https://www.github.com/salvadorsc">
           Github
         </a>{" "}
-        <a className="my-credits-link" href="https://www.github.com/salvadorsc">
+        {/* <a className="my-credits-link" href="https://www.github.com/salvadorsc">
           Patreon
-        </a>
+        </a> */}
+        <p>
+          The best way to support this project is to share it or give feedback!
+        </p>
         <p>Assets credits:</p>
         <hr></hr>
         <p>Artist: @sansh_pixel on Fiverr and @sanshpixel on Instagram</p>
