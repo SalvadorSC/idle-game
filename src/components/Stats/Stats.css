@@ -58,3 +58,10 @@
   border-radius: 10px;
   color: white;
 }
+
+@media (max-width: 400px) {
+  .achievement-box {
+    width: calc(100%);
+    margin: 25px auto;
+  }
+}

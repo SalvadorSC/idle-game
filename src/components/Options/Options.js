@@ -32,23 +32,19 @@ export const Options = () => {
   // const { mute, setMute } = useContext(MiscContext);
   let encodedSave = localStorage.getItem("encodedSave");
   const [showSave, setShowSave] = useState(false);
+  const [action, setAction] = useState("");
   const [rexport, setRexport] = useState(false);
   const [rimport, setRimport] = useState(false);
+  const [tryCheat, setTryCheat] = useState(false);
   const [buttonOptions, setButtonOptions] = useState("");
   const [clicked, setClicked] = useState(true);
   const handleSave = (action) => {
     setShowSave(true);
-    if (action === "import") {
-      setRimport(true);
-      setButtonOptions("Import");
-    } else {
-      setRexport(true);
-      setButtonOptions("Copy");
-    }
+    setAction(action);
+    setButtonOptions(action);
   };
   const handleClick = () => {
-    if (rimport) {
-      debugger;
+    if (action === "Import") {
       resetAllGame();
       const newSave = JSON.parse(
         decode(document.querySelector(".save-textarea").value)
@@ -75,12 +71,27 @@ export const Options = () => {
       setUpgrades(newSave.upgrades);
       setKnForfeitedAtReset(newSave.knForfeitedAtReset);
       setPageTrees(newSave.pageTrees);
-      setRimport(false);
+      setAction("");
       setButtonOptions("Close");
       setClicked(true);
-    } else if (rexport) {
+    } else if (action === "Copy") {
       navigator.clipboard.writeText(encodedSave);
-      setRexport(false);
+      setAction("");
+      setButtonOptions("Close");
+      setClicked(true);
+    } else if (action === "Cheat") {
+      cheat();
+      setAction("");
+      setButtonOptions("Close");
+      setClicked(true);
+    } else if (action === "Reset") {
+      resetGame();
+      setAction("");
+      setButtonOptions("Close");
+      setClicked(true);
+    } else if (action === "Reset All") {
+      resetAllGame();
+      setAction("");
       setButtonOptions("Close");
       setClicked(true);
     } else if (clicked) {
@@ -91,14 +102,16 @@ export const Options = () => {
     <div className="options-item-container">
       {showSave && (
         <div className="save-container">
-          <textarea
-            defaultValue={rexport ? encodedSave : ""}
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            className="save-textarea"
-          />
+          {(action === "Import" || action === "Copy") && (
+            <textarea
+              defaultValue={action === "Copy" ? encodedSave : ""}
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              className="save-textarea"
+            />
+          )}
           <div>
             <button className="copy-button" onClick={() => handleClick()}>
               {buttonOptions}
@@ -107,28 +120,36 @@ export const Options = () => {
         </div>
       )}
       <div className="buttons-container">
-        <button className="reset-button" onClick={resetGame}>
+        <button className="reset-button" onClick={() => handleSave("Reset")}>
           Reset
         </button>
-        <button className="reset-button" onClick={cheat}>
+        <button className="reset-button" onClick={() => handleSave("Cheat")}>
           Cheat
         </button>
+
+        {/* <button className="mute-button" onClick={() => setMute(!mute)}>
+          {mute ? "Unmute" : "Mute"}
+        </button> */}
+      </div>
+      <div className="buttons-container">
         <button
           className="reset-button"
           onClick={() => (stop ? setStop(false) : setStop(true))}
         >
-          {stop ? "Start" : "Stop"} auto production
+          {stop ? "Start" : "Stop"} autoproduction
         </button>
-        <button className="reset-button" onClick={resetAllGame}>
+        <button
+          className="reset-button"
+          onClick={() => handleSave("Reset All")}
+        >
           Reset All
         </button>
-        {/* <button className="mute-button" onClick={() => setMute(!mute)}>
-          {mute ? "Unmute" : "Mute"}
-        </button> */}
-        <button className="reset-button" onClick={() => handleSave("export")}>
+      </div>
+      <div className="buttons-container">
+        <button className="reset-button" onClick={() => handleSave("Copy")}>
           Export Save
         </button>
-        <button className="reset-button" onClick={() => handleSave("import")}>
+        <button className="reset-button" onClick={() => handleSave("Import")}>
           Import Save
         </button>
       </div>
