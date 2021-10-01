@@ -49,8 +49,14 @@ export const Buff = () => {
   };
   return (
     <>
-      {upgrades.culture.includes("Atomic habits") && (
-        <div className={`Buff ${buffClass}`}>
+      {
+        <div
+          className={
+            upgrades.culture.includes("Atomic habits")
+              ? `Buff ${buffClass}`
+              : `unactive-buff`
+          }
+        >
           <button
             onClick={() => {
               if (
@@ -64,7 +70,7 @@ export const Buff = () => {
             {buffMessage}
           </button>
         </div>
-      )}
+      }
     </>
   );
 };
