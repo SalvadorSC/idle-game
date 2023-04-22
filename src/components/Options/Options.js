@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import CounterContext from "../../context/CounterContext";
-// import MiscContext from "../../context/MiscContext";
 import { useCheats } from "../../hooks/useCheats";
 import "./Options.css";
 import { decode } from "base-64";
@@ -29,13 +28,10 @@ export const Options = () => {
     setResets,
     setKnForfeitedAtReset,
   } = useContext(StatsContext);
-  // const { mute, setMute } = useContext(MiscContext);
+  const [showCheats, setShowCheats] = useState(false);
   let encodedSave = localStorage.getItem("encodedSave");
   const [showSave, setShowSave] = useState(false);
   const [action, setAction] = useState("");
-  const [rexport, setRexport] = useState(false);
-  const [rimport, setRimport] = useState(false);
-  const [tryCheat, setTryCheat] = useState(false);
   const [buttonOptions, setButtonOptions] = useState("");
   const [clicked, setClicked] = useState(true);
   const handleSave = (action) => {
@@ -98,8 +94,16 @@ export const Options = () => {
       setShowSave(false);
     }
   };
+
   return (
-    <div className="options-item-container">
+    <div
+      className="options-item-container"
+      onClick={(e) => {
+        if (e.altKey && e.shiftKey) {
+          setShowCheats(true);
+        }
+      }}
+    >
       {showSave && (
         <div className="save-container">
           {(action === "Import" || action === "Copy") && (
@@ -123,9 +127,18 @@ export const Options = () => {
         <button className="reset-button" onClick={() => handleSave("Reset")}>
           Reset
         </button>
-        <button className="reset-button" onClick={() => handleSave("Cheat")}>
-          Cheat
-        </button>
+
+        {
+          // Get the keyboard event and display the button if both keys are pressed
+          showCheats && (
+            <button
+              className="reset-button"
+              onClick={() => handleSave("Cheat")}
+            >
+              Cheat
+            </button>
+          )
+        }
 
         {/* <button className="mute-button" onClick={() => setMute(!mute)}>
           {mute ? "Unmute" : "Mute"}
