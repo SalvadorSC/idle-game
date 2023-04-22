@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, Route } from "react-router-dom";
 import { Options } from "../Options/Options";
 import { Shop } from "../Shop/Shop";
@@ -16,6 +16,7 @@ import personajeOneLoop from "../../assets/lecteur-oneloop-3-silla.gif";
 import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
 import { Buff } from "../Buff/Buff";
+import { useChosenKn } from "../../hooks/useChosenKn";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
@@ -25,9 +26,18 @@ const IdleApp = () => {
   const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
-
+  const { setChosenBookEffect } = useChosenKn(
+    dependencies.chosenBook,
+    dependencies.buffClass,
+    dependencies.upgrades
+  );
+  const is_mobile =
+    !!navigator.userAgent.match(/iphone|android|blackberry/gi) || false;
+  const [showPrimaryView, setShowPrimaryView] = useState(is_mobile);
   const resetAnimation = () => {
-    const characterGif = document.querySelector(".character");
+    const characterGif = document.querySelector(
+      !showPrimaryView ? ".character" : ".character-cc"
+    );
     if (
       !dependencies.automatron1 ||
       !dependencies.squirrels ||
@@ -47,6 +57,13 @@ const IdleApp = () => {
     //Sound Effect
     play();
   };
+
+  const {
+    genrlKnCountWithEffects,
+    bioKnCountWithEffects,
+    technoKnCountWithEffects,
+    cultureKnCountWithEffects,
+  } = setChosenBookEffect(dependencies.multiplicador);
 
   return (
     <div className="contador">
@@ -78,103 +95,271 @@ const IdleApp = () => {
         </div>
       )}
 
-      <div className="first-half">
-        <div className="header">
-          <form className="music-div">
-            <label className="music-tag">Music</label>
-            {BoopButton()}
-          </form>
+      {showPrimaryView ? (
+        <>
+          <div className="first-half">
+            <div className="header">
+              <form className="music-div">
+                <label className="music-tag">Music</label>
+                {BoopButton()}
+              </form>
 
-          <button className="mute-button" onClick={() => setMute(!mute)}>
-            {mute ? "Unmute" : "Mute"}
-          </button>
-        </div>
-
-        <div className="display-stats">
-          <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
-
-          <p>
-            Progress:{" "}
-            {Math.floor(
-              (statDependencies.totalKnCountOfThisRun.generalKn /
-                statDependencies.goal) *
-                100 *
-                100
-            ) / 100}
-            %
-          </p>
-          {/* <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p> */}
-        </div>
-        <div
-          unselectable="on"
-          onClick={handleClick}
-          className="display-knCount unselectable"
-        >
-          <div className="kn-amount-display">
-            <div>
-              <p>
-                {/* parseNumber( */ dependencies.knCount.generalKn /* ) */}
-                <span>kN</span>{" "}
-              </p>
-              <p>
-                {/* parseNumber( */ dependencies.knCount.bioKn /* ) */}
-                <span className="bioKn">kN</span>{" "}
-              </p>
+              {!is_mobile && (
+                <button
+                  className="view-button"
+                  onClick={() => setShowPrimaryView(!showPrimaryView)}
+                >
+                  Change View
+                </button>
+              )}
+              <button className="mute-button" onClick={() => setMute(!mute)}>
+                {mute ? "Unmute" : "Mute"}
+              </button>
             </div>
-            <div>
+
+            <div className="display-stats">
+              <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
+
               <p>
-                {/* parseNumber( */ dependencies.knCount.technoKn /* ) */}
-                <span className="technoKn">kN</span>{" "}
+                Progress:{" "}
+                {Math.floor(
+                  (statDependencies.totalKnCountOfThisRun.generalKn /
+                    statDependencies.goal) *
+                    100 *
+                    100
+                ) / 100}
+                %
               </p>
-              <p>
-                {/* parseNumber( */ dependencies.knCount.cultureKn /* ) */}
-                <span className="cultureKn">kN</span>{" "}
-              </p>
+              {/* <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p> */}
+            </div>
+            <div
+              unselectable="on"
+              onClick={handleClick}
+              className="display-knCount unselectable"
+            >
+              <div className="kn-amount-display">
+                <div>
+                  <p>
+                    {/* parseNumber( */ dependencies.knCount.generalKn /* ) */}
+                    <span>kN</span>{" "}
+                  </p>
+                  <p>
+                    {/* parseNumber( */ dependencies.knCount.bioKn /* ) */}
+                    <span className="bioKn">kN</span>{" "}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {/* parseNumber( */ dependencies.knCount.technoKn /* ) */}
+                    <span className="technoKn">kN</span>{" "}
+                  </p>
+                  <p>
+                    {/* parseNumber( */ dependencies.knCount.cultureKn /* ) */}
+                    <span className="cultureKn">kN</span>{" "}
+                  </p>
+                </div>
+              </div>
+              <Buff />
+              <img
+                className="character"
+                src={personajeOneLoop}
+                alt="personaje"
+              />
             </div>
           </div>
-          <Buff />
-          <img className="character" src={personajeOneLoop} alt="personaje" />
-        </div>
-      </div>
-      <div className="second-half">
-        <nav className="second-half-nav">
-          <ul className="second-half-ul">
-            <li className="second-half-ul-li">
-              <Link className="second-half-nav-button" to="/">
-                Shop
-              </Link>
-            </li>
-            <li className="second-half-ul-li">
-              <Link className="second-half-nav-button" to="/stats">
-                Stats
-              </Link>
-            </li>
-            <li className="second-half-ul-li">
-              <Link className="second-half-nav-button" to="/shelf">
-                Shelf
-              </Link>
-            </li>
-            <li className="second-half-ul-li">
-              <Link className="second-half-nav-button" to="/options">
-                Options
-              </Link>
-            </li>
-          </ul>
-        </nav>
+          <div className="second-half">
+            <nav className="second-half-nav">
+              <ul className="second-half-ul">
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/">
+                    Shop
+                  </Link>
+                </li>
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/stats">
+                    Stats
+                  </Link>
+                </li>
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/shelf">
+                    Shelf
+                  </Link>
+                </li>
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/options">
+                    Options
+                  </Link>
+                </li>
+              </ul>
+            </nav>
 
-        <Route exact path="/">
-          <Shop />
-        </Route>
-        <Route path="/options">
-          <Options />
-        </Route>
-        <Route path="/stats">
-          <Stats />
-        </Route>
-        <Route path="/shelf">
-          <Shelf />
-        </Route>
-      </div>
+            <Route exact path="/">
+              <Shop />
+            </Route>
+            <Route path="/options">
+              <Options showPrimaryView={true} />
+            </Route>
+            <Route path="/stats">
+              <Stats />
+            </Route>
+            <Route path="/shelf">
+              <Shelf />
+            </Route>
+          </div>
+        </>
+      ) : (
+        <div className="second-view">
+          <div className="first-half-cc">
+            <div className="header">
+              <form className="music-div">
+                <label className="music-tag">Music</label>
+                {BoopButton()}
+              </form>
+
+              <button
+                className="view-button"
+                onClick={() => setShowPrimaryView(!showPrimaryView)}
+              >
+                Change View
+              </button>
+              <button className="mute-button" onClick={() => setMute(!mute)}>
+                {mute ? "Unmute" : "Mute"}
+              </button>
+            </div>
+
+            <div className="display-stats">
+              <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
+
+              <p>
+                Progress:{" "}
+                {Math.floor(
+                  (statDependencies.totalKnCountOfThisRun.generalKn /
+                    statDependencies.goal) *
+                    100 *
+                    100
+                ) / 100}
+                %
+              </p>
+              {/* <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p> */}
+            </div>
+            <div
+              unselectable="on"
+              onClick={handleClick}
+              className="display-knCount unselectable"
+            >
+              <div className="info-buff-container">
+                <div className="kn-amount-display">
+                  <div>
+                    <p>
+                      {
+                        /* parseNumber( */ dependencies.knCount
+                          .generalKn /* ) */
+                      }
+                      <span>kN</span>{" "}
+                    </p>
+                    <p>
+                      {/* parseNumber( */ dependencies.knCount.bioKn /* ) */}
+                      <span className="bioKn">kN</span>{" "}
+                    </p>
+                  </div>
+                  <div>
+                    <p>
+                      {/* parseNumber( */ dependencies.knCount.technoKn /* ) */}
+                      <span className="technoKn">kN</span>{" "}
+                    </p>
+                    <p>
+                      {
+                        /* parseNumber( */ dependencies.knCount
+                          .cultureKn /* ) */
+                      }
+                      <span className="cultureKn">kN</span>{" "}
+                    </p>
+                  </div>
+                </div>
+                <Buff />
+              </div>
+
+              <div className="character-container">
+                <img
+                  className="character character-cc"
+                  src={personajeOneLoop}
+                  alt="personaje"
+                />
+                <div className="square">
+                  <div className="open-book">
+                    <div className="currentlyReading">
+                      Currently Reading: <br />
+                      <br />
+                      {dependencies.chosenBook}
+                    </div>
+                    <br />
+                    <div className="currentlyReading">
+                      Generating:
+                      <div className="kn-amount-display kn-amount-horizontal-display">
+                        <span className="kn-amount-ps">
+                          {genrlKnCountWithEffects}
+                          <span>kN</span>
+                        </span>
+                        <span className="kn-amount-ps">
+                          {bioKnCountWithEffects}
+                          <span className="bioKn">kN</span>
+                        </span>
+                        <span className="kn-amount-ps">
+                          {technoKnCountWithEffects}
+                          <span className="technoKn">kN</span>
+                        </span>
+                        <span className="kn-amount-ps">
+                          {cultureKnCountWithEffects}
+                          <span className="cultureKn">kN</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="second-half-cc">
+            <nav className="second-half-nav">
+              <ul className="second-half-ul">
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/">
+                    Shop
+                  </Link>
+                </li>
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/stats">
+                    Stats
+                  </Link>
+                </li>
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/shelf">
+                    Shelf
+                  </Link>
+                </li>
+                <li className="second-half-ul-li">
+                  <Link className="second-half-nav-button" to="/options">
+                    Options
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <Route exact path="/">
+              <Shop />
+            </Route>
+            <Route path="/options">
+              <Options showPrimaryView={false} />
+            </Route>
+            <Route path="/stats">
+              <Stats />
+            </Route>
+            <Route path="/shelf">
+              <Shelf />
+            </Route>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

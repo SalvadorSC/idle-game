@@ -78,11 +78,29 @@ body {
   display: flex;
   flex-direction: column;
 }
+.first-half-cc {
+  height: 100vh;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
 
 .second-half {
   background-color: #555;
   height: 50vh;
+
   overflow-y: scroll;
+}
+.second-half-cc {
+  background-color: #555;
+  height: 100vh;
+  width: 78%;
+  overflow-y: scroll;
+}
+
+.second-view {
+  height: 100vh;
+  display: flex;
 }
 
 .second-half-nav {

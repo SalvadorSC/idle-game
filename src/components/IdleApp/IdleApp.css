@@ -13,6 +13,10 @@
   );
   cursor: default;
 }
+.kn-amount-horizontal-display {
+  width: 100%;
+  justify-content: space-between;
+}
 
 .bioKn {
   color: yellowgreen;
@@ -94,7 +98,18 @@
   background-color: #fff;
   color: #333;
 }
-.character {
+.character-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 5px;
+  flex: 1;
+}
+
+.character,
+.character-cc {
   height: 100%;
   max-height: 256px;
   image-rendering: -webkit-crisp-edges;
@@ -116,6 +131,18 @@
   -o-user-drag: none;
   -ms-user-drag: none;
 }
+.square {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #333;
+  box-shadow: 0px 0px 5px 3px #c7c2a9;
+  font-size: 18px;
+}
+
 .tree-item-container {
   width: 100%;
   flex: 1;

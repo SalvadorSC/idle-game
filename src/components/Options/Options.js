@@ -4,7 +4,7 @@ import { useCheats } from "../../hooks/useCheats";
 import "./Options.css";
 import { decode } from "base-64";
 import StatsContext from "../../context/StatsContext";
-export const Options = () => {
+export const Options = ({ showPrimaryView }) => {
   const { resetGame, resetAllGame, cheat } = useCheats();
   const {
     stop,
@@ -40,59 +40,52 @@ export const Options = () => {
     setButtonOptions(action);
   };
   const handleClick = () => {
-    if (action === "Import") {
-      resetAllGame();
-      const newSave = JSON.parse(
-        decode(document.querySelector(".save-textarea").value)
-      );
-      localStorage.setItem(
-        "encodedSave",
-        document.querySelector(".save-textarea").value
-      );
-      localStorage.setItem("save", newSave);
-      console.log(newSave);
-      setGoal(newSave.goal);
-      setChosenBook(newSave.chosenBook);
-      setMultiplicador(newSave.multiplicador);
-      setTotalKnOfAllTime(newSave.total);
-      setMaxKn(newSave.maxKn);
-      setPotenciaClick(newSave.setPotenciaClick);
-      setTotalKnCountOfThisRun(newSave.totalKnCountOfThisRun);
-      setTotalClicksOfAllTime(newSave.totalClicksOfAllTime);
-      setKnCount(newSave.knCount);
-      setAutomatron1(newSave.automatron1);
-      setSquirrels(newSave.squirrels);
-      setClicks(newSave.clicks);
-      setResets(newSave.resets);
-      setUpgrades(newSave.upgrades);
-      setKnForfeitedAtReset(newSave.knForfeitedAtReset);
-      setPageTrees(newSave.pageTrees);
-      setAction("");
-      setButtonOptions("Close");
-      setClicked(true);
+    if (document.querySelector(".save-textarea")) {
+      const newSave = document.querySelector(".save-textarea").valueJSON
+        ? document
+            .querySelector(".save-textarea")
+            .valueJSON.parse(
+              decode(document.querySelector(".save-textarea").value)
+            )
+        : undefined;
+      if (action === "Import" && newSave) {
+        resetAllGame();
+        localStorage.setItem(
+          "encodedSave",
+          document.querySelector(".save-textarea").value
+        );
+        localStorage.setItem("save", newSave);
+        setGoal(newSave.goal);
+        setChosenBook(newSave.chosenBook);
+        setMultiplicador(newSave.multiplicador);
+        setTotalKnOfAllTime(newSave.total);
+        setMaxKn(newSave.maxKn);
+        setPotenciaClick(newSave.setPotenciaClick);
+        setTotalKnCountOfThisRun(newSave.totalKnCountOfThisRun);
+        setTotalClicksOfAllTime(newSave.totalClicksOfAllTime);
+        setKnCount(newSave.knCount);
+        setAutomatron1(newSave.automatron1);
+        setSquirrels(newSave.squirrels);
+        setClicks(newSave.clicks);
+        setResets(newSave.resets);
+        setUpgrades(newSave.upgrades);
+        setKnForfeitedAtReset(newSave.knForfeitedAtReset);
+        setPageTrees(newSave.pageTrees);
+      }
     } else if (action === "Copy") {
       navigator.clipboard.writeText(encodedSave);
-      setAction("");
-      setButtonOptions("Close");
-      setClicked(true);
     } else if (action === "Cheat") {
       cheat();
-      setAction("");
-      setButtonOptions("Close");
-      setClicked(true);
     } else if (action === "Reset") {
       resetGame();
-      setAction("");
-      setButtonOptions("Close");
-      setClicked(true);
     } else if (action === "Reset All") {
       resetAllGame();
-      setAction("");
-      setButtonOptions("Close");
-      setClicked(true);
     } else if (clicked) {
       setShowSave(false);
     }
+    setAction("");
+    setButtonOptions("Close");
+    setClicked(true);
   };
 
   return (
@@ -105,7 +98,11 @@ export const Options = () => {
       }}
     >
       {showSave && (
-        <div className="save-container">
+        <div
+          className={`${
+            !showPrimaryView ? "save-container-cc" : "save-container"
+          }`}
+        >
           {(action === "Import" || action === "Copy") && (
             <textarea
               defaultValue={action === "Copy" ? encodedSave : ""}
@@ -128,17 +125,11 @@ export const Options = () => {
           Reset
         </button>
 
-        {
-          // Get the keyboard event and display the button if both keys are pressed
-          showCheats && (
-            <button
-              className="reset-button"
-              onClick={() => handleSave("Cheat")}
-            >
-              Cheat
-            </button>
-          )
-        }
+        {showCheats && (
+          <button className="reset-button" onClick={() => handleSave("Cheat")}>
+            Cheat
+          </button>
+        )}
 
         {/* <button className="mute-button" onClick={() => setMute(!mute)}>
           {mute ? "Unmute" : "Mute"}
