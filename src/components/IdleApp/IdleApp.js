@@ -19,18 +19,13 @@ import { Buff } from "../Buff/Buff";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
-  const { setShowGeneratedKnAlert, setRewardsTaken } = useContext(
-    CounterContext
-  );
+  const { setShowGeneratedKnAlert, setRewardsTaken } =
+    useContext(CounterContext);
   const { mute, setMute } = useContext(MiscContext);
   const [play] = useSound(soundUrl, { volume: mute ? 0 : 0.1 });
   const { increment } = useIncrementByClick(dependencies);
   const { parseNumber } = useNumberParsing();
-  /* const totalKn =
-    statDependencies.totalKnCountOfThisRun.generalKn +
-    statDependencies.totalKnCountOfThisRun.bioKn +
-    statDependencies.totalKnCountOfThisRun.technoKn +
-    statDependencies.totalKnCountOfThisRun.cultureKn; */
+
   const resetAnimation = () => {
     const characterGif = document.querySelector(".character");
     if (
@@ -54,135 +49,133 @@ const IdleApp = () => {
   };
 
   return (
-    <>
-      <div className="contador">
-        {dependencies.showBuffer && (
-          <div className="buffer">
-            <img src={buffer} alt="loading infinite loop gif" />
-          </div>
-        )}
-        {dependencies.showGeneratedKnAlert && (
-          <div className="buffer">
-            <p className="generatedKn-p">
-              You have gained {dependencies.generatedKn.generatedGnKn}
-              kN, {dependencies.generatedKn.generatedBioKn}
-              <span className="bioKn">kN</span>,{" "}
-              {dependencies.generatedKn.generatedTechnoKn}
-              <span className="technoKn">kN</span> and{" "}
-              {dependencies.generatedKn.generatedCultureKn}
-              <span className="cultureKn">kN</span>, while lucid dreaming.
-              <button
-                className="generatedKn-button"
-                onClick={() => {
-                  setShowGeneratedKnAlert(false);
-                  setRewardsTaken(true);
-                }}
-              >
-                &times;
-              </button>
-            </p>
-          </div>
-        )}
-
-        <div className="first-half">
-          <div className="header">
-            <form className="music-div">
-              <label className="music-tag">Music</label>
-              {BoopButton()}
-            </form>
-
-            <button className="mute-button" onClick={() => setMute(!mute)}>
-              {mute ? "Unmute" : "Mute"}
-            </button>
-          </div>
-
-          <div className="display-stats">
-            <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
-
-            <p>
-              Progress:{" "}
-              {Math.floor(
-                (statDependencies.totalKnCountOfThisRun.generalKn /
-                  statDependencies.goal) *
-                  100 *
-                  100
-              ) / 100}
-              %
-            </p>
-            {/* <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p> */}
-          </div>
-          <div
-            unselectable="on"
-            onClick={handleClick}
-            className="display-knCount unselectable"
-          >
-            <div className="kn-amount-display">
-              <div>
-                <p>
-                  {/* parseNumber( */ dependencies.knCount.generalKn /* ) */}
-                  <span>kN</span>{" "}
-                </p>
-                <p>
-                  {/* parseNumber( */ dependencies.knCount.bioKn /* ) */}
-                  <span className="bioKn">kN</span>{" "}
-                </p>
-              </div>
-              <div>
-                <p>
-                  {/* parseNumber( */ dependencies.knCount.technoKn /* ) */}
-                  <span className="technoKn">kN</span>{" "}
-                </p>
-                <p>
-                  {/* parseNumber( */ dependencies.knCount.cultureKn /* ) */}
-                  <span className="cultureKn">kN</span>{" "}
-                </p>
-              </div>
-            </div>
-            <Buff />
-            <img className="character" src={personajeOneLoop} alt="personaje" />
-          </div>
+    <div className="contador">
+      {dependencies.showBuffer && (
+        <div className="buffer">
+          <img src={buffer} alt="loading infinite loop gif" />
         </div>
-        <div className="second-half">
-          <nav className="second-half-nav">
-            <ul className="second-half-ul">
-              <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/">
-                  Shop
-                </Link>
-              </li>
-              <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/stats">
-                  Stats
-                </Link>
-              </li>
-              <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/shelf">
-                  Shelf
-                </Link>
-              </li>
-              <li className="second-half-ul-li">
-                <Link className="second-half-nav-button" to="/options">
-                  Options
-                </Link>
-              </li>
-            </ul>
-          </nav>
+      )}
+      {dependencies.showGeneratedKnAlert && (
+        <div className="buffer">
+          <p className="generatedKn-p">
+            You have gained {dependencies.generatedKn.generatedGnKn}
+            kN, {dependencies.generatedKn.generatedBioKn}
+            <span className="bioKn">kN</span>,{" "}
+            {dependencies.generatedKn.generatedTechnoKn}
+            <span className="technoKn">kN</span> and{" "}
+            {dependencies.generatedKn.generatedCultureKn}
+            <span className="cultureKn">kN</span>, while lucid dreaming.
+            <button
+              className="generatedKn-button"
+              onClick={() => {
+                setShowGeneratedKnAlert(false);
+                setRewardsTaken(true);
+              }}
+            >
+              &times;
+            </button>
+          </p>
+        </div>
+      )}
 
-          <Route exact path="/">
-            <Shop />
-          </Route>
-          <Route path="/options">
-            <Options />
-          </Route>
-          <Route path="/stats">
-            <Stats />
-          </Route>
-          <Route path="/shelf">
-            <Shelf />
-          </Route>
+      <div className="first-half">
+        <div className="header">
+          <form className="music-div">
+            <label className="music-tag">Music</label>
+            {BoopButton()}
+          </form>
+
+          <button className="mute-button" onClick={() => setMute(!mute)}>
+            {mute ? "Unmute" : "Mute"}
+          </button>
+        </div>
+
+        <div className="display-stats">
+          <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
+
+          <p>
+            Progress:{" "}
+            {Math.floor(
+              (statDependencies.totalKnCountOfThisRun.generalKn /
+                statDependencies.goal) *
+                100 *
+                100
+            ) / 100}
+            %
+          </p>
+          {/* <p>Total: {parseNumber(Math.floor(totalKn * 100) / 100)} kN</p> */}
+        </div>
+        <div
+          unselectable="on"
+          onClick={handleClick}
+          className="display-knCount unselectable"
+        >
+          <div className="kn-amount-display">
+            <div>
+              <p>
+                {/* parseNumber( */ dependencies.knCount.generalKn /* ) */}
+                <span>kN</span>{" "}
+              </p>
+              <p>
+                {/* parseNumber( */ dependencies.knCount.bioKn /* ) */}
+                <span className="bioKn">kN</span>{" "}
+              </p>
+            </div>
+            <div>
+              <p>
+                {/* parseNumber( */ dependencies.knCount.technoKn /* ) */}
+                <span className="technoKn">kN</span>{" "}
+              </p>
+              <p>
+                {/* parseNumber( */ dependencies.knCount.cultureKn /* ) */}
+                <span className="cultureKn">kN</span>{" "}
+              </p>
+            </div>
+          </div>
+          <Buff />
+          <img className="character" src={personajeOneLoop} alt="personaje" />
         </div>
       </div>
-    </>
+      <div className="second-half">
+        <nav className="second-half-nav">
+          <ul className="second-half-ul">
+            <li className="second-half-ul-li">
+              <Link className="second-half-nav-button" to="/">
+                Shop
+              </Link>
+            </li>
+            <li className="second-half-ul-li">
+              <Link className="second-half-nav-button" to="/stats">
+                Stats
+              </Link>
+            </li>
+            <li className="second-half-ul-li">
+              <Link className="second-half-nav-button" to="/shelf">
+                Shelf
+              </Link>
+            </li>
+            <li className="second-half-ul-li">
+              <Link className="second-half-nav-button" to="/options">
+                Options
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Route exact path="/">
+          <Shop />
+        </Route>
+        <Route path="/options">
+          <Options />
+        </Route>
+        <Route path="/stats">
+          <Stats />
+        </Route>
+        <Route path="/shelf">
+          <Shelf />
+        </Route>
+      </div>
+    </div>
   );
 };
 
