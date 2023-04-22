@@ -4,14 +4,12 @@ import MiscContext from "../../context/MiscContext";
 import "./Buff.css";
 export const Buff = () => {
   const { upgrades } = useContext(CounterContext);
-  const { buffMessage, setBuffMessage, buffClass, setBuffClass } = useContext(
-    MiscContext
-  );
+  const { buffMessage, setBuffMessage, buffClass, setBuffClass } =
+    useContext(MiscContext);
 
   const calculateNextBuff = (max, min) => {
     const random =
       Math.random() * (max * 60 * 1000 - min * 60 * 1000) + min * 60 * 1000;
-    //console.log(random);
     return random;
   };
 
