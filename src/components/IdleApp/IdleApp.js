@@ -118,10 +118,15 @@ const IdleApp = () => {
             </div>
 
             <div className="display-stats">
-              <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
+              <p>
+                Goal:
+                <br />
+                {parseNumber(statDependencies.goal)} kN
+              </p>
 
               <p>
-                Progress:{" "}
+                Progress:
+                <br />
                 {Math.floor(
                   (statDependencies.totalKnCountOfThisRun.generalKn /
                     statDependencies.goal) *
@@ -228,10 +233,15 @@ const IdleApp = () => {
             </div>
 
             <div className="display-stats">
-              <p>Goal: {parseNumber(statDependencies.goal)} kN</p>
+              <p>
+                Goal:
+                <br />
+                {parseNumber(statDependencies.goal)} kN
+              </p>
 
               <p>
-                Progress:{" "}
+                Progress:
+                <br />
                 {Math.floor(
                   (statDependencies.totalKnCountOfThisRun.generalKn /
                     statDependencies.goal) *
