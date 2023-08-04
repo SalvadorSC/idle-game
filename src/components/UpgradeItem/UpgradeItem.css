@@ -10,13 +10,13 @@
   display: none;
   /* height: auto; */
   text-align: left;
-  top: 80px;
-  left: 40px;
+  top: 0px;
+  left: 120px;
   background-color: #ccc;
   width: 180px;
   min-height: 120px;
   /* opacity: 0; */
-  z-index: 2;
+  z-index: 9999;
   padding: 15px;
   /* transition: opacity 0.3s ease; */
 }

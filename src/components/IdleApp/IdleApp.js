@@ -17,6 +17,7 @@ import StatsContext from "../../context/StatsContext";
 import MiscContext from "../../context/MiscContext";
 import { Buff } from "../Buff/Buff";
 import { useChosenKn } from "../../hooks/useChosenKn";
+import { ReactFlowProvider } from "reactflow";
 const IdleApp = () => {
   const dependencies = useContext(CounterContext);
   const statDependencies = useContext(StatsContext);
@@ -208,7 +209,9 @@ const IdleApp = () => {
               <Stats />
             </Route>
             <Route path="/shelf">
-              <Shelf />
+              <ReactFlowProvider>
+                <Shelf />
+              </ReactFlowProvider>
             </Route>
           </div>
         </>
@@ -365,7 +368,9 @@ const IdleApp = () => {
               <Stats />
             </Route>
             <Route path="/shelf">
-              <Shelf />
+              <ReactFlowProvider>
+                <Shelf />
+              </ReactFlowProvider>
             </Route>
           </div>
         </div>
