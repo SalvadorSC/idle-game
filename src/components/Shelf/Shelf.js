@@ -30,22 +30,22 @@ export const Shelf = memo(() => {
     };
   });
   const initialEdges = [
-    { type: "smoothstep", id: "1-2", source: "1", target: "2" },
-    { type: "smoothstep", id: "2-3", source: "2", target: "3" },
-    { type: "smoothstep", id: "3-4", source: "3", target: "4" },
-    { type: "smoothstep", id: "3-5", source: "3", target: "5" },
-    { type: "smoothstep", id: "4-6", source: "4", target: "6" },
-    { type: "smoothstep", id: "4-7", source: "4", target: "7" },
-    { type: "smoothstep", id: "5-8", source: "5", target: "8" },
-    { type: "smoothstep", id: "6-9", source: "6", target: "9" },
-    { type: "smoothstep", id: "7-10", source: "7", target: "10" },
-    { type: "smoothstep", id: "8-11", source: "8", target: "11" },
-    { type: "smoothstep", id: "10-12", source: "10", target: "12" },
-    { type: "smoothstep", id: "11-13", source: "11", target: "13" },
-    { type: "smoothstep", id: "12-14", source: "12", target: "14" },
-    { type: "smoothstep", id: "9-15", source: "9", target: "15" },
-    { type: "smoothstep", id: "15-16", source: "15", target: "16" },
-    { type: "smoothstep", id: "11-17", source: "11", target: "17" },
+    { id: "1-2", source: "1", target: "2" },
+    { id: "2-3", source: "2", target: "3" },
+    { id: "3-4", source: "3", target: "4" },
+    { id: "3-5", source: "3", target: "5" },
+    { id: "4-6", source: "4", target: "6" },
+    { id: "4-7", source: "4", target: "7" },
+    { id: "5-8", source: "5", target: "8" },
+    { id: "6-9", source: "6", target: "9" },
+    { id: "7-10", source: "7", target: "10" },
+    { id: "8-11", source: "8", target: "11" },
+    { id: "10-12", source: "10", target: "12" },
+    { id: "11-13", source: "11", target: "13" },
+    { id: "12-14", source: "12", target: "14" },
+    { id: "9-15", source: "9", target: "15" },
+    { id: "15-16", source: "15", target: "16" },
+    { id: "11-17", source: "11", target: "17" },
   ];
 
   const [nodes, setNodes] = useNodesState(initialNodes);
